@@ -24,6 +24,8 @@ Route::get('/category/{name}', function(){
 });
 */
 
+
+
 Route::get('/', [IndexController::class, 'show']);
 Route::get('/category/{name}', [CategoryController::class, 'show']);
 Route::get('/article/{id}', [ArticleController::class, 'show']);

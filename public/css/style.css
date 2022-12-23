@@ -1,0 +1,87 @@
+:root{
+    --font-color-1:#191e2b;
+    --font-color-2:#666666;
+    --font-color-3:#eeeeee;
+    --theme-color:#f94a4a;
+}
+body{
+    font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
+}
+/*头部logo*/
+header .nav-logo{
+    padding:15px 0;
+    float:left;
+}
+header .nav-logo a{
+    height:40px;
+    display:block;
+}
+header .nav-logo a img{
+    max-height:100%;
+}
+/**头部导航**/
+header nav.navbar-nav{
+    padding:15px 0;
+    margin-left:20px;
+    float:left;
+}
+header nav.navbar-nav a{
+    color:var(--font-color-1);
+    font-size:16px;
+    font-weight:900;
+    height:40px;
+    line-height:40px;
+    margin:0 20px;
+    display:inline-block;
+}
+
+/**头部联系客服**/
+header .top-kefu{
+    padding:15px 0;
+    float:left;
+} 
+header .top-kefu .kefu-icon{
+    height:40px;
+    float:left;
+}
+header .top-kefu .kefu-icon:after{
+    
+} 
+header .top-kefu .kefu-icon img{
+    max-height:100%;
+}
+header .top-kefu .kefu-btn{
+    height:40px;
+    float:left;
+}
+header .top-kefu .kefu-btn .phone{
+    color:var(--font-color-1);
+    font-size:12px;
+    font-weight:900;
+}
+header .top-kefu .kefu-btn .btn{
+    color: var(--font-color-2);
+    font-size:12px;
+    padding:2px 4px;
+    border-color: var(--font-color-3);
+}
+header .top-kefu .kefu-btn .btn img{
+    max-height:16px;
+}
+/**头部登录注册按钮**/
+header .visitor{
+    padding:15px 0;
+    float:right;
+}
+header .visitor a.btn{
+    font-size:12px;
+    height:40px;
+    line-height:40px;
+    padding:0 25px;
+    margin-left:10px;
+}
+header .visitor .btn.login{
+    color:#fff;
+    background-color:var(--theme-color);
+    border-color:var(--theme-color);
+}
