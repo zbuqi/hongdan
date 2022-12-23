@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>这是分类页面</title>
-    </head>
-    <body>
-        <div class="nav">
-            <a href="/">首页</a>
-            <a href="/category/ces">分类页</a>
-            <a href="/article/1">文章页</a>
-        </div>
-        <div class="bdoy">这是分类页面</div>
-    
-    
-    </body>
-</html>
+@extends('layouts')
+
+@section('title', '这是分类页')
+@section('pagename', 'category-page')
+
+@section('content')
+    <div class="">这是分类页</div>
+@endsection

@@ -1,11 +1,25 @@
-<!DOCTYPE html>
+
+@extends('layouts')
+
+@section('title', '这是首页')
+@section('pagename', 'home-page')
+
+@section('content')
+    <div class="">这是首页</div>
+@endsection
+
+
+
+
+
+<!--
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>这是首页</title>
     </head>
-    <body>
+    <body style="display:none">
         <div class="nav">
             <a href="/">首页</a>
             <a href="/category/ces">分类页</a>
@@ -138,3 +152,4 @@
         </div>
     </body>
 </html>
+-->
