@@ -7,13 +7,29 @@
 body{
     font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
 }
+/*布局*/
+@media (min-width: 1440px){
+    .container{
+        width:1300px;
+    }
+}
+
+/*头部*/
+header{
+
+}
+header .container{
+    padding-top:7.5px;
+    padding-bottom: 7.5px;
+}
 /*头部logo*/
 header .nav-logo{
-    padding:15px 0;
+    padding:7.5px 0;
+    margin-right:20px;
     float:left;
 }
 header .nav-logo a{
-    height:40px;
+    height:35px;
     display:block;
 }
 header .nav-logo a img{
@@ -21,38 +37,51 @@ header .nav-logo a img{
 }
 /**头部导航**/
 header nav.navbar-nav{
-    padding:15px 0;
+    height:50px;
     margin-left:20px;
     float:left;
 }
 header nav.navbar-nav a{
+    height:100%;
     color:var(--font-color-1);
     font-size:16px;
     font-weight:900;
-    height:40px;
-    line-height:40px;
+    padding:7.5px 15px 15px;
     margin:0 20px;
     display:inline-block;
 }
 
 /**头部联系客服**/
 header .top-kefu{
-    padding:15px 0;
-    float:left;
+    float:right;
+    margin-right:60px;
 } 
 header .top-kefu .kefu-icon{
-    height:40px;
+    height:50px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:15px;
+    margin-right:10px;
     float:left;
+    position:relative;
 }
 header .top-kefu .kefu-icon:after{
-    
+    content:'';
+    width:2px;
+    height:100%;
+    background:var(--font-color-3);
+    display:block;
+    position:absolute;
+    top:0;
+    right:0;
 } 
 header .top-kefu .kefu-icon img{
     max-height:100%;
 }
 header .top-kefu .kefu-btn{
-    height:40px;
+    height:50px;
     float:left;
+    position:relative;
 }
 header .top-kefu .kefu-btn .phone{
     color:var(--font-color-1);
@@ -60,17 +89,29 @@ header .top-kefu .kefu-btn .phone{
     font-weight:900;
 }
 header .top-kefu .kefu-btn .btn{
+    height:28px;
     color: var(--font-color-2);
-    font-size:12px;
-    padding:2px 4px;
+    font-size:13px;
+    line-height:28px;
+    padding:0 6px;
     border-color: var(--font-color-3);
+    background-color:#fff;
+    position:absolute;
+    bottom:0;
+}
+header .top-kefu .kefu-btn .btn:hover{
+    transition:all 0.1s ease-in-out;
+    bottom:1px;
+    box-shadow:0px 3px 10px 0px rgba(0,0,0,0.2); 
 }
 header .top-kefu .kefu-btn .btn img{
-    max-height:16px;
+    max-height:20px;
+    position:relative;
+    top:-1px;
 }
 /**头部登录注册按钮**/
 header .visitor{
-    padding:15px 0;
+    padding:5px 0;
     float:right;
 }
 header .visitor a.btn{
@@ -84,4 +125,130 @@ header .visitor .btn.login{
     color:#fff;
     background-color:var(--theme-color);
     border-color:var(--theme-color);
+}
+
+@media (max-width: 1440px){
+
+    /**头部导航**/
+    header nav.navbar-nav{
+        margin-left:15px;
+    }
+    header nav.navbar-nav a{
+        padding:7.5px 15px 15px;
+        margin:0 15px;
+    }
+    /**头部联系客服**/
+    header .top-kefu{
+        margin-right:50px;
+    } 
+
+}
+
+@media (max-width: 1200px){
+    /*头部logo*/
+    header .nav-logo{
+        padding:7.5px 0;
+        margin-right:10px;
+    }
+
+    /**头部导航**/
+    header nav.navbar-nav{
+        margin-left:10px;
+    }
+    header nav.navbar-nav a{
+        padding:7.5px 5px 15px;
+        margin:0 10px;
+    }
+    /**头部联系客服**/
+    header .top-kefu{
+        margin-right:20px;
+    } 
+    
+    /**头部登录注册按钮**/
+    header .visitor{
+        padding:5px 0;
+    }
+    header .visitor a.btn{
+        padding:0 15px;
+        margin-left:5px;
+    }
+
+}
+
+
+/**公共底部**/
+footer{
+    color:#fff;
+    background:#282f3c;
+    border-top:1px solid #282f3c;
+}
+footer a{
+    color:#fff;
+}
+.footer-container{
+    width:1400px;
+    margin:0 auto;
+}
+/**公共底部链接部分**/
+.footer-link{
+    border-top:1px solid #1b2230;
+    padding:30PX 0 40PX;
+}
+.footer-link .link-item{
+    margin-right:110px;
+    float:left;
+}
+.footer-link .link-item .title{
+    padding-bottom:20px;
+    margin:0;
+}
+.footer-link .link-item ul{
+    margin:0;
+}
+.footer-link .link-item li{
+    padding-bottom:20px;
+}
+
+.footer-contact{
+    margin:20px 0;
+    float:right;
+}
+.contace-content{
+
+}
+.contace-content .contace-icon{
+    margin-right:20px;
+    float:left;
+}
+.contace-content .contace-main{
+    float:left;
+}
+.contace-content .contace-main .phone{
+    font-size:18px;
+}
+.contace-item{
+    float:left;
+    margin-left:50px;
+}
+.contace-item>p{
+    margin-top:15px;
+    text-align:center;
+}
+/**公共底部版权部分**/
+footer .copyright{
+    border-top:1px solid #4f555f;
+}
+footer .copyright p{
+    padding:20px 0 30px;
+}
+footer .copyright p span{
+    margin:0 10px;
+    display:inline-block;
+}
+
+
+
+.wrap{
+    min-height:800px;
+    background:#f2f2f2;
 }
