@@ -45,7 +45,6 @@ body{
 .col-1{
     width:100%;
 }
-
 .col-2{
     width:50%;
 }
@@ -67,9 +66,6 @@ body{
 
 
 /*头部*/
-header{
-
-}
 header .container{
     padding-top:7.5px;
     padding-bottom: 7.5px;
@@ -278,9 +274,6 @@ footer a{
     margin:20px 0;
     float:right;
 }
-.contace-content{
-
-}
 .contace-content .contace-icon{
     margin-right:20px;
     float:left;
@@ -359,36 +352,78 @@ footer .copyright p span{
 }
 
 /**首页**/
+.zhuanti>div{
+    padding:12px;
+}
 .zhuanti-main{
     background:var(--bg-color-1);
     border-radius:8px;
+    padding:12px;
 }
 .zhuanti-main .title{
     color:var(--font-color-4);
     font-size:18px;
+    line-height:27px;
     font-weight:900;
     margin:0;
 }
 .zt-item{
-    background:var(--bg-color-4);
     border-radius:4px;
     padding:8px;
+    background:#fff no-repeat right bottom;
+    background-size:44px;
+    position:relative;
+    display:block;
 }
 .zt-item .item-title{
     color:var(--font-color-1);
     font-size:14px;
+    font-weight:900;
+    line-height:21px;
 }
 .zt-item p{
     color:var(--font-color-5);
     font-size:12px;
+    line-height:18px;
+}
+.zt-item .icon{
+    width:44px;
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+.zt-item.icon-1{
+    background-image:url('/img/zt-icon-1.png');
+}
+.zt-item.icon-2{
+    background-image:url('/img/zt-icon-2.png');
+}
+.zt-item.icon-3{
+    background-image:url('/img/zt-icon-3.png');
+}
+.zt-item.icon-4{
+    background-image:url('/img/zt-icon-4.png');
+}
+.zt-zb-item.icon-5{
+    background-image:url('/img/zt-icon-5.png');
 }
 .zt-zb-item{
     border-radius:4px;
-    background:var(--bg-color-3);
+    background:var(--bg-color-3) no-repeat right bottom;
+    background-size:80px;
     padding:16px;
+    display:block;
 }
-.zhuanti-btn{
-
+.zt-zb-item .item-title{
+    color:var(--font-color-1);
+    font-size:24px;
+    line-height:36px;
+}
+.zt-zb-item p{
+    color:var(--font-color-2);
+    font-size:12px;
+    line-height:18px;
+    margin-bottom:5px;
 }
 .zhuanti-btn a{
     color:var(--font-color-4);
@@ -401,14 +436,32 @@ footer .copyright p span{
     display:block;
     background:var(--bg-color-2);
 }
-
-
 .zhuanti-banner{
-
+    height:348px;
+    overflow:hidden;
+    border-radius:8px;
 }
 .zhuanti-banner a{
+    height:100%;
     display:block;
 }
 .zhuanti-banner a img{
-    max-width:100%;
+    max-height:100%;
+}
+@media (max-width: 1340px){
+    .content-wrap{
+        padding:8px;
+    }
+    .zhuanti>div{
+        padding:8px;
+    }
+    .zhuanti-main{
+        padding:8px;
+    }
+    .zt-item{
+        background-size:35px;
+    }
+    .zhuanti-banner{
+        height:340px;
+    }
 }
