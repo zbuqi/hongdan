@@ -2,17 +2,68 @@
     --font-color-1:#191e2b;
     --font-color-2:#666666;
     --font-color-3:#eeeeee;
+    --font-color-4:#ffffff;
+    --font-color-5:#b3b3b3;
     --theme-color:#f94a4a;
+    --bg-color-1:#D73D4F;
+    --bg-color-2:#E16D6E;
+    --bg-color-3:#FFE0E0;
+    --bg-color-4:#ffffff;
 }
 body{
     font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
 }
 /*布局*/
-@media (min-width: 1440px){
+@media (min-width: 1340px){
     .container{
-        width:1300px;
+        width:1298px;
+    
+}
+@media (max-width: 1200px){
+    body{
+        min-width:1100px;
+    }
+    .container{
+        width:970px;
     }
 }
+.col-1-x,.col-1-b,.col-2-x,.col-2-b,.col-1,.col-2,.col-7{
+    float:left;
+}
+.col-1-x{
+    width:24.919%; /*286--310*/
+}
+.col-1-b{
+    width:75.081%;
+}
+.col-2-x{
+    width:33.762%;
+}
+.col-2-b{
+    width:66.238%;
+}
+.col-1{
+    width:100%;
+}
+.col-2{
+    width:50%;
+}
+.col-7{
+    width:14.285%; /*7分*/
+}
+.padd-4{
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-left:4px;
+    padding-right:4px;
+}
+.padd-12{
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:12px;
+    padding-right:12px;
+}
+
 
 /*头部*/
 header{
@@ -102,7 +153,7 @@ header .top-kefu .kefu-btn .btn{
 header .top-kefu .kefu-btn .btn:hover{
     transition:all 0.1s ease-in-out;
     bottom:1px;
-    box-shadow:0px 3px 10px 0px rgba(0,0,0,0.2); 
+    box-shadow:0px 1px 2px -1px rgba(0,0,0,0.2); 
 }
 header .top-kefu .kefu-btn .btn img{
     max-height:20px;
@@ -169,7 +220,7 @@ header .visitor .btn.login{
         padding:5px 0;
     }
     header .visitor a.btn{
-        padding:0 15px;
+        padding:0 20px;
         margin-left:5px;
     }
 
@@ -186,8 +237,19 @@ footer a{
     color:#fff;
 }
 .footer-container{
-    width:1400px;
     margin:0 auto;
+    padding-left:15px;
+    padding-right:15px;
+}
+@media (min-width: 1440px){
+    .footer-container{
+        width:1400px;
+    }
+}
+@media (max-width: 1440px){
+    .footer-container{
+        width:1170px;
+    }
 }
 /**公共底部链接部分**/
 .footer-link{
@@ -208,7 +270,9 @@ footer a{
 .footer-link .link-item li{
     padding-bottom:20px;
 }
-
+.footer-link .link-item li a{
+    font-size:14px;
+}
 .footer-contact{
     margin:20px 0;
     float:right;
@@ -224,15 +288,46 @@ footer a{
     float:left;
 }
 .contace-content .contace-main .phone{
-    font-size:18px;
+    font-size:20px;
 }
+.contace-content .contace-main .time{
+    font-size:14px;
+}
+.contace-content .contace-main .contace-btn{
+    margin-top:20px;
+}
+.contace-content .contace-main .contace-btn a{
+    font-size:18px;
+    font-weight:900;
+    padding:10px 20px;
+    background:#424854;
+    border-radius:4px;
+    display:inline-block;
+
+}
+
+
 .contace-item{
     float:left;
     margin-left:50px;
 }
+.contace-item:first-child{
+    margin-left:0;
+}
 .contace-item>p{
     margin-top:15px;
     text-align:center;
+}
+@media (max-width: 1200px){
+    .footer-container{
+        width:970px;
+    }
+    .footer-link .link-item{
+        margin-right:80px;
+    }
+    .contace-item{
+        margin-left:40px;
+    }
 }
 /**公共底部版权部分**/
 footer .copyright{
@@ -247,8 +342,72 @@ footer .copyright p span{
 }
 
 
-
+/**主体内容**/
 .wrap{
-    min-height:800px;
+    min-height:200px;
     background:#f2f2f2;
+}
+.content-wrap{
+    min-height:500px;
+    background:#fff;
+    border-radius:8px;
+    padding:12px;
+    box-shadow:0px 0px 30px 0px rgba(0,0,0,0.2);
+    margin-top:37px;
+    margin-bottom:41px;
+}
+
+/**首页**/
+.zhuanti-main{
+    background:var(--bg-color-1);
+    border-radius:8px;
+}
+.zhuanti-main .title{
+    color:var(--font-color-4);
+    font-size:18px;
+    font-weight:900;
+    margin:0;
+}
+.zt-item{
+    background:var(--bg-color-4);
+    border-radius:4px;
+    padding:8px;
+}
+.zt-item .item-title{
+    color:var(--font-color-1);
+    font-size:14px;
+}
+.zt-item p{
+    color:var(--font-color-5);
+    font-size:12px;
+}
+.zt-zb-item{
+    border-radius:4px;
+    background:var(--bg-color-3);
+    padding:16px;
+}
+.zhuanti-btn{
+
+}
+.zhuanti-btn a{
+    color:var(--font-color-4);
+    font-size:16px;
+    line-height:24px;
+    font-weight:900;
+    text-align:center;
+    border-radius:4px;
+    padding:6px 0;
+    display:block;
+    background:var(--bg-color-2);
+}
+
+
+.zhuanti-banner{
+
+}
+.zhuanti-banner a{
+    display:block;
+}
+.zhuanti-banner a img{
+    max-width:100%;
 }

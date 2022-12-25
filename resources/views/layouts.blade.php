@@ -38,7 +38,9 @@
         </header>
         <div class="wrap">
             <div class="container">
-                @yield('content')
+                <div class="content-wrap">
+                    @yield('content')
+                </div>
             </div>
         </div>
         <footer>
