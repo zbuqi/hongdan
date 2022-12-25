@@ -17,7 +17,7 @@ body{
 @media (min-width: 1340px){
     .container{
         width:1298px;
-    
+    }
 }
 @media (max-width: 1200px){
     body{
