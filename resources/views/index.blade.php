@@ -55,7 +55,7 @@
     <section class="saic clearfix">
         <div class="col-1-b">
             <div class="saic-main">
-                <div class="saic-title">
+                <div class="saic-title clearfix">
                     <h2 class="title">每天赛程</h2>
                     <a href="">全部比赛 ></a>
                 </div>
@@ -69,7 +69,7 @@
                                         <p>周日 23: 00</p>
                                     </div>
                                     <div class="fenge"></div>
-                                    <div class="start">已完场</div>
+                                    <div class="start"><span>已完场</span></div>
                                     <div class="sai-user user-1">
                                         <div class="name">克罗地亚</div>
                                         <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
@@ -83,12 +83,12 @@
                                     </div>
                                 </td>
                                 <td class="score">0</td>
-                                <td class=""><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td class="recom" rowspan="2"><a href="">72位专家推荐 ></a></td>
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
+                                <td class="recom" rowspan="2"><div><a href="">72位专家推荐 ></a></div></td>
                             </tr>
-                            <tr class="">
-                                <td>+1</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                            <tr class="sai-item">
+                                <td class="score">+1</td>
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
                             </tr>
                             <tr class="sai-item active">
                                 <td class="item-info clearfix" rowspan="2">
@@ -97,7 +97,7 @@
                                         <p>周日 23: 00</p>
                                     </div>
                                     <div class="fenge"></div>
-                                    <div class="start">已完场</div>
+                                    <div class="start"><span>已完场</span></div>
                                     <div class="sai-user user-1">
                                         <div class="name">克罗地亚</div>
                                         <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
@@ -111,87 +111,120 @@
                                     </div>
                                 </td>
                                 <td class="score">0</td>
-                                <td class="info"><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td class="recom" rowspan="2"><a href="">72位专家推荐 ></a></td>
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
+                                <td class="recom" rowspan="2"><div><a href="">72位专家推荐 ></a></div></td>
                             </tr>
                             <tr class="sai-item active">
                                 <td class="score">+1</td>
-                                <td class="info"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
                             </tr>
-                            <tr class="sai-item">
-                                <td rowspan="2">
+                            <tr class="sai-item not">
+                                <td class="item-info clearfix" rowspan="2">
                                     <div class="time">
                                         <p>12月03日</p>
                                         <p>周日 23: 00</p>
                                     </div>
-                                    <div class="">已完场</div>
-                                    <div class="sai-user-1">
-                                        <div class="name">克罗地亚</div>
-                                        <img src="" alt="">
+                                    <div class="fenge"></div>
+                                    <div class="start"><span>已完场</span></div>
+                                    <div class="sai-user user-1">
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
+                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
                                     </div>
-                                    <div class="sai-user-2">
-                                        <img src="" alt="">
-                                        <div class="name">巴西</div>
+                                    <div class="sai-user user-2">
+                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
                                     </div>
-                                    <div class="sai-video"></div>
+                                    <div class="sai-video">
+                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
+                                    </div>
                                 </td>
-                                <td>0</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td rowspan="2"><a href="">72位专家推荐 ></a></td>
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
+                                <td class="recom" rowspan="2"><div><span>暂无推荐 </span></div></td>
                             </tr>
-                            <tr class="">
-                                <td>+1</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                            <tr class="sai-item not">
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
-                            <tr class="sai-item">
-                                <td rowspan="2">
+                            <tr class="sai-item not">
+                                <td class="item-info clearfix" rowspan="2">
                                     <div class="time">
                                         <p>12月03日</p>
                                         <p>周日 23: 00</p>
                                     </div>
-                                    <div class="">已完场</div>
-                                    <div class="sai-user-1">
-                                        <div class="name">克罗地亚</div>
-                                        <img src="" alt="">
+                                    <div class="fenge"></div>
+                                    <div class="start"><span>已完场</span></div>
+                                    <div class="sai-user user-1">
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
+                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
                                     </div>
-                                    <div class="sai-user-2">
-                                        <img src="" alt="">
-                                        <div class="name">巴西</div>
+                                    <div class="sai-user user-2">
+                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
                                     </div>
-                                    <div class="sai-video"></div>
+                                    <div class="sai-video">
+                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
+                                    </div>
                                 </td>
-                                <td>0</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td rowspan="2"><a href="">72位专家推荐 ></a></td>
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
+                                <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
                             </tr>
-                            <tr class="">
-                                <td>+1</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                            <tr class="sai-item not">
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
-                            <tr class="sai-item">
-                                <td rowspan="2">
+                            <tr class="sai-item not">
+                                <td class="item-info clearfix" rowspan="2">
                                     <div class="time">
                                         <p>12月03日</p>
                                         <p>周日 23: 00</p>
                                     </div>
-                                    <div class="">已完场</div>
-                                    <div class="sai-user-1">
-                                        <div class="name">克罗地亚</div>
-                                        <img src="" alt="">
+                                    <div class="fenge"></div>
+                                    <div class="start"><span>已完场</span></div>
+                                    <div class="sai-user user-1">
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
+                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
                                     </div>
-                                    <div class="sai-user-2">
-                                        <img src="" alt="">
-                                        <div class="name">巴西</div>
+                                    <div class="sai-user user-2">
+                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="name">
+                                            第三场<br>
+                                            1/4决赛<br>
+                                            胜者
+                                        </div>
                                     </div>
-                                    <div class="sai-video"></div>
+                                    <div class="sai-video">
+                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
+                                    </div>
                                 </td>
-                                <td>0</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td rowspan="2"><a href="">72位专家推荐 ></a></td>
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
+                                <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
                             </tr>
-                            <tr class="">
-                                <td>+1</td>
-                                <td><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                            <tr class="sai-item not">
+                                <td class="score">-</td>
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
                         </tbody>
                     </table>
