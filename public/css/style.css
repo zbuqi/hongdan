@@ -4,11 +4,14 @@
     --font-color-3:#eeeeee;
     --font-color-4:#ffffff;
     --font-color-5:#b3b3b3;
+    --font-color-6:#2DB370;
+    --font-color-7:#eeeeee;
     --theme-color:#f94a4a;
     --bg-color-1:#D73D4F;
     --bg-color-2:#E16D6E;
     --bg-color-3:#FFE0E0;
     --bg-color-4:#ffffff;
+    --bg-color-5:#FFF9EE;
 }
 body{
     font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
@@ -464,4 +467,91 @@ footer .copyright p span{
     .zhuanti-banner{
         height:340px;
     }
+}
+/**每天赛程**/
+.saic-main .content .table-bordered{
+    border:1px solid var(--font-color-7);
+}
+.sai-item {
+
+}
+.sai-item.active{
+    background:var(--bg-color-5);
+}
+.sai-item .item-info{
+
+}
+.sai-item .item-info>div{
+    float:left;
+}
+.sai-item.active .item-info .time{
+    background:var(--bg-color-1);
+}
+.sai-item.active .item-info .time p{
+    color:var(--font-color-4) !important;
+}
+.sai-item .item-info .time{
+    padding:5px 10px;
+    border-radius:8px;
+    margin:0 10px;
+}
+.sai-item .item-info .time p{
+    text-align:center;
+    margin-bottom:0px;
+}
+.sai-item .item-info .time p:first-child{
+    color:var(--font-color-1);
+    font-size:16px;
+    line-height:24px;
+    font-weight:900;
+}
+.sai-item .item-info .time p:last-child{
+    color:var(--font-color-2);
+    font-size:14px;
+    line-height:22px;   
+}
+.sai-item .item-info .fenge{
+    width:0;
+    height:56px;
+    border:1px solid var(--font-color-7);
+    margin:0 10px;
+}
+.sai-item .item-info .start{
+    color:var(--font-color-5);
+    align-self:center;
+}
+.sai-item .item-info .sai-user>div{
+    display:inline-block;
+}
+.sai-item .item-info .sai-user .name{
+    color:var(--font-color-1);
+    font-size:14px;
+    line-height:22px;
+
+}
+.sai-item .item-info .sai-user .img{
+    width:36px;
+    height:36px;
+    border-radius:32px;
+    overflow:hidden;
+}
+.sai-item .item-info .sai-user .img img{
+    max-width:100%;
+}
+.sai-item .item-info .sai-video a{
+    display:inline-block;
+    border:1px solid var(--font-color-3);
+    border-radius:4px;
+}
+.sai-item .item-info .sai-video a img{
+    max-width:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:1px solid #666;
+}
+.sai-item .item-info .sai-video a span{
+    color:var(--font-color-6);
+    font-size:14px;
+    lint-height:22px;
+    dispaly:inline-block;
 }
