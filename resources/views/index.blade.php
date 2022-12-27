@@ -56,7 +56,7 @@
         <div class="col-1-b">
             <div class="saic-main">
                 <div class="saic-title clearfix">
-                    <h2 class="title">每天赛程</h2>
+                    <h2 class="title"><span>每天赛程</span></h2>
                     <a href="">全部比赛 ></a>
                 </div>
                 <div class="content">
@@ -132,10 +132,10 @@
                                             1/4决赛<br>
                                             胜者
                                         </div>
-                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                     </div>
                                     <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                         <div class="name">
                                             第三场<br>
                                             1/4决赛<br>
@@ -168,10 +168,10 @@
                                             1/4决赛<br>
                                             胜者
                                         </div>
-                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                     </div>
                                     <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                         <div class="name">
                                             第三场<br>
                                             1/4决赛<br>
@@ -204,10 +204,10 @@
                                             1/4决赛<br>
                                             胜者
                                         </div>
-                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                     </div>
                                     <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
+                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
                                         <div class="name">
                                             第三场<br>
                                             1/4决赛<br>
@@ -233,42 +233,119 @@
         </div>
         <div class="col-1-x">
             <div class="saic-sidebar">
-                <div class="saic-sidebar-title">
+                <div class="saic-sidebar-title clearfix">
                     <div class="title">
                         <span>夺冠指数</span>
                         <span>实时更新</span>
                     </div>
                     <a href="/" alt="">全部 ></a>
                 </div>
-                <div class="saic-sidebar-content">
+                <div class="saic-sidebar-content clearfix">
                     <div class="col-2">
-                        <div class="content-item">
-                            <img src="" alt="">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
                             <span>克罗地亚</span>
                             <span>2.60</span>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-2">
-                        <div class="content-item">
-                            <img src="" alt="">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
                             <span>克罗地亚</span>
                             <span>2.60</span>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-2">
-                        <div class="content-item">
-                            <img src="" alt="">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
                             <span>克罗地亚</span>
                             <span>2.60</span>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-2">
-                        <div class="content-item">
-                            <img src="" alt="">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
                             <span>克罗地亚</span>
                             <span>2.60</span>
-                        </div>
+                        </a>
                     </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <a class="content-item" href="/">
+                            <img src="/img/saic-head-1.png" alt="">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-1">
+                        <a class="content-item-jm" href="/">
+                            <div class="item-title">32强深度解密</div>
+                            <p>红单密码，这里全都有</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="saic-zx clearfix">
+        <div class="col-2-b">
+            <a class="saic-zx-img" href="/">
+                <img src="/img/article-top.png">
+                <p>克罗地亚0-0比利时 欧洲红魔回家！</p>
+            </a>
+        </div>
+        <div class="col-2-x">
+            <div class="saic-zx-main">
+                <div class="saic-zx-title">
+                    <div class="title">每天赛程</div>
+                    <a href="/">更多 ></a>
+                </div>
+                <div class="saic-zx-content">
+                    <ul class="list-unstyled">
+                        <li><span></span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>知名推手</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>顶级高手</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>曾哥聊球</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>红单专栏</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span></span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>篮球资讯</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>篮球资讯</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><span>红单数据库</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
