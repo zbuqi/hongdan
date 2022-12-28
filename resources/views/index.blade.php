@@ -330,21 +330,21 @@
         </div>
         <div class="col-2-x">
             <div class="saic-zx-main">
-                <div class="saic-zx-title">
-                    <div class="title">每天赛程</div>
+                <div class="saic-zx-title clearfix">
+                    <div class="title"><span>每天赛程</span></div>
                     <a href="/">更多 ></a>
                 </div>
                 <div class="saic-zx-content">
                     <ul class="list-unstyled">
-                        <li><span></span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>知名推手</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>顶级高手</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>曾哥聊球</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>红单专栏</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span></span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>篮球资讯</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>篮球资讯</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><span>红单数据库</span><a href="">V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><a href=""><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><a href=""><span>知名推手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span>顶级高手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span>曾哥聊球</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span>红单专栏</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><a href=""><span>篮球资讯</span>11日鬼手：公杯1/4决杯1/4决推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span>篮球资讯</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href=""><span>红单数据库</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
                     </ul>
                 </div>
             </div>
