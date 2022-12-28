@@ -350,6 +350,100 @@
             </div>
         </div>
     </section>
+    <section class="whzj">
+        <div class="whzj-main clearfix">
+            <div class="col-3-b">
+                <div class="wh-jhd whzj-module">
+                    <div class="whzj-module-title clearfix">
+                        <div class="title"><span>网红计划单</span></div>
+                        <a href="/">全部 ></a>
+                    </div>
+                    <div class="whzj-module-content clearfix">
+                        <div class="col-4">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                        <div class="col-4">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3-x">
+                <div class="zj-ph whzj-module">
+                    <div class="whzj-module-title clearfix">
+                        <div class="title"><span>足球专家排行</span></div>
+                        <a href="/">全部 ></a>
+                    </div>
+                    <div class="whzj-module-content clearfix">
+                        <div class="col-3">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a class="whzj-item">
+                                <div class="user-img">
+                                    <img src="/img/user-head.png">
+                                    <span>10连红</span>
+                                </div>
+                                <p>Kop欧文</p>
+                                <p>1篇在售解读</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 
