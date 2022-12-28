@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MatchListController;
+use App\Http\Controllers\MatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::get('/category/{name}', function(){
 Route::get('/', [IndexController::class, 'show']);
 Route::get('/category/{name}', [CategoryController::class, 'show']);
 Route::get('/article/{id}', [ArticleController::class, 'show']);
+Route::get('/match_list/{name}', [MatchListController::class, 'show']);
+Route::get('/match/{id}', [MatchController::class, "show"]);

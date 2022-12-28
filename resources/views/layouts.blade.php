@@ -15,8 +15,8 @@
                 </div>
                 <nav class="navbar-nav">
                     <a href="/">首页</a>
-                    <a href="/">足球</a>
-                    <a href="/">篮球</a>
+                    <a href="/match_list/zuqiu">足球</a>
+                    <a href="/match/1">篮球</a>
                     <a href="/article/1">比分预测</a>
                     <a href="/category/ces">体育资讯</a>
                 </nav>
