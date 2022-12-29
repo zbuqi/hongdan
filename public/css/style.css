@@ -16,6 +16,7 @@
     --bg-color-6:#ffcb76;
     --bg-color-7:#EEFFFD;
     --bg-color-8:#FFFCEF;
+    --bg-color-9:#feeded;
 }
 body{
     font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
@@ -531,9 +532,6 @@ footer .copyright p span{
     border:1px solid var(--font-color-7);
     margin-bottom:0;
 }
-.sai-item {
-
-}
 .sai-item.active{
     background:var(--bg-color-5);
 }
@@ -987,8 +985,6 @@ footer .copyright p span{
     left:0;
     bottom:0;
 }
-.whzj-item p{
-}
 .whzj-item p:nth-child(2){
     color:var(--font-color-1);
     font-size:16px;
@@ -1025,4 +1021,74 @@ footer .copyright p span{
     .saic-zx-main .saic-zx-content ul{
         margin-bottom:5px;
     }
+}
+/**赛事列表**/
+.match-list-page .content-wrap{
+    padding:24px 16px;
+}
+.match-list{
+    padding:0 24px;
+}
+.match-list .list-head{
+    margin-bottom:25px;
+}
+.match-list .list-head .title{
+    color:var(--font-color-1);
+    font-weight:900;
+    font-size:24px;
+    line-height:36px;
+    margin-top:0;
+    margin-bottom:0;
+    margin-right:28px;
+    float:left;
+}
+.match-list .list-head .pull-down{
+    width:auto;
+    color:var(--font-color-1);
+    height:36px;
+    float:left;
+}
+.match-list .list-head>a{
+    color:var(--font-color-2);
+    font-size:16px;
+    line-height:36px;
+    float:right;
+}
+.match-list .list-main .table{
+    text-align:center;
+}
+.match-list .list-main .table thead{
+    background:var(--bg-color-9);
+}
+.match-list .list-main .table thead tr th{
+    font-size:16px;
+    line-height:24px;
+    text-align:center;
+}
+.match-list .list-main .table  .result span{   
+    width:64px;
+    display:inline-block;
+}
+.match-list .list-main .time{
+    color:var(--font-clor-1);
+    font-size:16px;
+    line-height:24px;
+    font-weight:900;
+    text-align:left;
+}
+.match-list .list-main .time .on-off{
+    color:var(--theme-color);
+    font-size:16px;
+    line-height:24px;
+    display:inline-block;
+}
+.match-list .list-main .time .on-off:before{
+    content:'';
+    width:12px;
+    border:6px solid var(--theme-color);
+    border-color:var(--theme-color) transparent transparent;
+    display:inline-block;
+    margin-right:8px;
+    position:relative;
+    top:4px;
 }
