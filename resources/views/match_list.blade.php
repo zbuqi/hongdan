@@ -42,43 +42,83 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>周六</td>
-                        <td><a class="">世界杯</a></td>
-                        <td>未开赛</td>
-                        <td>12-10 23:00</td>
+                    <tr class="list-item">
+                        <td><div class="item-text"><span>周六</span></div></td>
+                        <td><div class="item-name"><a class="">世界杯</a></div></td>
+                        <td><div class="item-text"><span>未开赛</span></div></td>
+                        <td><div class="item-text"><span>12-10 23:00</span></div></td>
                         <td>
-                            <div class="team clearfix">
-                                <div class=""><span>[22]</span>摩洛哥</div>
-                                <div><span>VS</span></div>
-                                <div class="">摩洛哥<span>[9]</span></div>
+                            <div class="item-team clearfix">
+                                <div class="user"><span>[22]</span>摩洛哥</div>
+                                <div class="or"><span>VS</span></div>
+                                <div class="user">摩洛哥<span>[9]</span></div>
                             </div>
                         </td>
                         <td>
-                            <div class="result">
-                                <span>0</span>
-                                <span>0</span>
-                                <span>0</span>
+                            <div class="item-result">
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>周六</td>
-                        <td><a class="btn">世界杯</a></td>
-                        <td>未开赛</td>
-                        <td>12-10 23:00</td>
+                    <tr class="list-item">
+                        <td><div class="item-text"><span>周六</span></div></td>
+                        <td><div class="item-name"><a class="">世界杯</a></div></td>
+                        <td><div class="item-text"><span>未开赛</span></div></td>
+                        <td><div class="item-text"><span>12-10 23:00</span></div></td>
                         <td>
-                            <div class="team clearfix">
-                                <div class=""><span>[22]</span>摩洛哥</div>
-                                <div><span>VS</span></div>
-                                <div class="">摩洛哥<span>[9]</span></div>
+                            <div class="item-team clearfix">
+                                <div class="user"><span>[22]</span>摩洛哥</div>
+                                <div class="or"><span>VS</span></div>
+                                <div class="user">摩洛哥<span>[9]</span></div>
                             </div>
                         </td>
                         <td>
-                            <div class="result">
-                                <span>0</span>
-                                <span>0</span>
-                                <span>0</span>
+                            <div class="item-result">
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="list-item">
+                        <td><div class="item-text"><span>周六</span></div></td>
+                        <td><div class="item-name"><a class="">世界杯</a></div></td>
+                        <td><div class="item-text"><span>未开赛</span></div></td>
+                        <td><div class="item-text"><span>12-10 23:00</span></div></td>
+                        <td>
+                            <div class="item-team clearfix">
+                                <div class="user"><span>[22]</span>摩洛哥</div>
+                                <div class="or"><span>VS</span></div>
+                                <div class="user">摩洛哥<span>[9]</span></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="item-result">
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="list-item">
+                        <td><div class="item-text"><span>周六</span></div></td>
+                        <td><div class="item-name"><a class="">世界杯</a></div></td>
+                        <td><div class="item-text"><span>未开赛</span></div></td>
+                        <td><div class="item-text"><span>12-10 23:00</span></div></td>
+                        <td>
+                            <div class="item-team clearfix">
+                                <div class="user"><span>[22]</span>摩洛哥</div>
+                                <div class="or"><span>VS</span></div>
+                                <div class="user">摩洛哥<span>[9]</span></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="item-result">
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
+                                <div><span>0</span><span>0</span></div>
                             </div>
                         </td>
                     </tr>
