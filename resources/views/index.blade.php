@@ -82,12 +82,12 @@
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
                                 </td>
-                                <td class="score">0</td>
+                                <td class="score"><span>0</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
                                 <td class="recom" rowspan="2"><div><a href="">72位专家推荐 ></a></div></td>
                             </tr>
                             <tr class="sai-item">
-                                <td class="score">+1</td>
+                                <td class="score"><span>+1</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
                             </tr>
                             <tr class="sai-item active">
@@ -110,12 +110,12 @@
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
                                 </td>
-                                <td class="score">0</td>
+                                <td class="score"><span>0</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
                                 <td class="recom" rowspan="2"><div><a href="">72位专家推荐 ></a></div></td>
                             </tr>
                             <tr class="sai-item active">
-                                <td class="score">+1</td>
+                                <td class="score"><span>+1</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
                             </tr>
                             <tr class="sai-item not">
@@ -146,12 +146,12 @@
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
                                 </td>
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                                 <td class="recom" rowspan="2"><div><span>暂无推荐 </span></div></td>
                             </tr>
                             <tr class="sai-item not">
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
                             <tr class="sai-item not">
@@ -182,12 +182,12 @@
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
                                 </td>
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                                 <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
                             </tr>
                             <tr class="sai-item not">
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
                             <tr class="sai-item not">
@@ -218,12 +218,12 @@
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
                                 </td>
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                                 <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
                             </tr>
                             <tr class="sai-item not">
-                                <td class="score">-</td>
+                                <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
                             </tr>
                         </tbody>
@@ -323,7 +323,7 @@
     </section>
     <section class="saic-zx clearfix">
         <div class="col-2-b">
-            <a class="saic-zx-img" href="/">
+            <a class="saic-zx-img" href="/article/1">
                 <img src="/img/article-top.png">
                 <p>克罗地亚0-0比利时 欧洲红魔回家！</p>
             </a>
@@ -336,9 +336,9 @@
                 </div>
                 <div class="saic-zx-content">
                     <ul class="list-unstyled">
-                        <li><a href=""><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><a href=""><span>知名推手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span>顶级高手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href="/article/1"><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
+                        <li><a href="/article/2"><span>知名推手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <li><a href="/article/3"><span>顶级高手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
                         <li><a href=""><span>曾哥聊球</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
                         <li><a href=""><span>红单专栏</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
                         <li><a href=""><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
