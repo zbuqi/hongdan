@@ -11,9 +11,10 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
-        #$category = Catefory::findOrFaill($article["categoryId"]);
-        #$category["name"] = "cesg";
         $article["publishedTime"] = date("Y-m-d H:i:s", $article["publishedTime"]);
-        return view('Article', ['article' => $article]);
+
+        $category = Category::findOrFail($article["categoryId"]);
+        $category['link'] = '/category/' . $category['code'];
+        return view('Article', ['article' => $article, 'category' => $category]);
     }
 }

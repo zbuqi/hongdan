@@ -20,10 +20,13 @@
                         <div class="meta">
                             <span>用户名：李白本</span>
                             <span><?php echo $article->publishedTime; ?></span>
-                            <span>栏目：<a href=""><?php #echo $category->name; ?></a></span>
+                            <span>栏目：<a href="<?php echo $category->link; ?>"><?php echo $category->name; ?></a></span>
                         </div>
                     </div>
-                    <div class="artcle-body"><?php echo $article->body; ?></div>
+                    <div class="artcle-body">
+                        
+                        <?php echo $article->body; ?>
+                    </div>
                     <div class="up-down">
                         <a href="">上一篇</a>
                         <a href="">下一篇</a>
