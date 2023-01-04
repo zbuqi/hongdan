@@ -2065,13 +2065,16 @@ footer .copyright p span{
 
 }
 .recomment-item .thumb{
-    height:196px;
+    height:155px;
     display:block;
     overflow:hidden;
     border-radius:12px;
+    position:relative;
 }
 .recomment-item .thumb img{
     max-width:100%;
+    position:absolute;
+    bottom:-6%;
 }
 .recomment-item .title{
     margin:10px 0 12px;
