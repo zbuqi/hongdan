@@ -28,7 +28,7 @@
                             <a class="collect" href="/">收藏</a>
                             <div class="meta-right">
                                 <span class="author">新京报社官方账号</span>
-                                <span class="time">2022-12-07</span>
+                                <span class="time"><?php echo $article->created_at; ?></span>
                             </div>
                         </div>
                     </div>

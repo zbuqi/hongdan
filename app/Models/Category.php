@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Dcat\Admin\Traits\HasDateTimeFormatter;
 
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+	use HasDateTimeFormatter;
     protected $table = 'category';
+    
 }

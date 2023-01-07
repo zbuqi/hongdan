@@ -19,7 +19,7 @@
                         <h1 class="title"><?php echo $article->title; ?></h1>
                         <div class="meta">
                             <span>用户名：李白本</span>
-                            <span><?php echo $article->publishedTime; ?></span>
+                            <span><?php echo $article->created_at; ?></span>
                             <span>栏目：<a href="<?php echo $category->link; ?>"><?php echo $category->name; ?></a></span>
                         </div>
                     </div>
