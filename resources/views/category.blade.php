@@ -19,7 +19,7 @@
                             <a class="thumb" href="/article/1" title=""><img src="<?php echo $article->thumb; ?>" alt=""></a>
                             <div class="info">
                                 <h2 class="title"><a href="<?php echo $article->link; ?>" title=""><?php echo $article->title; ?></a></h2>
-                                <p class="excerpt"><?php echo $article->excerpt; ?></p>
+                                <div class="excerpt"><?php echo $article->excerpt; ?></div>
                             </div>
                         </div>
                         <div class="meta">
