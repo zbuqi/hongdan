@@ -19,7 +19,7 @@ class ArticleEditController extends Controller
         //$data = Show::make($id, new Article());
         return $content
             ->header('编辑')
-            ->description('资讯管理')
+            ->description($id)
             ->body(Form::make(new Article(), function (Form $form){
                 $form->column(12, function(Form $form){
                     foreach(Category::get() as $category){
