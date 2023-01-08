@@ -20,9 +20,9 @@ class ArticleController extends AdminController
     protected function grid()
     {
         return Grid::make(new Article(), function (Grid $grid) {
-            $grid->number();
+            $grid->number('序号');
             $grid->column('title');
-            $grid->column('categoryId')->display(function($categoryId){
+            $grid->column('categoryId', '栏目')->display(function($categoryId){
                 return Category::find($categoryId)->name;
             });
             $grid->column('updated_at')->sortable();

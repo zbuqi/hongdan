@@ -262,13 +262,13 @@ return [
     'upload' => [
 
         // Disk in `config/filesystem.php`.
-        'disk' => 'public',
+        'disk' => 'admin',
 
         // Image and file upload path under the disk above.
         'directory' => [
             'image' => 'images',
             'file'  => 'files',
-        ],
+        ]
 
     ],
 

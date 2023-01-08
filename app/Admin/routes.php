@@ -13,5 +13,6 @@ Route::group([
 ], function (Router $router) {
     $router->get('/', 'HomeController@index');
     $router->get('/article', 'ArticleController@index');
+    $router->get('/article/{id}/edit', 'ArticleEditController@index');
     $router->get('/match', 'CategoryController@index');
 });
