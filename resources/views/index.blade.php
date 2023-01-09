@@ -323,10 +323,12 @@
     </section>
     <section class="saic-zx clearfix">
         <div class="col-2-b">
-            <a class="saic-zx-img" href="/article/1">
-                <img src="/img/article-top.png">
-                <p>克罗地亚0-0比利时 欧洲红魔回家！</p>
+            <?php foreach($featureArticles as $article):?>
+            <a class="saic-zx-img" href="<?php echo $article->link; ?>">
+                <img src="<?php echo $article->thumb; ?>" alt="">
+                <p><?php echo $article->title; ?></p>
             </a>
+            <?php endforeach; ?>
         </div>
         <div class="col-2-x">
             <div class="saic-zx-main">
@@ -336,15 +338,9 @@
                 </div>
                 <div class="saic-zx-content">
                     <ul class="list-unstyled">
-                        <li><a href="/article/1"><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><a href="/article/2"><span>知名推手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href="/article/3"><span>顶级高手</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span>曾哥聊球</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span>红单专栏</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span></span>V先生解球：世界杯1/4决赛今晚开战！赛前：荷兰vs阿根廷</a></li>
-                        <li><a href=""><span>篮球资讯</span>11日鬼手：公杯1/4决杯1/4决推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span>篮球资讯</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
-                        <li><a href=""><span>红单数据库</span>11日鬼手：公推32中22！小联赛6对5！</a></li>
+                        <?php foreach($latestArticles as $article): ?>
+                        <li><a href="<?php echo $article->link;?>"><span><?php echo $article->source; ?></span><?php echo $article->title; ?></a></li>
+                        <?php endforeach;?>
                     </ul>
                 </div>
             </div>

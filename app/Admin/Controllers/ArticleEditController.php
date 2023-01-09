@@ -25,12 +25,16 @@ class ArticleEditController extends Controller
                     foreach(Category::get() as $category){
                         $categorys[] = $category->name;
                     }
-                    $form->text('title', '标题');
+                    if ($form->model()->status == 1) {
+                        $form->number('hits');
+                    }
+                    $form->text('title', '标题')->value('');
                     $form->select('categoryId', '栏目')->options($categorys);
                     $form->text('created_at');
                     $form->text('source', '来源名称');
                     $form->text('sourceUrl', '来源地址');
                     $form->image('thumb', '设置缩略图');
+                    $form->checkbox('promoted','资讯属性')->options($categorys);
                     $form->editor('body', '正文');
                 });
             }));
