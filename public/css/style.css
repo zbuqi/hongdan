@@ -1105,21 +1105,20 @@ footer .copyright p span{
 .match-list .list-main .table{
     text-align:center;
 }
-.match-list .list-main .table thead{
+.match-list .list-main .title-table{
     background:var(--bg-color-9);
+    margin-bottom:0;
 }
-.match-list .list-main .table thead tr th{
+.match-list .list-main .table tr th{
     font-size:16px;
     line-height:24px;
     text-align:center;
     border-bottom:0;
+    padding:8px 0;
 }
 .match-list .list-main .table  .result span{   
     width:64px;
     display:inline-block;
-}
-.match-list .list-main .table tbody tr:first-child td{
-    border-top:0;
 }
 .match-list .list-main .time{
     color:var(--font-clor-1);
@@ -1128,6 +1127,7 @@ footer .copyright p span{
     font-weight:900;
     text-align:left;
     padding:6px 8px;
+    margin:16px 0;
 }
 .match-list .list-main .time .on-off{
     color:var(--theme-color);
@@ -1153,10 +1153,37 @@ footer .copyright p span{
 }
 .match-list .list-main .table tbody tr td{
     height:100px;
-    padding:16px 8px;
+    padding:16px 0;
 }
 .match-list .list-main .table tbody tr:first-child td{
     height:68px;
+}
+.match-list .table .match-table-width>col:nth-child(1){
+    width:103px;
+}
+.match-list .table .match-table-width>col:nth-child(2){
+    width:176px;
+}
+.match-list .table .match-table-width>col:nth-child(3){
+    width:100px;
+}
+.match-list .table .match-table-width>col:nth-child(4){
+    width:152px;
+}
+.match-list .table .match-table-width>col:nth-child(6){
+    width:34px;
+}
+.match-list .table .match-table-width>col:nth-child(7){
+    width:64px;
+}
+.match-list .table .match-table-width>col:nth-child(8){
+    width:64px;
+}
+.match-list .table .match-table-width>col:nth-child(9){
+    width:64px;
+}
+.match-list .table .match-table-width>col:nth-child(10){
+    width:24px;
 }
 .match-list .list-item td>div{
     height:100%;
@@ -1204,19 +1231,47 @@ footer .copyright p span{
     padding-left:24px;
 }
 .match-list .list-item .item-result{
-
-}
-.match-list .list-item .item-result>div{
-    display:inline-block;
     background:var(--bg-color-10);
 }
-.match-list .list-item .item-result>div span{
-    width:64px;
+.match-list .list-item .item-result span{
     color:var(--font-color-9);
     font-size:12px;
     line-height:18px;
     display:block;
     padding:8px 12px;
+}
+@media (max-width: 1340px){
+    .match-list .list-item .item-team .or{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .match-list .table .match-table-width>col:nth-child(1){
+        width:103px;
+    }
+    .match-list .table .match-table-width>col:nth-child(2){
+        width:168px;
+    }
+    .match-list .table .match-table-width>col:nth-child(3){
+        width:94px;
+    }
+    .match-list .table .match-table-width>col:nth-child(4){
+        width:132px;
+    }
+    .match-list .table .match-table-width>col:nth-child(6){
+        width:26px;
+    }
+    .match-list .table .match-table-width>col:nth-child(7){
+        width:64px;
+    }
+    .match-list .table .match-table-width>col:nth-child(8){
+        width:64px;
+    }
+    .match-list .table .match-table-width>col:nth-child(9){
+        width:64px;
+    }
+    .match-list .table .match-table-width>col:nth-child(10){
+        width:24px;
+    }
 }
 /**比赛详情**/
 .match-head{
