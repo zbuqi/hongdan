@@ -57,7 +57,7 @@
             <div class="saic-main">
                 <div class="saic-title clearfix">
                     <h2 class="title"><span>每天赛程</span></h2>
-                    <a href="">全部比赛 ></a>
+                    <a href="/match_list/zuqiu">全部比赛 ></a>
                 </div>
                 <div class="content">
                     <table class="table table-bordered">

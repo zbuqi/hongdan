@@ -6,6 +6,7 @@
         <title>@yield('title')</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/style.css">
+        <script type="text/javascript" src="/js/jquery-3.6.3.min.js"></script>
     </head>
     <body class="@yield('pagename')">
         <header>
@@ -92,5 +93,7 @@
                 </div>
             </div>
         </footer>
+        @yield('javascript')
+        @yield('js')
     </body>
 </html>

@@ -1105,6 +1105,9 @@ footer .copyright p span{
 .match-list .list-main .table{
     text-align:center;
 }
+.match-list .list-main .table.off{
+    display:none;
+}
 .match-list .list-main .title-table{
     background:var(--bg-color-9);
     margin-bottom:0;
@@ -1114,28 +1117,39 @@ footer .copyright p span{
     line-height:24px;
     text-align:center;
     border-bottom:0;
+    border-top:0;
     padding:8px 0;
+}
+.match-list .list-main .table tr:first-child td{
+    border-top:0;
+}
+.match-list .list-main .table tr:last-child td{
+    border-bottom:1px solid #ddd;
 }
 .match-list .list-main .table  .result span{   
     width:64px;
     display:inline-block;
 }
 .match-list .list-main .time{
+    padding:16px 0;
+    border-bottom:1px solid #ddd;
+}
+.match-list .list-main .time .time-main{
     color:var(--font-clor-1);
     font-size:16px;
     line-height:24px;
     font-weight:900;
     text-align:left;
     padding:6px 8px;
-    margin:16px 0;
 }
-.match-list .list-main .time .on-off{
+.match-list .list-main .time .time-main .on-off{
     color:var(--theme-color);
     font-size:16px;
     line-height:24px;
     display:inline-block;
+    cursor:pointer;
 }
-.match-list .list-main .time .on-off:before{
+.match-list .list-main .time .time-main .on-off:before{
     content:'';
     width:12px;
     border:6px solid var(--theme-color);
@@ -1145,10 +1159,15 @@ footer .copyright p span{
     position:relative;
     top:4px;
 }
-.match-list .list-main .time .on-off span{
+.match-list .list-main .time .time-main .on-off span{
     margin-left:8px;
 }
-.match-list .list-main .time>span:nth-child(2){
+.match-list .list-main .time .time-main .on-off.off:before{
+    border-color: transparent transparent transparent var(--theme-color);
+    top:0;
+    left:3px;
+}
+.match-list .list-main .time .time-main>span:nth-child(2){
     margin:0 10px;
 }
 .match-list .list-main .table tbody tr td{
@@ -1282,9 +1301,9 @@ footer .copyright p span{
     /*padding:24px 195px;*/
     background:no-repeat 100% 55%;
     background-image:url("/img/match-top.png");
+    display:flex;
 }
 .match-head-content{
-    width:839px;
     height:100%;
     margin:0 auto;
     display:flex;
@@ -1293,7 +1312,6 @@ footer .copyright p span{
     display:inline-block;
 }
 .match-head-wrap .head-team{
-    width:247px;
     height:66px;
     align-self:center;
 }
@@ -1475,6 +1493,84 @@ footer .copyright p span{
     background-image:url("/img/qiuchang.png");
     background-size:100%;
 }
+/*阵容*/
+.shoufa-map-wrap .zhu-team .team-user .number{
+    background-image:url('/img/lineup-home-icon.png');
+}
+.shoufa-map-wrap .ke-team .team-user .number{
+    background-image:url('/img/lineup-away-icon.png');
+
+}
+.shoufa-map-wrap > div{
+    height:100%;
+    position:relative;
+}
+.shoufa-map-wrap > div .team-item{
+    height:106px;
+    position:absolute;
+}
+.shoufa-map-wrap .zhu-team .team-item{
+    margin-left:-60px;
+    margin-top:-53px;
+}
+.shoufa-map-wrap .ke-team .team-item{
+    margin-right:-60px;
+    margin-bottom:-53px;
+}
+.shoufa-map-wrap .team-user{
+
+}
+.shoufa-map-wrap .team-user .number{
+    width:52px;
+    height:48px;
+    color:var(--font-color-4);
+    font-size:16px;
+    line-height:48px;
+    text-align:center;
+    background:no-repeat;
+    background-size: 100%;
+    margin:0 auto;
+}
+.shoufa-map-wrap .team-user .name{
+    width:120px;
+    text-align:center;
+    color:var(--font-color-4);
+    font-size:16px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    margin-top:10px;
+}
+.shoufa-map-wrap .team-user .info{
+    width:25px;
+    height:25px;
+    background:var(--bg-color-4);
+    border-radius:50%;
+    margin:0 auto;
+}
+.shoufa-map-wrap .team-user .info img{
+    width:100%;
+}
+@media (max-width: 1340px){
+    .shoufa-map-wrap{
+        height:575px;
+    }
+    .shoufa-map-wrap .team-user .number{
+        width:45px;
+        height:40px;
+    }
+    .shoufa-map-wrap .team-item {
+        height: -98px;
+    }
+    .shoufa-map-wrap .zhu-team .team-item {
+        margin-top: -49px;
+    }
+    .shoufa-map-wrap .ke-team .team-item {
+        margin-bottom: -49px;
+    }
+}
+
+/****/
 .shoufa-tb{
     padding:12px 0;
 }

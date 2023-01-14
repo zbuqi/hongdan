@@ -32,20 +32,21 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="">
-                <div class="time">
+            <?php foreach($matchs as $match_list):?>
+            <div class="time">
+                <div class="time-main">
                     <div class="on-off"><span>收起</span></div>
-                    <span>2022-12-10</span>
-                    <span>星期六</span>
+                    <span><?php echo $match_list->time; ?></span>
+                    <span><?php echo $match_list->week; ?></span>
                 </div>
             </div>
             <table class="table item-table">
                 <tbody>
                     <colgroup class="match-table-width"><col><col><col><col><col><col><col><col><col><col></colgroup>
-                    <?php foreach($matchs as $key=>$match):?>
+                    <?php foreach($match_list->content as $key=>$match):?>
                     <tr class="list-item">
                         <td><div class="item-text"><span><?php echo $match->week; ?><?php echo str_pad($key+1, 3, '0', STR_PAD_LEFT); ?></span></div></td>
-                        <td><div class="item-name"><a class=""><?php echo $match->competition_name; ?></a></div></td>
+                        <td><div class="item-name"><a class="" href="/match/<?php echo $match->id; ?>"><?php echo $match->competition_name; ?></a></div></td>
                         <td><div class="item-text"><span><?php echo $match->status_name; ?></span></div></td>
                         <td><div class="item-text"><span><?php echo date('m-d H-i', $match->match_time); ?></span></div></td>
                         <td>
@@ -64,6 +65,25 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php endforeach; ?>
         </div>
     </section>
+@endsection
+
+@section('javascript')
+<script type="text/javascript">
+    $(function(){
+        $(".time .time-main .on-off").click(function(){
+            if(!$(this).hasClass("off")){
+                $(this).addClass("off");
+                $(this).contents().text('展开');
+                $(this).closest(".time").next().addClass("off");
+            }else{
+                $(this).removeClass("off");
+                $(this).contents().text('收起');
+                $(this).closest(".time").next().removeClass("off");
+            }
+        });
+    });
+</script>
 @endsection

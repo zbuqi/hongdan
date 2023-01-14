@@ -9,16 +9,16 @@
         <div class="match-head-content">
             <div class="head-team zhu">
                 <div class="title-wrap">
-                    <div class="title">克罗地亚</div>
-                    <div class="info"><span>排名:22</span><span>主队</span></div>
+                    <div class="title"><?php echo $match->home_team_name; ?></div>
+                    <div class="info"><span>排名:<?php echo $match->home_position; ?></span><span>主队</span></div>
                 </div>
-                <img src="/img/saic-head-1.png">
+                <img src="<?php echo $match->home_team_logo; ?>">
                 <div class="score">0</div>
             </div>
             <div class="head-info">
-                <p><span>已完场</span><span>半场：0-0</span></p>
-                <p><span>周二</span><span>世界杯 ></span></p>
-                <p><span>比赛时间：2022-12-06 23:00</span></p>
+                <p><span><?php echo $match->status_name; ?></span><span>半场：0-0</span></p>
+                <p><span><?php echo $match->week; ?></span><span><?php echo $match->competition_name; ?> ></span></p>
+                <p><span>比赛时间：<?php echo date('Y-m-d H:i', $match->match_time);?></span></p>
                 <a href="/">
                     <img src="/img/saic-bf-icon.png" alt="">
                     <span>动画直播</span>
@@ -26,11 +26,11 @@
             </div>
             <div class="head-team ke">
                 <div class="score">0</div>
-                <img src="/img/saic-head-1.png">
+                <img src="<?php echo $match->away_team_logo; ?>">
                 <div class="title-wrap">
-                    <div class="title">克罗地亚</div>
+                    <div class="title"><?php echo $match->away_team_name; ?></div>
                     <div class="info">
-                        <span>排名:22</span><span>客队</span>
+                        <span>排名:<?php echo $match->away_position; ?></span><span>客队</span>
                     </div>
                 </div>
             </div>
@@ -47,70 +47,58 @@
         <div class="module-content shoufa-content">
             <div class="shoufa-title clearfix">
                 <div class="col-2 zhu">
-                    <p><span>阵容：4-4-2</span><span class="name">克罗地亚</span></p>
+                    <p><span>阵容：<?php echo $lineup->home_formation; ?></span><span class="name"><?php echo $match->home_team_name; ?></span></p>
                     <p><span>球队身价：2.5亿</span><span>教练：瓦利德·雷格拉吉</span></p>
                 </div>
                 <div class="col-2 ke">
-                    <p><span class="name">巴西</span><span>阵容：4-4-2</span></p>
+                    <p><span class="name"><?php echo $match->away_team_name; ?></span><span>阵容：<?php echo $lineup->away_formation; ?></span></p>
                     <p><span>球队身价：2.5亿</span><span>教练：瓦利德·雷格拉吉</span></p>
                 </div>
             </div>
             <div class="shoufa-map">
                 <div class="shoufa-map-wrap">
-                    <div class="zhu-team">
-                        <div class="team-row">
+                    <div class="zhu-team col-2">
+                        <?php foreach($home->team as $user):?>
+                        <div class="team-item" style="left:<?php echo $user->y;?>%; top:<?php echo $user->x;?>%;">
                             <div class="team-user">
-                                <div class="number">1</div>
-                                <div class="name">亚新·布努</div>
+                                <div class="number"><?php echo $user->shirt_number; ?></div>
+                                <div class="name"><?php echo $user->name; ?></div>
                                 <div class="info"><img src="/img/hr-icon.png"></div>
                             </div>
                         </div>
-                        <div class="team-row"></div>
-                        <div class="team-row"></div>
-                        <div class="team-row"></div>
-                        <div class="team-row"></div>
+                        <?php endforeach;?>
                     </div>
-                    <div class="ke-team">
-
+                    <div class="ke-team col-2">
+                        <?php foreach($away->team as $user):?>
+                        <div class="team-item" style="right:<?php echo $user->y;?>%; bottom:<?php echo $user->x;?>%;">
+                            <div class="team-user">
+                                <div class="number"><?php echo $user->shirt_number; ?></div>
+                                <div class="name"><?php echo $user->name; ?></div>
+                                <div class="info"><img src="/img/hr-icon.png"></div>
+                            </div>
+                        </div>
+                        <?php endforeach;?>
                     </div>
                 </div>
             </div>
             <div class="shoufa-tb clearfix">
                 <div class="col-2">
                     <div class="shoufa-tb-content zhu">
-                        <div class="title">克罗地亚替补</div>
+                        <div class="title"><?php echo $match->home_team_name; ?>替补</div>
                         <div class="tb-list clearfix">
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hr-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/dq-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hp-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hr-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
+                            <?php foreach($home->alterbate as $user):?>
+                            <div class="tb-item"><a href="/"><span><?php echo $user->shirt_number; ?></span><span><?php echo $user->name; ?></span><img src="/img/hr-icon.png"></a></div>
+                            <?php endforeach;?>
                         </div>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="shoufa-tb-content ke">
-                        <div class="title">巴西替补</div>
+                        <div class="title"><?php echo $match->away_team_name; ?>替补</div>
                         <div class="tb-list clearfix">
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hr-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/dq-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hp-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span><img src="/img/hr-icon.png"></a></div>
-                            <div class="tb-item"><a href="/"><span>12</span><span>穆尼尔·穆罕默德</span></a></div>
+                            <?php foreach($away->alterbate as $user):?>
+                            <div class="tb-item"><a href="/"><span><?php echo $user->shirt_number; ?></span><span><?php echo $user->name; ?></span><img src="/img/hr-icon.png"></a></div>
+                            <?php endforeach;?>
                         </div>
                     </div>
                 </div>
