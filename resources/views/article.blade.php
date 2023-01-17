@@ -8,7 +8,7 @@
         <div class="breadcrumbs">
             <a class="back" href="/"><span>←</span>首页</a>
             <span>></span>
-            <a href="/">资讯</a>
+            <a href="">资讯</a>
             <span>></span>
             文章详情
         </div>
@@ -28,8 +28,8 @@
                         <?php echo $article->body; ?>
                     </div>
                     <div class="up-down">
-                        <a href="">上一篇</a>
-                        <a href="">下一篇</a>
+                        <a href="<?echo $article->last; ?>">上一篇</a>
+                        <a href="<?echo $article->next; ?>">下一篇</a>
                     </div>
                 </div>
             </div>
@@ -39,11 +39,12 @@
                         <div class="title"><span>热门推荐</span></div>
                     </div>
                     <div class="sidebar-content">
+                        <?php foreach($latestArticles as $article):?>
                         <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-1.png"></a>
+                            <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>"></a>
                             <div class="info">
                                 <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
+                                    <a href="<?php echo $article->link; ?>"><?php echo Str::limit($article->title, 32, '...') ?></a>
                                 </div>
                                 <div class="meta">
                                     <span>体育发飙季</span>
@@ -51,54 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-3.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach;?>
                     </div>
                 </div>
             </div>
@@ -108,10 +62,11 @@
                         <div class="title"><span>相关推荐</span></div>
                     </div>
                     <div class="recomment-body clearfix">
+                        <?php foreach($correlationsArticles as $article):?>
                         <div class="col-4">
                             <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-1.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
+                                <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>" alt=""></a>
+                                <div class="title"><a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a></div>
                                 <div class="meta clearfix">
                                     <div class="author">
                                         <img src="/img/author.png" alt="">
@@ -124,54 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-3.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-3.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

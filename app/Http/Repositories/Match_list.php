@@ -15,7 +15,12 @@ class Match_list
                 'date' => $date
             ]
         ]);
+
         $match_list = json_decode($request->getBody()->getContents());
+        if(property_exists($match_list, 'err')){
+            $matchs[] = $match_list;
+            return $matchs;
+        }
         $matchs = $match_list->results->match;
         $competitions = $match_list->results->competition;
         $teams = $match_list->results->team;

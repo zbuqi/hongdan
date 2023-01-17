@@ -29,6 +29,7 @@ Route::get('/category/{name}', function(){
 
 
 Route::get('/', [IndexController::class, 'show']);
+Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{code}', [CategoryController::class, 'show']);
 Route::get('/article/{id}', [ArticleController::class, 'show']);
 Route::get('/match_list/{name}', [MatchListController::class, 'show']);

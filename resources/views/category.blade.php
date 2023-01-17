@@ -8,7 +8,11 @@
         <div class="breadcrumbs">
             <a class="back" href="/"><span>←</span>首页</a>
             <span>></span>
-            资讯
+            <a href="/category">资讯</a>
+            <?php if($category): ?>
+            <span>></span>
+            <?php echo $category->name; ?>
+            <?php endif; ?>
         </div>
         <div class="category-wrap clearfix">
             <div class="col-4-b">
@@ -54,11 +58,12 @@
                         <div class="title"><span>热门推荐</span></div>
                     </div>
                     <div class="sidebar-content">
+                        <?php foreach($featureArticles as $article):?>
                         <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
+                            <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>"></a>
                             <div class="info">
                                 <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
+                                    <a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a>
                                 </div>
                                 <div class="meta">
                                     <span>体育发飙季</span>
@@ -66,54 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-sidebar-item">
-                            <a class="thumb" href=""><img src="/img/thumb-2.png"></a>
-                            <div class="info">
-                                <div class="title">
-                                    <a href="/">荷乙17轮前瞻：兹沃勒迎来昔日克星...</a>
-                                </div>
-                                <div class="meta">
-                                    <span>体育发飙季</span>
-                                    <span>3评论</span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

@@ -43,26 +43,30 @@
             <table class="table item-table">
                 <tbody>
                     <colgroup class="match-table-width"><col><col><col><col><col><col><col><col><col><col></colgroup>
-                    <?php foreach($match_list->content as $key=>$match):?>
-                    <tr class="list-item">
-                        <td><div class="item-text"><span><?php echo $match->week; ?><?php echo str_pad($key+1, 3, '0', STR_PAD_LEFT); ?></span></div></td>
-                        <td><div class="item-name"><a class="" href="/match/<?php echo $match->id; ?>"><?php echo $match->competition_name; ?></a></div></td>
-                        <td><div class="item-text"><span><?php echo $match->status_name; ?></span></div></td>
-                        <td><div class="item-text"><span><?php echo date('m-d H-i', $match->match_time); ?></span></div></td>
-                        <td>
-                            <div class="item-team clearfix">
-                                <div class="user"><span>[<?php echo $match->home_position; ?>]</span><?php echo $match->home_team_name; ?></div>
-                                <div class="or"><span>VS</span></div>
-                                <div class="user"><?php echo $match->away_team_name; ?><span>[<?php echo $match->away_position; ?>]</span></div>
-                            </div>
-                        </td>
-                        <td></td>
-                        <td><div class="item-result"><span>0</span><span>0</span></div></td>
-                        <td><div class="item-result"><span>0</span><span>0</span></div></td>
-                        <td><div class="item-result"><span>0</span><span>0</span></div></td>
-                        <td></td>
-                    </tr>
-                    <?php endforeach; ?>
+                    <?php if(!property_exists($match_list->content[0], 'err')): ?>
+                        <?php foreach($match_list->content as $key=>$match):?>
+                        <tr class="list-item">
+                            <td><div class="item-text"><span><?php echo $match->week; ?><?php echo str_pad($key+1, 3, '0', STR_PAD_LEFT); ?></span></div></td>
+                            <td><div class="item-name"><a class="" href="/match/<?php echo $match->id; ?>"><?php echo $match->competition_name; ?></a></div></td>
+                            <td><div class="item-text"><span><?php echo $match->status_name; ?></span></div></td>
+                            <td><div class="item-text"><span><?php echo date('m-d H-i', $match->match_time); ?></span></div></td>
+                            <td>
+                                <div class="item-team clearfix">
+                                    <div class="user"><span>[<?php echo $match->home_position; ?>]</span><?php echo $match->home_team_name; ?></div>
+                                    <div class="or"><span>VS</span></div>
+                                    <div class="user"><?php echo $match->away_team_name; ?><span>[<?php echo $match->away_position; ?>]</span></div>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td><div class="item-result"><span>0</span><span>0</span></div></td>
+                            <td><div class="item-result"><span>0</span><span>0</span></div></td>
+                            <td><div class="item-result"><span>0</span><span>0</span></div></td>
+                            <td></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else:?>
+                        <tr><?php echo $match_list->content[0]->err; ?></tr>
+                    <?php endif;?>
                 </tbody>
             </table>
             <?php endforeach; ?>

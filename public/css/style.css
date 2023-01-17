@@ -2234,6 +2234,9 @@ footer .copyright p span{
     color:var(--font-color-1);
     font-size:20px;
     font-weight:900;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
     display:block;
 }
 .recomment-item .meta{

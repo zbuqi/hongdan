@@ -5,6 +5,7 @@
 @section('pagename', 'home-page')
 
 @section('content')
+
     <section class="zhuanti clearfix">
         <div class="col-1-x">
             <div class="zhuanti-main clearfix">
@@ -440,6 +441,8 @@
             </div>
         </div>
     </section>
+
+
 @endsection
 
 

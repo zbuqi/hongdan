@@ -4,8 +4,9 @@ namespace App\Admin\Repositories;
 
 use App\Models\Article as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
+use Dcat\Admin\Form;
 
-class Article extends EloquentRepository
+class Articles extends EloquentRepository
 {
     /**
      * Model.
@@ -13,4 +14,5 @@ class Article extends EloquentRepository
      * @var string
      */
     protected $eloquentClass = Model::class;
+
 }

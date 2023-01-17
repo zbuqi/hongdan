@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\Article;
+use App\Admin\Repositories\Articles;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -19,7 +19,7 @@ class ArticleController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Article(), function (Grid $grid) {
+        return Grid::make(new Articles(), function (Grid $grid) {
             $grid->number('序号');
             $grid->column('title');
             $grid->column('categoryId', '栏目')->display(function($categoryId){

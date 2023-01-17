@@ -58,23 +58,35 @@
             <div class="shoufa-map">
                 <div class="shoufa-map-wrap">
                     <div class="zhu-team col-2">
-                        <?php foreach($home->team as $user):?>
+                        <?php foreach($lineup->home->team as $user):?>
                         <div class="team-item" style="left:<?php echo $user->y;?>%; top:<?php echo $user->x;?>%;">
                             <div class="team-user">
                                 <div class="number"><?php echo $user->shirt_number; ?></div>
                                 <div class="name"><?php echo $user->name; ?></div>
-                                <div class="info"><img src="/img/hr-icon.png"></div>
+                                <?php if(property_exists($user, 'incidents')):?>
+                                    <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
+                                        <div class="info">
+                                            <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
+                                        </div>
+                                    <?php endif;?>
+                                <?php endif;?>
                             </div>
                         </div>
                         <?php endforeach;?>
                     </div>
                     <div class="ke-team col-2">
-                        <?php foreach($away->team as $user):?>
+                        <?php foreach($lineup->away->team as $user):?>
                         <div class="team-item" style="right:<?php echo $user->y;?>%; bottom:<?php echo $user->x;?>%;">
                             <div class="team-user">
                                 <div class="number"><?php echo $user->shirt_number; ?></div>
                                 <div class="name"><?php echo $user->name; ?></div>
-                                <div class="info"><img src="/img/hr-icon.png"></div>
+                                <?php if(property_exists($user, 'incidents')):?>
+                                    <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
+                                        <div class="info">
+                                            <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
+                                        </div>
+                                    <?php endif;?>
+                                <?php endif;?>
                             </div>
                         </div>
                         <?php endforeach;?>
@@ -86,8 +98,18 @@
                     <div class="shoufa-tb-content zhu">
                         <div class="title"><?php echo $match->home_team_name; ?>替补</div>
                         <div class="tb-list clearfix">
-                            <?php foreach($home->alterbate as $user):?>
-                            <div class="tb-item"><a href="/"><span><?php echo $user->shirt_number; ?></span><span><?php echo $user->name; ?></span><img src="/img/hr-icon.png"></a></div>
+                            <?php foreach($lineup->home->alterbate as $user):?>
+                            <div class="tb-item">
+                                <a href="/">
+                                    <span><?php echo $user->shirt_number; ?></span>
+                                    <span><?php echo $user->name; ?></span>
+                                    <?php if(property_exists($user, 'incidents')):?>
+                                        <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
+                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
+                                        <?php endif;?>
+                                    <?php endif;?>
+                                </a>
+                            </div>
                             <?php endforeach;?>
                         </div>
                     </div>
@@ -96,21 +118,27 @@
                     <div class="shoufa-tb-content ke">
                         <div class="title"><?php echo $match->away_team_name; ?>替补</div>
                         <div class="tb-list clearfix">
-                            <?php foreach($away->alterbate as $user):?>
-                            <div class="tb-item"><a href="/"><span><?php echo $user->shirt_number; ?></span><span><?php echo $user->name; ?></span><img src="/img/hr-icon.png"></a></div>
+                            <?php foreach($lineup->away->alterbate as $user):?>
+                            <div class="tb-item">
+                                <a href="/">
+                                    <span><?php echo $user->shirt_number; ?></span>
+                                    <span><?php echo $user->name; ?></span>
+                                    <?php if(property_exists($user, 'incidents')):?>
+                                        <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
+                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
+                                        <?php endif;?>
+                                    <?php endif;?>
+                                </a>
+                            </div>
                             <?php endforeach;?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="shoufa-icon clearfix">
-                <div class="icon-item"><img src="/img/rq-icon.png" alt=""><span>入球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
-                <div class="icon-item"><img src="/img/dq-icon.png" alt=""><span>点球</span></div>
+                <?php foreach($lineup->reason_type as $reason_type):?>
+                <div class="icon-item"><img src="<?php echo '/img/' . $reason_type->img; ?>" alt=""><span><?php echo $reason_type->name; ?></span></div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -119,7 +147,7 @@
     <div class="module-wrap">
         <div class="module-head clearfix">
             <div class="title"><span>赢球爆料</span></div>
-            <a href="/">全部比赛 ></a>
+            <a href="/match_list/zuqiu">全部比赛 ></a>
         </div>
         <div class="module-content baoliao-main clearfix">
             <div class="col-2">
@@ -258,141 +286,30 @@
     </div>
 </section>
 <section class="match-article-recomment">
-                <div class="article-recomment">
-                    <div class="recomment-head">
-                        <div class="title"><span>相关推荐</span></div>
-                    </div>
-                    <div class="recomment-body clearfix">
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2-1.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="article-recomment">
+        <div class="recomment-head">
+            <div class="title"><span>相关推荐</span></div>
+        </div>
+        <div class="recomment-body clearfix">
+            <?php foreach($latestArticles as $article): ?>
+            <div class="col-4">
+                <div class="recomment-item">
+                    <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>" alt=""></a>
+                    <div class="title"><a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a></div>
+                    <div class="meta clearfix">
+                        <div class="author">
+                            <img src="/img/author.png" alt="">
+                            <span>中国新闻网</span>
                         </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="post-like">
+                            <img src="/img/like-icon.png" alt="">
+                            <span>275</span>
                         </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-4.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-5.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="recomment-item">
-                                <a class="thumb" href="/article/5"><img src="/img/thumb-2.png" alt=""></a>
-                                <div class="title"><a href="/article/5">卡塔尔世界杯|C罗转身离去</a></div>
-                                <div class="meta clearfix">
-                                    <div class="author">
-                                        <img src="/img/author.png" alt="">
-                                        <span>中国新闻网</span>
-                                    </div>
-                                    <div class="post-like">
-                                        <img src="/img/like-icon.png" alt="">
-                                        <span>275</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </section>
 @endsection
