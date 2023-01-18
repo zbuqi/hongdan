@@ -81,20 +81,45 @@ class ArticleController extends AdminController
             $form->text('created_at', '创建时间');
             $form->text('source', '来源');
             $form->text('sourceUrl', '来源地址');
-            $form->image('thumb', '缩略图');
+            $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
+            $form->recommend();
+            $form->textarea('excerpt', '简介')->rows(5);
             $form->editor('body', '正文');
 
             $form->hidden('id');
-            $form->hidden('excerpt', '简介');
             $form->hidden('tagIds', '标签');
             $form->hidden('promoted', '推荐');
             $form->hidden('featured', '头条');
             $form->hidden('hits', '点击量');
             $form->hidden('userId', '用户id');
             $form->hidden('updated_at', '更新时间');
-            $form->saving(function (Form $form) {
-                $form->updated_at = time();
+
+            /*忽略掉不需要保存的字段*/
+            $form->ignore(['hits']);
+            
+            $form->tools(function(Form\Tools $tools){
+                // 去掉跳转列表按钮
+                $tools->disableList();
+                // 去掉跳转详情页按钮
+                $tools->disableView();
+                // 去掉删除按钮
+                $tools->disableDelete();
             });
+            $form->footer(function($footer){
+                // 去掉`重置`按钮
+                $footer->disableReset();
+                // 去掉`查看`checkbox
+                $footer->disableViewCheck();
+                // 去掉`继续编辑`checkbox
+                $footer->disableEditingCheck();
+            });
+            $form->submitted(function (Form $form) {
+                $body = strip_tags($form->body);
+                if($form->excerpt == ''){
+                    $form->excerpt = mb_substr($body,0,100,'utf-8');
+                }
+            });
+
         });
     }
 }

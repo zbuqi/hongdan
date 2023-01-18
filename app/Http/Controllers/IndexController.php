@@ -17,9 +17,11 @@ class IndexController extends Controller
         $featureArticle = Article::where('featured','=','1')->take(1)->get();
         for($i=0; $i<count($latestArticles); $i++){
             $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
+            $latestArticles[$i]["thumb"] = '/uploads/' . $latestArticles[$i]["thumb"];
         };
         for($i=0; $i<count($featureArticle); $i++){
             $featureArticle[$i]["link"] = '/article/' . $featureArticle[$i]["id"];
+            $featureArticles[$i]["thumb"] = '/uploads/' . $featureArticles[$i]["thumb"];
         };
         if(!$isMobile){
             return view('index', ["latestArticles" => $latestArticles, "featureArticles" => $featureArticle]);
