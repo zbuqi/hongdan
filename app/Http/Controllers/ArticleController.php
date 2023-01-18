@@ -37,6 +37,10 @@ class ArticleController extends Controller
             $article->next = '/article/' . $next->id;
         }
 
+
+
         return view('article', ['article' => $article, 'category' => $category, 'featureArticles' => $featureArticles, 'latestArticles'=>$latestArticles, 'correlationsArticles'=>$correlationsArticles]);
     }
+
+
 }

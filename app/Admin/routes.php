@@ -12,8 +12,5 @@ Route::group([
     'middleware' => config('admin.route.middleware'),
 ], function (Router $router) {
     $router->get('/', 'HomeController@index');
-    $router->get('/article', 'ArticleController@index');
-    $router->get('/article/{id}/edit', 'ArticleEditController@edit');
-    $router->get('/match', 'CategoryController@index');
-    $router->get('/seting/home', 'SetingController@home');
+    $router->resource('article', 'ArticleController');
 });

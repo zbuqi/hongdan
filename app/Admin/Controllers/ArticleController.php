@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\Articles;
+use App\Admin\Repositories\Article;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -19,17 +19,19 @@ class ArticleController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Articles(), function (Grid $grid) {
-            $grid->number('序号');
+        return Grid::make(new Article(), function (Grid $grid) {
+            $grid->column('id')->sortable();
+            #$grid->number('序号');
             $grid->column('title');
             $grid->column('categoryId', '栏目')->display(function($categoryId){
                 return Category::find($categoryId)->name;
             });
-            $grid->column('updated_at')->sortable();
-            $grid->column('created_at');
+            $grid->column('created_at', '创建时间');
+            $grid->column('updated_at', '更新时间')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+        
             });
         });
     }
@@ -52,7 +54,8 @@ class ArticleController extends AdminController
             $show->field('tagIds');
             $show->field('source');
             $show->field('sourceUrl');
-            $show->field('publishedTime');
+            $show->field('promoted');
+            $show->field('featured');
             $show->field('thumb');
             $show->field('hits');
             $show->field('userId');
@@ -68,22 +71,30 @@ class ArticleController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Article(), function (Form $form) {
-            $form->display('id');
-            $form->text('title');
-            $form->text('categoryId');
-            $form->text('body');
-            $form->text('excerpt');
-            $form->text('tagIds');
-            $form->text('source');
-            $form->text('sourceUrl');
-            $form->text('publishedTime');
-            $form->text('thumb');
-            $form->text('hits');
-            $form->text('userId');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+        foreach(Category::get() as $category){
+            $categorys[$category->id] = $category->name;
+        }
+        return Form::make(new Article(), function (Form $form) use ($categorys) {
+
+            $form->text('title', '标题');
+            $form->select('categoryId', '栏目')->options($categorys);
+            $form->text('created_at', '创建时间');
+            $form->text('source', '来源');
+            $form->text('sourceUrl', '来源地址');
+            $form->image('thumb', '缩略图');
+            $form->editor('body', '正文');
+
+            $form->hidden('id');
+            $form->hidden('excerpt', '简介');
+            $form->hidden('tagIds', '标签');
+            $form->hidden('promoted', '推荐');
+            $form->hidden('featured', '头条');
+            $form->hidden('hits', '点击量');
+            $form->hidden('userId', '用户id');
+            $form->hidden('updated_at', '更新时间');
+            $form->saving(function (Form $form) {
+                $form->updated_at = time();
+            });
         });
     }
 }

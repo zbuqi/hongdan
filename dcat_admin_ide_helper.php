@@ -42,7 +42,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection tagIds
      * @property Grid\Column|Collection source
      * @property Grid\Column|Collection sourceUrl
-     * @property Grid\Column|Collection publishedTime
+     * @property Grid\Column|Collection promoted
+     * @property Grid\Column|Collection featured
      * @property Grid\Column|Collection thumb
      * @property Grid\Column|Collection hits
      * @property Grid\Column|Collection userId
@@ -95,7 +96,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection tagIds(string $label = null)
      * @method Grid\Column|Collection source(string $label = null)
      * @method Grid\Column|Collection sourceUrl(string $label = null)
-     * @method Grid\Column|Collection publishedTime(string $label = null)
+     * @method Grid\Column|Collection promoted(string $label = null)
+     * @method Grid\Column|Collection featured(string $label = null)
      * @method Grid\Column|Collection thumb(string $label = null)
      * @method Grid\Column|Collection hits(string $label = null)
      * @method Grid\Column|Collection userId(string $label = null)
@@ -153,7 +155,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection tagIds
      * @property Show\Field|Collection source
      * @property Show\Field|Collection sourceUrl
-     * @property Show\Field|Collection publishedTime
+     * @property Show\Field|Collection promoted
+     * @property Show\Field|Collection featured
      * @property Show\Field|Collection thumb
      * @property Show\Field|Collection hits
      * @property Show\Field|Collection userId
@@ -206,7 +209,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection tagIds(string $label = null)
      * @method Show\Field|Collection source(string $label = null)
      * @method Show\Field|Collection sourceUrl(string $label = null)
-     * @method Show\Field|Collection publishedTime(string $label = null)
+     * @method Show\Field|Collection promoted(string $label = null)
+     * @method Show\Field|Collection featured(string $label = null)
      * @method Show\Field|Collection thumb(string $label = null)
      * @method Show\Field|Collection hits(string $label = null)
      * @method Show\Field|Collection userId(string $label = null)

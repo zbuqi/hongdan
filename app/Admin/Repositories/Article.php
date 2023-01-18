@@ -2,10 +2,10 @@
 
 namespace App\Admin\Repositories;
 
-use App\Models\Category as Model;
+use App\Models\Article as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
 
-class Category extends EloquentRepository
+class Article extends EloquentRepository
 {
     /**
      * Model.
