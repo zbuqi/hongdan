@@ -18,11 +18,9 @@ class CategoryController extends Controller
 
         for($i=0; $i<count($latestArticles); $i++){
             $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
-            $latestArticles[$i]["thumb"] = '/uploads/' . $latestArticles[$i]["thumb"];
         }
         for($i=0; $i<count($featureArticles); $i++){
             $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"];
-            $featureArticles[$i]["thumb"] = '/uploads/' . $featureArticles[$i]["thumb"];
         }
         return view('category', ["latestArticles" => $latestArticles, 'featureArticles'=>$featureArticles, 'category'=>$Category]);
     }

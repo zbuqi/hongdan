@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\Article;
+use App\Models\Article;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -74,29 +74,69 @@ class ArticleController extends AdminController
         foreach(Category::get() as $category){
             $categorys[$category->id] = $category->name;
         }
+
         return Form::make(new Article(), function (Form $form) use ($categorys) {
+            
+            $recommend = ['promoted' => '推荐','featured' => '头条'];
+            $recommend_default = [];
+            $promoted = $form->model()->promoted;
+            $featured = $form->model()->featured;
+            if($promoted){
+                $recommend_default[] = 'promoted';
+            }
+            if($featured){
+                $recommend_default[] = 'featured';
+            }
 
             $form->text('title', '标题');
             $form->select('categoryId', '栏目')->options($categorys);
             $form->text('created_at', '创建时间');
             $form->text('source', '来源');
             $form->text('sourceUrl', '来源地址');
-            $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
-            $form->recommend();
+            $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+            $form->checkbox('recommend', '资讯属性')->options($recommend)->default($recommend_default, true);
             $form->textarea('excerpt', '简介')->rows(5);
             $form->editor('body', '正文');
 
             $form->hidden('id');
-            $form->hidden('tagIds', '标签');
-            $form->hidden('promoted', '推荐');
-            $form->hidden('featured', '头条');
-            $form->hidden('hits', '点击量');
-            $form->hidden('userId', '用户id');
-            $form->hidden('updated_at', '更新时间');
+            $form->hidden('tagIds');
+            $form->hidden('promoted');
+            $form->hidden('featured');
+            $form->hidden('hits');
+            $form->hidden('userId');
+            $form->hidden('updated_at');
+            $form->submitted(function (Form $form) {
+                /*缩略图*/
+                if(!strstr($form->thumb, 'uploads')){
+                    $form->thumb = '/uploads/' . $form->thumb;
+                }
+                /*内容简介*/
+                $body = strip_tags($form->body);
+                if($form->excerpt == ''){
+                    $form->excerpt = mb_substr($body,0,100,'utf-8');
+                };
+                /*资讯属性： in_array 第二参数不能为空*/
+                $recommend = $form->recommend;
+                $recommend[] = '1';
 
-            /*忽略掉不需要保存的字段*/
-            $form->ignore(['hits']);
-            
+                $content = json_encode($recommend, JSON_UNESCAPED_UNICODE);
+                $file = fopen('D:\www\ces.txt', 'w+');
+                fwrite($file, $content);
+                fclose($file);
+
+                if(in_array('promoted', $recommend)){
+                    $form->promoted = 1;
+                }else{
+                    $form->promoted = 0;
+                }
+                if(in_array('featured', $recommend)){
+                    $form->featured = 1;
+                }else{
+                    $form->featured = 0;
+                }
+                
+
+            });
             $form->tools(function(Form\Tools $tools){
                 // 去掉跳转列表按钮
                 $tools->disableList();
@@ -113,13 +153,8 @@ class ArticleController extends AdminController
                 // 去掉`继续编辑`checkbox
                 $footer->disableEditingCheck();
             });
-            $form->submitted(function (Form $form) {
-                $body = strip_tags($form->body);
-                if($form->excerpt == ''){
-                    $form->excerpt = mb_substr($body,0,100,'utf-8');
-                }
-            });
-
+            /*忽略掉不需要保存的字段*/
+            $form->ignore(['recommend']);
         });
     }
 }
