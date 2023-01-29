@@ -57,6 +57,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection url
+     * @property Grid\Column|Collection sequence
+     * @property Grid\Column|Collection parentId
+     * @property Grid\Column|Collection isOpen
+     * @property Grid\Column|Collection isNewWin
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
@@ -111,6 +116,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection url(string $label = null)
+     * @method Grid\Column|Collection sequence(string $label = null)
+     * @method Grid\Column|Collection parentId(string $label = null)
+     * @method Grid\Column|Collection isOpen(string $label = null)
+     * @method Grid\Column|Collection isNewWin(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
@@ -170,6 +180,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection url
+     * @property Show\Field|Collection sequence
+     * @property Show\Field|Collection parentId
+     * @property Show\Field|Collection isOpen
+     * @property Show\Field|Collection isNewWin
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
@@ -224,6 +239,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection url(string $label = null)
+     * @method Show\Field|Collection sequence(string $label = null)
+     * @method Show\Field|Collection parentId(string $label = null)
+     * @method Show\Field|Collection isOpen(string $label = null)
+     * @method Show\Field|Collection isNewWin(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)

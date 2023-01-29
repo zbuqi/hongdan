@@ -14,4 +14,6 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('user', 'UserController');
     $router->resource('article', 'ArticleController');
+    $router->resource('seting/navigation', 'NavigationController');
+    #$router->resource('seting/{code}', 'SetingController@show');
 });
