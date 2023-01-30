@@ -8,28 +8,21 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
-class NavigationController extends AdminController
+class NavigationFooter2Controller extends AdminController
 {
     /**
      * Make a grid builder.
      *
+     * 
      * @return Grid
      */
     protected function grid()
     {
-        
+        #echo $type;
         return Grid::make(new Navigation(), function (Grid $grid){
-            //添加默认查询条件
-            $type = $_SERVER["QUERY_STRING"];
-            if($type == 'type=top'){
-                $grid->model()->where('type','=','top');
-            }elseif($type == 'type=firendLink'){
-                $grid->model()->where('type','=','firendLink');
-            }else{
-                $grid->model()->where('type','=','top');
-            }
-            print_r($type);
-            
+
+            $grid->model()->where('type','=','footerLink2');
+
             //设置初始排序条件
             $grid->model()->orderBy('sequence','asc');
             $grid->column('name', '名称');
@@ -39,7 +32,6 @@ class NavigationController extends AdminController
             $grid->column('isOpen', '状态')->display(function($isOpen){
                 return $isOpen ? '开启':'关闭';
             });
-            $grid->column('created_at');
             $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
@@ -80,17 +72,39 @@ class NavigationController extends AdminController
     protected function form()
     {
         return Form::make(new Navigation(), function (Form $form) {
-            $form->display('id');
+            #获取当前时间
+            $time = date('Y-m-d H:i:s', time());
+
             $form->text('name');
-            $form->text('url');
-            $form->text('sequence');
-            $form->text('parentId');
-            $form->text('type');
-            $form->text('isOpen');
-            $form->text('isNewWin');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+            $form->text('url','链接');
+            $form->text('sequence','序号');
+            $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
+            $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
+
+            $form->hidden('id');
+            $form->hidden('type')->default('footerLink2');
+            $form->hidden('parentId')->default('0');
+            $form->hidden('created_at')->default($time);
+            $form->hidden('updated_at')->default($time);
+
+            $form->tools(function(Form\Tools $tools){
+                // 去掉跳转列表按钮
+                $tools->disableList();
+                // 去掉跳转详情页按钮
+                $tools->disableView();
+                // 去掉删除按钮
+                $tools->disableDelete();
+            });
+            $form->footer(function($footer){
+                // 去掉`重置`按钮
+                $footer->disableReset();
+                // 去掉`查看`checkbox
+                $footer->disableViewCheck();
+                // 去掉`继续编辑`checkbox
+                $footer->disableEditingCheck();
+                // 去掉`继续新增`checkbox
+                $footer->disableCreatingCheck();
+            });  
         });
     }
 }

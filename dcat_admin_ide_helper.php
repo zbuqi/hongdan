@@ -51,6 +51,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection seo_title
      * @property Grid\Column|Collection seo_description
      * @property Grid\Column|Collection seo_keyword
+     * @property Grid\Column|Collection typeId
+     * @property Grid\Column|Collection conten
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
@@ -110,6 +112,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection seo_title(string $label = null)
      * @method Grid\Column|Collection seo_description(string $label = null)
      * @method Grid\Column|Collection seo_keyword(string $label = null)
+     * @method Grid\Column|Collection typeId(string $label = null)
+     * @method Grid\Column|Collection conten(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
@@ -174,6 +178,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection seo_title
      * @property Show\Field|Collection seo_description
      * @property Show\Field|Collection seo_keyword
+     * @property Show\Field|Collection typeId
+     * @property Show\Field|Collection conten
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
@@ -233,6 +239,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection seo_title(string $label = null)
      * @method Show\Field|Collection seo_description(string $label = null)
      * @method Show\Field|Collection seo_keyword(string $label = null)
+     * @method Show\Field|Collection typeId(string $label = null)
+     * @method Show\Field|Collection conten(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)

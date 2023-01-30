@@ -20,8 +20,9 @@ class ArticleController extends AdminController
     protected function grid()
     {
         return Grid::make(new Article(), function (Grid $grid) {
-            $grid->column('id')->sortable();
+            #$grid->column('id')->sortable();
             #$grid->number('序号');
+            $grid->model()->orderBy('id','desc');
             $grid->column('title');
             $grid->column('categoryId', '栏目')->display(function($categoryId){
                 return Category::find($categoryId)->name;
@@ -87,10 +88,12 @@ class ArticleController extends AdminController
             if($featured){
                 $recommend_default[] = 'featured';
             }
+            #获取当前时间
+            $created_at = date('Y-m-d H:i:s', time());
 
             $form->text('title', '标题');
             $form->select('categoryId', '栏目')->options($categorys);
-            $form->text('created_at', '创建时间');
+            $form->text('created_at', '创建时间')->default($created_at);
             $form->text('source', '来源');
             $form->text('sourceUrl', '来源地址');
             $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
@@ -99,12 +102,12 @@ class ArticleController extends AdminController
             $form->editor('body', '正文');
 
             $form->hidden('id');
-            $form->hidden('tagIds');
-            $form->hidden('promoted');
-            $form->hidden('featured');
-            $form->hidden('hits');
-            $form->hidden('userId');
-            $form->hidden('updated_at');
+            $form->hidden('tagIds')->default(0);
+            $form->hidden('promoted')->default(0);
+            $form->hidden('featured')->default(0);
+            $form->hidden('hits')->default(rand(100,300));
+            $form->hidden('userId')->default(1);
+            $form->hidden('updated_at')->default($created_at);
             $form->submitted(function (Form $form) {
                 /*缩略图*/
                 if(!strstr($form->thumb, 'uploads')){

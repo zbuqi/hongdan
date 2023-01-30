@@ -14,6 +14,12 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('user', 'UserController');
     $router->resource('article', 'ArticleController');
-    $router->resource('seting/navigation', 'NavigationController');
-    #$router->resource('seting/{code}', 'SetingController@show');
+    #导航链接
+    $router->resource('seting/navigation/top', 'NavigationTopController');
+    $router->resource('seting/navigation/firendLink', 'NavigationFirendController');
+    $router->resource('seting/navigation/footerLink1', 'NavigationFooter1Controller');
+    $router->resource('seting/navigation/footerLink2', 'NavigationFooter2Controller');
+    
+    #评论
+    $router->resource('match/comment', 'CommentController');
 });
