@@ -53,6 +53,7 @@
                             </div>
                         </div>
                         <?php endforeach;?>
+                        <?php echo $adv['ces'];?>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 <?php 
 return [
     'labels' => [
-        'Comment' => 'Comment',
-        'comment' => 'Comment',
+        'Comment' => '精彩点评',
+        'comment' => '精彩点评',
+        'match' => '赛程'
     ],
     'fields' => [
         'type' => 'type',

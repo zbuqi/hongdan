@@ -20,6 +20,9 @@ Route::group([
     $router->resource('seting/navigation/footerLink1', 'NavigationFooter1Controller');
     $router->resource('seting/navigation/footerLink2', 'NavigationFooter2Controller');
     
-    #评论
+    #精彩评论
     $router->resource('match/comment', 'CommentController');
+
+    #广告
+    $router->resource('adv','AdvController');
 });

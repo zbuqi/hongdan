@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Adv;
 use \Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -36,10 +37,12 @@ class ArticleController extends Controller
         if($next != ''){
             $article->next = '/article/' . $next->id;
         }
-
-
-
-        return view('article', ['article' => $article, 'category' => $category, 'featureArticles' => $featureArticles, 'latestArticles'=>$latestArticles, 'correlationsArticles'=>$correlationsArticles]);
+        /*广告*/
+        $advs = Adv::get();
+        for($i=0; $i<count($advs); $i++){
+            $adv[$advs[$i]['alias']] = $advs[$i]['body'];
+        }
+        return view('article', ['article' => $article, 'category' => $category, 'featureArticles' => $featureArticles, 'latestArticles'=>$latestArticles, 'correlationsArticles'=>$correlationsArticles, 'adv'=>$adv]);
     }
 
 

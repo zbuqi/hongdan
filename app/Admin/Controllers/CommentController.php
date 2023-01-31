@@ -6,6 +6,7 @@ use App\Admin\Repositories\Comment;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
+use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Http\Controllers\AdminController;
 
 class CommentController extends AdminController
@@ -16,19 +17,26 @@ class CommentController extends AdminController
      * @return Grid
      */
     protected function grid()
-    {
-        return Grid::make(new Comment(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('type');
-            $grid->column('typeId');
-            $grid->column('userId');
-            $grid->column('content');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-        
+    {   
+        return Grid::make(new Comment(), function (Grid $grid){
+            $grid->model()->where('type','=','match');
+
+            $grid->column('typeId','赛程');
+            $grid->column('content','评论内容')->display(function($content){
+                $content = strip_tags($content);
+                if(strlen($content)>80){
+                    $content = substr($content, 0,80) . '...';
+                }
+                return $content;
+            });
+            $grid->column('userId', '作者')->display(function($userId){
+                return '作者ID';
+            });
+            $grid->column('updated_at');
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+            
             });
         });
     }
@@ -61,14 +69,33 @@ class CommentController extends AdminController
     protected function form()
     {
         return Form::make(new Comment(), function (Form $form) {
-            $form->display('id');
-            $form->text('type');
-            $form->text('typeId');
-            $form->text('userId','选择作者');
+            $form->select('typeId','选择赛程')->options(['123456'=>'世界杯&nbsp;&nbsp;克罗地亚VS巴西&nbsp;&nbsp;12-10 23:00']);
+            $form->select('userId','选择作者')->options(['1'=>'老张','0'=>'老李']);
             $form->editor('content','内容');
         
-            $form->display('created_at');
-            $form->display('updated_at');
+            $form->hidden('id');
+            $form->hidden('created_at');
+            $form->hidden('updated_at');
+
+            $form->tools(function(Form\Tools $tools){
+                // 去掉跳转列表按钮
+                $tools->disableList();
+                // 去掉跳转详情页按钮
+                $tools->disableView();
+                // 去掉删除按钮
+                $tools->disableDelete();
+            });
+            $form->footer(function($footer){
+                // 去掉`重置`按钮
+                $footer->disableReset();
+                // 去掉`查看`checkbox
+                $footer->disableViewCheck();
+                // 去掉`继续编辑`checkbox
+                $footer->disableEditingCheck();
+                // 去掉`继续新增`checkbox
+                $footer->disableCreatingCheck();
+            }); 
+
         });
     }
 }
