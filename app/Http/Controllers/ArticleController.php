@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Adv;
+use App\Models\Navigation;
 use \Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -37,12 +38,28 @@ class ArticleController extends Controller
         if($next != ''){
             $article->next = '/article/' . $next->id;
         }
+        /*链接*/
+        $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $firendLinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();        
         /*广告*/
         $advs = Adv::get();
         for($i=0; $i<count($advs); $i++){
             $adv[$advs[$i]['alias']] = $advs[$i]['body'];
         }
-        return view('article', ['article' => $article, 'category' => $category, 'featureArticles' => $featureArticles, 'latestArticles'=>$latestArticles, 'correlationsArticles'=>$correlationsArticles, 'adv'=>$adv]);
+        return view('article', [
+            'article' => $article, 
+            'category' => $category, 
+            'featureArticles' => $featureArticles, 
+            'latestArticles'=>$latestArticles, 
+            'correlationsArticles'=>$correlationsArticles, 
+            'adv'=>$adv,
+            "navs" => $navs,
+            "firendLinks" => $firendLinks,
+            "footerlink1s" => $footerlink1s,
+            "footerlink2s" => $footerlink2s
+        ]);
     }
 
 

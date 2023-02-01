@@ -9,6 +9,8 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Http\Controllers\AdminController;
 
+use App\Models\AdminUser as User;
+
 class CommentController extends AdminController
 {
     /**
@@ -68,9 +70,13 @@ class CommentController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Comment(), function (Form $form) {
+        foreach(User::get() as $user){
+            $users[$user->id] = $user->name;
+        }
+        return Form::make(new Comment(), function (Form $form) use ($users) {
             $form->select('typeId','选择赛程')->options(['123456'=>'世界杯&nbsp;&nbsp;克罗地亚VS巴西&nbsp;&nbsp;12-10 23:00']);
-            $form->select('userId','选择作者')->options(['1'=>'老张','0'=>'老李']);
+            
+            $form->select('userId','选择作者')->options($users);
             $form->editor('content','内容');
         
             $form->hidden('id');

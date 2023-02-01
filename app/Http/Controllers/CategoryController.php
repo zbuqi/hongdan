@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Navigation;
 
 class CategoryController extends Controller
 {
@@ -22,7 +23,21 @@ class CategoryController extends Controller
         for($i=0; $i<count($featureArticles); $i++){
             $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"];
         }
-        return view('category', ["latestArticles" => $latestArticles, 'featureArticles'=>$featureArticles, 'category'=>$Category]);
+        /*链接*/
+        $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $firendLinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+
+        return view('category', [
+            "latestArticles" => $latestArticles, 
+            'featureArticles'=>$featureArticles, 
+            'category'=>$Category,
+            "navs" => $navs,
+            "firendLinks" => $firendLinks,
+            "footerlink1s" => $footerlink1s,
+            "footerlink2s" => $footerlink2s
+        ]);
     }
     public function index()
     {
@@ -40,7 +55,21 @@ class CategoryController extends Controller
             $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"];
             $featureArticles[$i]["thumb"] = '/uploads/' . $featureArticles[$i]["thumb"];
         }
-        return view('category', ["latestArticles" => $latestArticles, 'featureArticles'=>$featureArticles, 'category'=>$Category]);
+        /*链接*/
+        $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $firendLinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+
+        return view('category', [
+            "latestArticles" => $latestArticles, 
+            'featureArticles'=>$featureArticles, 
+            'category'=>$Category,
+            "navs" => $navs,
+            "firendLinks" => $firendLinks,
+            "footerlink1s" => $footerlink1s,
+            "footerlink2s" => $footerlink2s
+        ]);
     }
 }
 

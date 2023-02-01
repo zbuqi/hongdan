@@ -7,7 +7,7 @@ return [
         'firendLink' => '友情链接'
     ],
     'fields' => [
-        'name' => 'name',
+        'title' => '名称',
     ],
     'options' => [
     ],

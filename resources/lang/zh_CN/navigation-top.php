@@ -8,7 +8,7 @@ return [
         'top' => '顶部导航'
     ],
     'fields' => [
-        'name' => 'name',
+        'title' => '名称',
     ],
     'options' => [
     ],

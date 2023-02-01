@@ -7,7 +7,7 @@ return [
         'footerLink1' => '底部链接1'
     ],
     'fields' => [
-        'name' => 'name',
+        'title' => '名称',
     ],
     'options' => [
     ],

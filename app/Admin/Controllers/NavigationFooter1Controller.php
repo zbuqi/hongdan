@@ -8,6 +8,8 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
+use App\Models\Navigation as nav;
+
 class NavigationFooter1Controller extends AdminController
 {
     /**
@@ -25,7 +27,8 @@ class NavigationFooter1Controller extends AdminController
 
             //设置初始排序条件
             $grid->model()->orderBy('sequence','asc');
-            $grid->column('name', '名称');
+            $grid->column('sequence', '序号');
+            $grid->column('title', '名称');
             $grid->column('isNewWin', '新开窗口')->display(function($isNewWin){
                 return $isNewWin ? '是':'否';
             });
@@ -52,8 +55,8 @@ class NavigationFooter1Controller extends AdminController
     {
         return Show::make($id, new Navigation(), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('url');
+            $show->field('title');
+            $show->field('link');
             $show->field('sequence');
             $show->field('parentId');
             $show->field('type');
@@ -71,13 +74,14 @@ class NavigationFooter1Controller extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Navigation(), function (Form $form) {
+        $footerLink1 = nav::where('type','=','footerLink1')->orderBy('sequence','desc')->get();
+        return Form::make(new Navigation(), function (Form $form) use ($footerLink1) {
             #获取当前时间
             $time = date('Y-m-d H:i:s', time());
 
-            $form->text('name');
-            $form->text('url','链接');
-            $form->text('sequence','序号');
+            $form->text('title');
+            $form->text('link','链接');
+            $form->text('sequence','序号')->default($footerLink1[0]['sequence']+1);
             $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
             $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
 

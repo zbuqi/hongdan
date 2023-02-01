@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\Match as Match;
 use App\Models\Article;
+use App\Models\Navigation;
 
 class MatchController extends Controller
 {
@@ -21,6 +22,20 @@ class MatchController extends Controller
             $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
         };
 
-        return view('match', ['match' => $match, 'lineup' => $lineup, 'latestArticles'=> $latestArticles]);
+        /*链接*/
+        $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $firendLinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+
+        return view('match', [
+            'match' => $match, 
+            'lineup' => $lineup, 
+            'latestArticles'=> $latestArticles,
+            "navs" => $navs,
+            "firendLinks" => $firendLinks,
+            "footerlink1s" => $footerlink1s,
+            "footerlink2s" => $footerlink2s
+        ]);
     }
 }

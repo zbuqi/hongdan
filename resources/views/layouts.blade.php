@@ -15,11 +15,9 @@
                     <a href="/"><img src="/img/logo.png"></a>
                 </div>
                 <nav class="navbar-nav">
-                    <a href="/">首页</a>
-                    <a href="/match_list/zuqiu">足球</a>
-                    <a href="/match/1">篮球</a>
-                    <a href="/article/1">比分预测</a>
-                    <a href="/category/ces">体育资讯</a>
+                    <?php foreach($navs as $item): ?>
+                    <a href="<?php echo $item->link;?>"><?php echo $item->title?></a>
+                    <?php endforeach; ?>
                 </nav>
                 <div class="visitor">
                     <a class="btn btn-default login">登录</a>
@@ -50,17 +48,17 @@
                     <div class="link-item">
                         <h4 class="title">体育工具服务</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">比分直播</a></li>
-                            <li><a href="">赛事数据</a></li>
-                            <li><a href="">情报资讯</a></li>
-                            <li><a href="">专家推荐</a></li>
+                            <?php foreach($footerlink1s as $item): ?>
+                            <li><a href="<?php echo $item->link;?>"><?php echo $item->title?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="link-item">
                         <h4 class="title">服务与支持</h4>
                         <ul class="list-unstyled">
-                            <li><a href="">下载网单盈球</a></li>
-                            <li><a href="">帮助中心</a></li>
+                        <?php foreach($footerlink2s as $item): ?>
+                            <li><a href="<?php echo $item->link;?>"><?php echo $item->title?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="footer-contact clearfix">

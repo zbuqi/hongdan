@@ -28,7 +28,7 @@ class NavigationTopController extends AdminController
             //设置初始排序条件
             $grid->model()->orderBy('sequence','asc');
             $grid->column('sequence', '序号');
-            $grid->column('name', '名称');
+            $grid->column('title', '名称');
             $grid->column('isNewWin', '新开窗口')->display(function($isNewWin){
                 return $isNewWin ? '是':'否';
             });
@@ -55,8 +55,8 @@ class NavigationTopController extends AdminController
     {
         return Show::make($id, new Navigation(), function (Show $show) {
             $show->field('id');
-            $show->field('name');
-            $show->field('url');
+            $show->field('title');
+            $show->field('link');
             $show->field('sequence');
             $show->field('parentId');
             $show->field('type');
@@ -77,16 +77,18 @@ class NavigationTopController extends AdminController
         //父级
         $navs[0] = '顶级';
         foreach(nav::where('parentId','=','0')->where('type','=','top')->get() as $nav){
-            $navs[$nav->id] = $nav->name;
+            $navs[$nav->id] = $nav->title;
         }
-        return Form::make(new Navigation(), function (Form $form) use ($navs) {
+        $top = nav::where('type','=','top')->orderBy('sequence','desc')->get();
+
+        return Form::make(new Navigation(), function (Form $form) use ($navs,$top) {
             #获取当前时间
             $time = date('Y-m-d H:i:s', time());
 
-            $form->text('name');
-            $form->text('url','链接');
+            $form->text('title');
+            $form->text('link','链接');
             $form->select('parentId', '父级')->options($navs);
-            $form->text('sequence','序号');
+            $form->text('sequence','序号')->default($top[0]['sequence']+1);
             $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
             $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
 
