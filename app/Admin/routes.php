@@ -27,8 +27,8 @@ Route::group([
     $router->resource('adv','AdvController');
 
     #网站信息
-    #$router->get('seting/site','SiteController@index');
+    $router->get('seting/site','SiteController@index');
     #$router->post('seting/site','SiteController@index');
     
-    $router->resource('seting/site','SiteController');
+    #$router->resource('seting/site','SiteController');
 });
