@@ -10,12 +10,12 @@ use Dcat\Admin\Http\Controllers\AdminController;
 
 use App\Models\Navigation as nav;
 
-class NavigationFooter1Controller extends AdminController
+class NavigationFootController extends AdminController
 {
     /**
      * Make a grid builder.
      *
-     * 
+     *
      * @return Grid
      */
     protected function grid()
@@ -23,12 +23,12 @@ class NavigationFooter1Controller extends AdminController
         #echo $type;
         return Grid::make(new Navigation(), function (Grid $grid){
 
-            $grid->model()->where('type','=','footerLink1');
+            $grid->model()->where('type','=','foot');
 
             //设置初始排序条件
             $grid->model()->orderBy('sequence','asc');
-            $grid->column('sequence', '序号');
-            $grid->column('title', '名称');
+            #$grid->column('sequence', '序号');
+            $grid->column('title', '名称')->tree();
             $grid->column('isNewWin', '新开窗口')->display(function($isNewWin){
                 return $isNewWin ? '是':'否';
             });
@@ -36,10 +36,10 @@ class NavigationFooter1Controller extends AdminController
                 return $isOpen ? '开启':'关闭';
             });
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -74,20 +74,25 @@ class NavigationFooter1Controller extends AdminController
      */
     protected function form()
     {
-        $footerLink1 = nav::where('type','=','footerLink1')->orderBy('sequence','desc')->get();
-        return Form::make(new Navigation(), function (Form $form) use ($footerLink1) {
+        //父级
+        $parents[0] = '顶级';
+        foreach(nav::where('parentId','=','0')->where('type','=','foot')->get() as $nav){
+            $parents[$nav->id] = $nav->title;
+        }
+        $sequences = nav::where('type','=','foot')->orderBy('sequence','desc')->get();
+        return Form::make(new Navigation(), function (Form $form) use ($parents,$sequences){
             #获取当前时间
             $time = date('Y-m-d H:i:s', time());
 
             $form->text('title');
             $form->text('link','链接');
-            $form->text('sequence','序号')->default($footerLink1[0]['sequence']+1);
+            $form->select('parentId', '父级')->options($parents);
+            $form->text('sequence','序号')->default($sequences[0]['sequence']+1);
             $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
             $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
 
             $form->hidden('id');
-            $form->hidden('type')->default('footerLink1');
-            $form->hidden('parentId')->default('0');
+            $form->hidden('type')->default('foot');
             $form->hidden('created_at')->default($time);
             $form->hidden('updated_at')->default($time);
 
@@ -108,7 +113,7 @@ class NavigationFooter1Controller extends AdminController
                 $footer->disableEditingCheck();
                 // 去掉`继续新增`checkbox
                 $footer->disableCreatingCheck();
-            });  
+            });
         });
     }
 }

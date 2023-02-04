@@ -15,7 +15,7 @@ class NavigationTopController extends AdminController
     /**
      * Make a grid builder.
      *
-     * 
+     *
      * @return Grid
      */
     protected function grid()
@@ -36,10 +36,10 @@ class NavigationTopController extends AdminController
                 return $isOpen ? '开启':'关闭';
             });
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -75,20 +75,20 @@ class NavigationTopController extends AdminController
     protected function form()
     {
         //父级
-        $navs[0] = '顶级';
+        $parents[0] = '顶级';
         foreach(nav::where('parentId','=','0')->where('type','=','top')->get() as $nav){
-            $navs[$nav->id] = $nav->title;
+            $parents[$nav->id] = $nav->title;
         }
-        $top = nav::where('type','=','top')->orderBy('sequence','desc')->get();
+        $sequences = nav::where('type','=','top')->orderBy('sequence','desc')->get();
 
-        return Form::make(new Navigation(), function (Form $form) use ($navs,$top) {
+        return Form::make(new Navigation(), function (Form $form) use ($parents,$sequences) {
             #获取当前时间
             $time = date('Y-m-d H:i:s', time());
 
             $form->text('title');
             $form->text('link','链接');
-            $form->select('parentId', '父级')->options($navs);
-            $form->text('sequence','序号')->default($top[0]['sequence']+1);
+            $form->select('parentId', '父级')->options($parents);
+            $form->text('sequence','序号')->default($sequences[0]['sequence']+1);
             $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
             $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
 
@@ -114,7 +114,7 @@ class NavigationTopController extends AdminController
                 $footer->disableEditingCheck();
                 // 去掉`继续新增`checkbox
                 $footer->disableCreatingCheck();
-            });            
+            });
         });
     }
 }

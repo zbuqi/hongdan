@@ -17,15 +17,17 @@ Route::group([
     $router->resource('article', 'ArticleController');
     #分类
     $router->resource('category', 'CategoryController');
-    #导航链接
-    $router->resource('seting/navigation/top', 'NavigationTopController');
-    $router->resource('seting/navigation/footerLink1', 'NavigationFooter1Controller');
-    $router->resource('seting/navigation/footerLink2', 'NavigationFooter2Controller');
-    $router->resource('seting/navigation/firend', 'NavigationFirendController');
     #精彩评论
     $router->resource('match/comment', 'CommentController');
     #广告
-    $router->resource('adv','AdvController');
+    $router->resource('seting/adv','AdvController');
+    #首页海报
+    $router->resource('seting/banner','BannerController');
+    #导航链接
+    $router->resource('seting/navigation/top', 'NavigationTopController');
+    $router->resource('seting/navigation/foot', 'NavigationFootController');
+    $router->resource('seting/navigation/foot2', 'NavigationFooter2Controller');
+    $router->resource('seting/navigation/firend', 'NavigationFirendController');
     #网站信息
     $router->resource('seting/site','SiteController');
     #客服设置

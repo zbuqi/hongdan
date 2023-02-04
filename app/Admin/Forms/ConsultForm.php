@@ -43,6 +43,7 @@ class ConsultForm extends Form
     public function form()
     {
         $this->text('phone','联系电话');
+        $this->text('time','服务时间');
         $this->image('wx','微信二维码')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
         $this->image('woa1','微信公众号1')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
         $this->image('woa2','微信公众号2')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
@@ -59,10 +60,11 @@ class ConsultForm extends Form
         $data = $site[0]->value;
         $data = json_decode($data);
         return [
-            'phone'  => $data->phone,
-            'wx' => $data->wx,
-            'woa1' => $data->woa1,
-            'woa2' => $data->woa2
+            'phone' => $data->phone,
+            'time'  => $data->time,
+            'wx'    => $data->wx,
+            'woa1'  => $data->woa1,
+            'woa2'  => $data->woa2
         ];
     }
 }

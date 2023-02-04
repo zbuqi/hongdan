@@ -45,22 +45,16 @@
         <footer>
             <div class="footer-link">
                 <div class="footer-container clearfix">
+                    <?php foreach($footerlinks as $item): ?>
                     <div class="link-item">
-                        <h4 class="title">体育工具服务</h4>
+                        <h4 class="title"><?php echo $item->title?></h4>
                         <ul class="list-unstyled">
-                            <?php foreach($footerlink1s as $item): ?>
-                            <li><a href="<?php echo $item->link;?>"><?php echo $item->title?></a></li>
+                            <?php foreach($item->son as $son): ?>
+                            <li><a href="<?php echo $son->link;?>"><?php echo $son->title?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <div class="link-item">
-                        <h4 class="title">服务与支持</h4>
-                        <ul class="list-unstyled">
-                        <?php foreach($footerlink2s as $item): ?>
-                            <li><a href="<?php echo $item->link;?>"><?php echo $item->title?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+                    <?php endforeach; ?>
                     <div class="footer-contact clearfix">
                         <div class="contace-item contace-content clearfix">
                             <div class="contace-icon">

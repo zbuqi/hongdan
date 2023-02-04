@@ -18,10 +18,8 @@ class CategoryController extends AdminController
     protected function grid()
     {
         return Grid::make(new Category(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('code');
-            $grid->column('name');
-            $grid->column('created_at');
+            $grid->column('name','分类名');
+            $grid->column('code','别名');
             $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -59,16 +57,34 @@ class CategoryController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Category(), function (Form $form) {
-            $form->display('id');
-            $form->text('code');
-            $form->text('name');
-            $form->text('seo_title');
-            $form->text('seo_description');
-            $form->text('seo_keyword');
+        #获取当前时间
+        $date = date('Y-m-d H:i:s', time());
+        return Form::make(new Category(), function (Form $form) use ($date) {
+            $form->text('name','分类名');
+            $form->text('code', '别名');
+            $form->text('seo_title','标题');
+            $form->text('seo_keyword','关键词');
+            $form->textarea('seo_description','描述');
 
-            $form->display('created_at');
-            $form->display('updated_at');
+            $form->hidden('id');
+            $form->hidden('created_at')->default($date);
+            $form->hidden('updated_at')->default($date);
+            $form->tools(function(Form\Tools $tools){
+                // 去掉跳转列表按钮
+                $tools->disableList();
+                // 去掉跳转详情页按钮
+                $tools->disableView();
+                // 去掉删除按钮
+                $tools->disableDelete();
+            });
+            $form->footer(function($footer){
+                // 去掉`重置`按钮
+                $footer->disableReset();
+                // 去掉`查看`checkbox
+                $footer->disableViewCheck();
+                // 去掉`继续编辑`checkbox
+                $footer->disableEditingCheck();
+            });
         });
     }
 }

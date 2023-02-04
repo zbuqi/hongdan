@@ -33,8 +33,10 @@ class IndexController extends Controller
         /*链接*/
         $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
         $firendlinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
-        $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
-        $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        $footerlinks = Navigation::where('type','=','foot')->where('isOpen','=','1')->where('parentId','0')->orderBy('sequence','asc')->get();
+        for($i=0;$i<count($footerlinks);$i++){
+            $footerlinks[$i]['son'] = Navigation::where('type','=','foot')->where('isOpen','=','1')->where('parentId', $footerlinks[$i]['id'])->orderBy('sequence','asc')->get();
+        }
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'index' : 'mobile/index';
         return view($view, [
@@ -43,8 +45,7 @@ class IndexController extends Controller
             "adv"=>$adv,
             "navs" => $navs,
             "firendlinks" => $firendlinks,
-            "footerlink1s" => $footerlink1s,
-            "footerlink2s" => $footerlink2s
+            "footerlinks" => $footerlinks,
         ]);
     }
 }

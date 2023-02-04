@@ -1,12 +1,13 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'Seting' => 'Seting',
-        'seting' => 'Seting',
+        'seting' => '站点配置',
+        'site' => '网站信息',
     ],
     'fields' => [
         'name' => 'name',
         'body' => 'body',
+
     ],
     'options' => [
     ],

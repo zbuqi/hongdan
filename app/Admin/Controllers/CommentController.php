@@ -19,7 +19,7 @@ class CommentController extends AdminController
      * @return Grid
      */
     protected function grid()
-    {   
+    {
         return Grid::make(new Comment(), function (Grid $grid){
             $grid->model()->where('type','=','match');
 
@@ -32,13 +32,13 @@ class CommentController extends AdminController
                 return $content;
             });
             $grid->column('userId', '作者')->display(function($userId){
-                return '作者ID';
+                $user = User::where('id',$userId)->get();
+                return $user[0]->name;
             });
             $grid->column('updated_at');
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-            
             });
         });
     }
@@ -75,10 +75,10 @@ class CommentController extends AdminController
         }
         return Form::make(new Comment(), function (Form $form) use ($users) {
             $form->select('typeId','选择赛程')->options(['123456'=>'世界杯&nbsp;&nbsp;克罗地亚VS巴西&nbsp;&nbsp;12-10 23:00']);
-            
+
             $form->select('userId','选择作者')->options($users);
             $form->editor('content','内容');
-        
+
             $form->hidden('id');
             $form->hidden('created_at');
             $form->hidden('updated_at');
@@ -100,7 +100,7 @@ class CommentController extends AdminController
                 $footer->disableEditingCheck();
                 // 去掉`继续新增`checkbox
                 $footer->disableCreatingCheck();
-            }); 
+            });
 
         });
     }

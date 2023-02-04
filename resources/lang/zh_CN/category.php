@@ -1,8 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'Category' => 'Category',
-        'category' => 'Category',
+        'Category' => '分类',
+        'category' => '分类',
     ],
     'fields' => [
         'code' => 'code',

@@ -29,10 +29,10 @@ class ArticleController extends AdminController
             });
             $grid->column('created_at', '创建时间');
             $grid->column('updated_at', '更新时间')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -72,34 +72,62 @@ class ArticleController extends AdminController
      */
     protected function form()
     {
-        foreach(Category::get() as $category){
-            $categorys[$category->id] = $category->name;
-        }
+        return Form::make(new Article(), function (Form $form){
 
-        return Form::make(new Article(), function (Form $form) use ($categorys) {
-            
-            $recommend = ['promoted' => '推荐','featured' => '头条'];
-            $recommend_default = [];
-            $promoted = $form->model()->promoted;
-            $featured = $form->model()->featured;
-            if($promoted){
-                $recommend_default[] = 'promoted';
-            }
-            if($featured){
-                $recommend_default[] = 'featured';
-            }
-            #获取当前时间
-            $created_at = date('Y-m-d H:i:s', time());
+            $form->block(8, function(Form\BlockForm $form){
+                $form->title('主要内容');
+                // 显示底部提交按钮
+                $form->showFooter();
+                // 设置字段宽度
+                $form->width(11, 1);
 
-            $form->text('title', '标题');
-            $form->select('categoryId', '栏目')->options($categorys);
-            $form->text('created_at', '创建时间')->default($created_at);
-            $form->text('source', '来源');
-            $form->text('sourceUrl', '来源地址');
-            $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
-            $form->checkbox('recommend', '资讯属性')->options($recommend)->default($recommend_default, true);
-            $form->textarea('excerpt', '简介')->rows(5);
-            $form->editor('body', '正文');
+                $form->column(12, function(Form\BlockForm $form){
+                    foreach(Category::get() as $category){
+                        $categorys[$category->id] = $category->name;
+                    }
+                    $form->text('title', '标题');
+                    $form->select('categoryId', '栏目')->options($categorys);
+                    $form->textarea('excerpt', '简介')->rows(5);
+                    $form->editor('body', '正文');
+                });
+            });
+            $form->block(4, function(Form\BlockForm $form){
+                $form->width(9, 3);
+
+                $recommend = ['promoted' => '推荐','featured' => '头条'];
+                $recommend_default = [];
+                $promoted = $form->model()->promoted;
+                $featured = $form->model()->featured;
+                if($promoted){
+                    $recommend_default[] = 'promoted';
+                }
+                if($featured){
+                    $recommend_default[] = 'featured';
+                }
+
+                $form->title('资讯属性');
+                $form->checkbox('recommend','')->options($recommend)->default($recommend_default, true);
+
+                $form->next(function(Form\BlockForm $form){
+                    $form->width(8, 3);
+                    $form->title('来源设置');
+                    $form->text('source', '来源名称');
+                    $form->text('sourceUrl', '来源地址');
+                });
+                $form->next(function(Form\BlockForm $form){
+                    $form->width(8, 3);
+                    $form->title('设置缩略图');
+                    $form->image('thumb', '缩略图')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+                });
+                $form->next(function(Form\BlockForm $form){
+                    $form->width(8, 3);
+                    #获取当前时间
+                    $time = date('Y-m-d H:i:s', time());
+                    $form->title('发布时间');
+                    $form->text('created_at', '发布时间')->default($time);
+                    $form->hidden('updated_at')->default($time);
+                });
+            });
 
             $form->hidden('id');
             $form->hidden('tagIds')->default(0);
@@ -107,7 +135,6 @@ class ArticleController extends AdminController
             $form->hidden('featured')->default(0);
             $form->hidden('hits')->default(rand(100,300));
             $form->hidden('userId')->default(1);
-            $form->hidden('updated_at')->default($created_at);
             $form->submitted(function (Form $form) {
                 /*缩略图*/
                 if(!strstr($form->thumb, 'uploads')){
@@ -121,11 +148,12 @@ class ArticleController extends AdminController
                 /*资讯属性： in_array 第二参数不能为空*/
                 $recommend = $form->recommend;
                 $recommend[] = '1';
-
+                /*
                 $content = json_encode($recommend, JSON_UNESCAPED_UNICODE);
                 $file = fopen('D:\www\ces.txt', 'w+');
                 fwrite($file, $content);
                 fclose($file);
+                */
 
                 if(in_array('promoted', $recommend)){
                     $form->promoted = 1;
@@ -137,7 +165,7 @@ class ArticleController extends AdminController
                 }else{
                     $form->featured = 0;
                 }
-                
+
 
             });
             $form->tools(function(Form\Tools $tools){
