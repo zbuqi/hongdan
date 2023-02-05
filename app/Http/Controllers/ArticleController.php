@@ -7,7 +7,10 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Adv;
 use App\Models\Navigation;
+use App\Models\Seting;
+
 use \Illuminate\Support\Str;
+
 
 class ArticleController extends Controller
 {
@@ -50,6 +53,16 @@ class ArticleController extends Controller
         for($i=0; $i<count($advs); $i++){
             $adv[$advs[$i]['alias']] = $advs[$i]['body'];
         }
+
+        /*网站信息*/
+        $site = Seting::where('name','site')->first();
+        $site = json_decode($site->value);
+
+        /*网站客服*/
+        $consult = Seting::where('name', 'consult')->first();
+        $consult = json_decode($consult->value);
+
+
         return view('article', [
             'article' => $article,
             'category' => $category,
@@ -59,7 +72,9 @@ class ArticleController extends Controller
             'adv'=>$adv,
             "navs" => $navs,
             "firendLinks" => $firendLinks,
-            "footerlinks" => $footerlinks
+            "footerlinks" => $footerlinks,
+            "site"             => $site,
+            'consult'          => $consult
         ]);
     }
 

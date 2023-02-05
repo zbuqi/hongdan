@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Adv;
 use App\Models\Navigation;
+use App\Models\Seting;
 use App\Http\Middleware\isMobile;
 
 class IndexController extends Controller
@@ -30,22 +31,32 @@ class IndexController extends Controller
         for($i=0; $i<count($advs); $i++){
             $adv[$advs[$i]['alias']] = $advs[$i]['body'];
         }
-        /*链接*/
-        $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
+        /*导航链接*/
+        $navs = Navigation::where('type','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
         $firendlinks = Navigation::where('type','=','firendLink')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
         $footerlinks = Navigation::where('type','=','foot')->where('isOpen','=','1')->where('parentId','0')->orderBy('sequence','asc')->get();
         for($i=0;$i<count($footerlinks);$i++){
             $footerlinks[$i]['son'] = Navigation::where('type','=','foot')->where('isOpen','=','1')->where('parentId', $footerlinks[$i]['id'])->orderBy('sequence','asc')->get();
         }
+        /*网站信息*/
+        $site = Seting::where('name','site')->first();
+        $site = json_decode($site->value);
+
+        /*网站客服*/
+        $consult = Seting::where('name', 'consult')->first();
+        $consult = json_decode($consult->value);
+
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'index' : 'mobile/index';
         return view($view, [
-            "latestArticles"=>$latestArticles,
-            "featureArticles"=>$featureArticle,
-            "adv"=>$adv,
-            "navs" => $navs,
-            "firendlinks" => $firendlinks,
-            "footerlinks" => $footerlinks,
+            "latestArticles"   => $latestArticles,
+            "featureArticles"  => $featureArticle,
+            "adv"              => $adv,
+            "navs"             => $navs,
+            "firendlinks"      => $firendlinks,
+            "footerlinks"      => $footerlinks,
+            "site"             => $site,
+            'consult'          => $consult
         ]);
     }
 }

@@ -42,11 +42,22 @@ class ConsultForm extends Form
      */
     public function form()
     {
-        $this->text('phone','联系电话');
-        $this->text('time','服务时间');
-        $this->image('wx','微信二维码')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
-        $this->image('woa1','微信公众号1')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
-        $this->image('woa2','微信公众号2')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
+        $this->tab('网站客服', function(){
+            $this->text('phone','联系电话');
+            $this->text('time','服务时间');
+            $this->image('wx','微信二维码')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+        });
+        $this->tab('微信公众号', function(){
+            $this->fieldset('微信公众号1', function(){
+                $this->text('woa1_title','公众号名称');
+                $this->image('woa1','公众号二维码')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+            });
+            $this->fieldset('微信公众号2', function(){
+                $this->text('woa2_title','公众号名称');
+                $this->image('woa2','公众号二维码')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+            });
+        });
+
     }
 
     /**
@@ -58,13 +69,26 @@ class ConsultForm extends Form
     {
         $site = Seting::where('name','consult')->get();
         $data = $site[0]->value;
+        if($data == ''){
+            $data = '{
+                "phone":"",
+                "time":"",
+                "wx":"",
+                "woa1":"",
+                "woa1_title":"",
+                "woa2":"",
+                "woa2_title":"",
+            }';
+        }
         $data = json_decode($data);
         return [
             'phone' => $data->phone,
             'time'  => $data->time,
             'wx'    => $data->wx,
             'woa1'  => $data->woa1,
-            'woa2'  => $data->woa2
+            'woa1_title'  => $data->woa1_title,
+            'woa2'  => $data->woa2,
+            'woa2_title'  => $data->woa2_title
         ];
     }
 }

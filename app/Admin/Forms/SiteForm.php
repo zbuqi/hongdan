@@ -40,15 +40,24 @@ class SiteForm extends Form
      */
     public function form()
     {
-        $this->text('site_name','网站名称');
-        $this->text('site_subtitle', '网站副标题');
-        $this->text('host','网站域名');
-        $this->image('logo', '网站LOGO')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
-        $this->image('ico','浏览器图标')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
-        $this->text('seo_keywords','SEO关键词');
-        $this->text('seo_description','SEO描述信息');
-        $this->text('copyright','版权方');
-        $this->textarea('census','统计分析代码');
+        $this->fieldset('网站信息', function(){
+            $this->text('site_name','网站名称');
+            $this->text('site_subtitle', '网站副标题');
+            $this->text('host','网站域名');
+            $this->image('logo', '网站LOGO')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
+            $this->image('ico','浏览器图标')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();;
+            $this->text('seo_keywords','SEO关键词');
+            $this->text('seo_description','SEO描述信息');
+            $this->text('copyright','版权方');
+        });
+        $this->fieldset('ICP备案信息', function(){
+            $this->text('put_on_record','ICP备案号');
+            $this->text('put_on_record_link','ICP备案链接');
+        });
+        $this->fieldset('网站统计分析代码部署', function(){
+            $this->textarea('census','统计分析代码');
+        });
+
 
     }
 
@@ -61,17 +70,34 @@ class SiteForm extends Form
     {
         $site = Seting::where('name','site')->get();
         $data = $site[0]->value;
+        if($data == ''){
+            $data = '{
+                "site_name":"",
+                "site_subtitle":"",
+                "host":"",
+                "logo":"",
+                "ico":"",
+                "seo_keywords":"",
+                "seo_description":"",
+                "copyright":"",
+                "census":"",
+                "put_on_record":"",
+                "put_on_record_link":""
+            }';
+        }
         $data = json_decode($data);
         return [
-            'site_name'       => $data->site_name,
-            'site_subtitle'   => $data->site_subtitle,
-            'host'            => $data->host,
-            'logo'            => $data->logo,
-            'ico'             => $data->ico,
-            'seo_keywords'    => $data->seo_keywords,
-            'seo_description' => $data->seo_description,
-            'copyright'       => $data->copyright,
-            'census'          => $data->census
+            'site_name'          => $data->site_name,
+            'site_subtitle'      => $data->site_subtitle,
+            'host'               => $data->host,
+            'logo'               => $data->logo,
+            'ico'                => $data->ico,
+            'seo_keywords'       => $data->seo_keywords,
+            'seo_description'    => $data->seo_description,
+            'copyright'          => $data->copyright,
+            'census'             => $data->census,
+            'put_on_record'      => $data->put_on_record,
+            'put_on_record_link' => $data->put_on_record_link,
         ];
     }
 }

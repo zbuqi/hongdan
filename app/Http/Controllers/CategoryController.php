@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Navigation;
+use App\Models\Seting;
+
 
 class CategoryController extends Controller
 {
@@ -63,13 +65,23 @@ class CategoryController extends Controller
             $footerlinks[$i]['son'] = Navigation::where('type','=','foot')->where('isOpen','=','1')->where('parentId', $footerlinks[$i]['id'])->orderBy('sequence','asc')->get();
         }
 
+        /*网站信息*/
+        $site = Seting::where('name','site')->first();
+        $site = json_decode($site->value);
+
+        /*网站客服*/
+        $consult = Seting::where('name', 'consult')->first();
+        $consult = json_decode($consult->value);
+
         return view('category', [
             "latestArticles" => $latestArticles,
             'featureArticles'=>$featureArticles,
             'category'=>$Category,
             "navs" => $navs,
             "firendLinks" => $firendLinks,
-            "footerlinks" => $footerlinks
+            "footerlinks" => $footerlinks,
+            "site"             => $site,
+            'consult'          => $consult
         ]);
     }
 }

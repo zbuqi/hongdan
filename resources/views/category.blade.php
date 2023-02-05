@@ -1,6 +1,8 @@
 @extends('layouts')
 
-@section('title', '这是分类页')
+@section('title', $site->site_name)
+@section('keywords', '')
+@section('description', '')
 @section('pagename', 'category-page')
 
 @section('content')

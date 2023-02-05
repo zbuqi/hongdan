@@ -1,7 +1,10 @@
 
 @extends('layouts')
 
-@section('title', '这是首页')
+@section('title', $site->site_name . ' - ' . $site->site_subtitle)
+@section('keywords', $site->seo_keywords)
+@section('description', $site->seo_description)
+
 @section('pagename', 'home-page')
 
 @section('content')
@@ -89,7 +92,7 @@
                             </tr>
                             <tr class="sai-item">
                                 <td class="score"><span>+1</span></td>
-                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
                             </tr>
                             <tr class="sai-item active">
                                 <td class="item-info clearfix" rowspan="2">
@@ -117,7 +120,7 @@
                             </tr>
                             <tr class="sai-item active">
                                 <td class="score"><span>+1</span></td>
-                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td> 
+                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
                             </tr>
                             <tr class="sai-item not">
                                 <td class="item-info clearfix" rowspan="2">
@@ -153,7 +156,7 @@
                             </tr>
                             <tr class="sai-item not">
                                 <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                             </tr>
                             <tr class="sai-item not">
                                 <td class="item-info clearfix" rowspan="2">
@@ -189,7 +192,7 @@
                             </tr>
                             <tr class="sai-item not">
                                 <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                             </tr>
                             <tr class="sai-item not">
                                 <td class="item-info clearfix" rowspan="2">
@@ -225,7 +228,7 @@
                             </tr>
                             <tr class="sai-item not">
                                 <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td> 
+                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                             </tr>
                         </tbody>
                     </table>
