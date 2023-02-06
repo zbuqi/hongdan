@@ -68,8 +68,8 @@ class SiteForm extends Form
      */
     public function default()
     {
-        $site = Seting::where('name','site')->get();
-        $data = $site[0]->value;
+        $site = Seting::where('name','site')->first();
+        $data = $site->value;
         if($data == ''){
             $data = '{
                 "site_name":"",

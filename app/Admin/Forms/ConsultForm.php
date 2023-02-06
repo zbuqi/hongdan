@@ -67,8 +67,8 @@ class ConsultForm extends Form
      */
     public function default()
     {
-        $site = Seting::where('name','consult')->get();
-        $data = $site[0]->value;
+        $site = Seting::where('name','consult')->first();
+        $data = $site->value;
         if($data == ''){
             $data = '{
                 "phone":"",

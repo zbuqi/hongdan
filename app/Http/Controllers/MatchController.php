@@ -20,7 +20,7 @@ class MatchController extends Controller
         /*最新文章*/
         $latestArticles = Article::where('featured','=','0')->latest('id')->take(8)->get();
         for($i=0; $i<count($latestArticles); $i++){
-            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
+            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"] . '.html';
         };
 
         /*链接*/

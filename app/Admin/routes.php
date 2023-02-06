@@ -22,7 +22,9 @@ Route::group([
     #广告
     $router->resource('seting/adv','AdvController');
     #首页海报
-    $router->resource('seting/banner','BannerController');
+    $router->resource('seting/pc-banner','PcBannerController');
+    $router->resource('seting/m-banner','MobileBannerController');
+
     #导航链接
     $router->resource('seting/navigation/top', 'NavigationTopController');
     $router->resource('seting/navigation/foot', 'NavigationFootController');

@@ -27,10 +27,10 @@ class ArticleController extends Controller
         $correlationsArticles = Article::where('categoryId','=',$article["categoryId"])->take(4)->get();
 
         for($i=0; $i<count($latestArticles); $i++){
-            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
+            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"] . '.html';
         };
         for($i=0; $i<count($featureArticles); $i++){
-            $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"];
+            $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"] . '.html';
         };
         /*上一篇，下一篇*/
         $last = Article::where('id', '<', $article->id)->latest('id')->first();

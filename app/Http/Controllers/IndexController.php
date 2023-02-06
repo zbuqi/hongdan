@@ -21,10 +21,10 @@ class IndexController extends Controller
         /*特色*/
         $featureArticle = Article::where('featured','=','1')->take(1)->get();
         for($i=0; $i<count($latestArticles); $i++){
-            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
+            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"] . '.html';
         };
         for($i=0; $i<count($featureArticle); $i++){
-            $featureArticle[$i]["link"] = '/article/' . $featureArticle[$i]["id"];
+            $featureArticle[$i]["link"] = '/article/' . $featureArticle[$i]["id"] . '.html';
         };
         /*广告*/
         $advs = Adv::get();
