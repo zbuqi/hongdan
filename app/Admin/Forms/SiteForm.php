@@ -7,6 +7,7 @@ use Dcat\Admin\Widgets\Form;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Seting;
 
+
 class SiteForm extends Form
 {
     /**
@@ -49,6 +50,7 @@ class SiteForm extends Form
             $this->text('seo_keywords','SEO关键词');
             $this->text('seo_description','SEO描述信息');
             $this->text('copyright','版权方');
+            $this->text('baidu_ts_api','百度推送接口');
         });
         $this->fieldset('ICP备案信息', function(){
             $this->text('put_on_record','ICP备案号');
@@ -80,6 +82,7 @@ class SiteForm extends Form
                 "seo_keywords":"",
                 "seo_description":"",
                 "copyright":"",
+                "baidu_ts_api":"",
                 "census":"",
                 "put_on_record":"",
                 "put_on_record_link":""
@@ -95,6 +98,7 @@ class SiteForm extends Form
             'seo_keywords'       => $data->seo_keywords,
             'seo_description'    => $data->seo_description,
             'copyright'          => $data->copyright,
+            'baidu_ts_api'       => $data->baidu_ts_api,
             'census'             => $data->census,
             'put_on_record'      => $data->put_on_record,
             'put_on_record_link' => $data->put_on_record_link,

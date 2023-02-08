@@ -50,12 +50,10 @@ class CategoryController extends Controller
         $featureArticles = Article::where('featured','=','1')->take(5)->get();
 
         for($i=0; $i<count($latestArticles); $i++){
-            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"];
-            $latestArticles[$i]["thumb"] = '/uploads/' . $latestArticles[$i]["thumb"];
+            $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"] . '.html';
         }
         for($i=0; $i<count($featureArticles); $i++){
-            $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"];
-            $featureArticles[$i]["thumb"] = '/uploads/' . $featureArticles[$i]["thumb"];
+            $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"] . '.html';
         }
         /*链接*/
         $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();

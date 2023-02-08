@@ -10,6 +10,10 @@ use Dcat\Admin\Http\Controllers\AdminController;
 
 use App\Models\Category;
 
+use App\Http\Middleware\SeoPush;
+use App\Http\Middleware\isMobile;
+use App\Models\Seting;
+
 class ArticleController extends AdminController
 {
     /**
@@ -21,7 +25,7 @@ class ArticleController extends AdminController
     {
         return Grid::make(new Article(), function (Grid $grid) {
             #$grid->column('id')->sortable();
-            #$grid->number('序号');
+            $grid->number('序号');
             $grid->model()->orderBy('id','desc');
             $grid->column('title');
             $grid->column('categoryId', '栏目')->display(function($categoryId){
@@ -85,8 +89,11 @@ class ArticleController extends AdminController
                     foreach(Category::get() as $category){
                         $categorys[$category->id] = $category->name;
                     }
-                    $form->text('title', '标题');
-                    $form->select('categoryId', '栏目')->options($categorys);
+                    $form->text('title', '标题')->rules('required|max:30',[
+                        'required'=>'标题不能为空',
+                        'max'=>'标题最多不能超过30个字'
+                    ]);
+                    $form->select('categoryId', '栏目')->options($categorys)->rules('required',['required'=>'栏目不能为空']);
                     $form->textarea('excerpt', '简介')->rows(5);
                     $form->editor('body', '正文');
                 });
@@ -135,9 +142,10 @@ class ArticleController extends AdminController
             $form->hidden('featured')->default(0);
             $form->hidden('hits')->default(rand(100,300));
             $form->hidden('userId')->default(1);
+            /*表单提交前调用*/
             $form->submitted(function (Form $form) {
                 /*缩略图*/
-                if(!strstr($form->thumb, 'uploads')){
+                if($form->thumb != '' && !strstr($form->thumb, 'uploads')){
                     $form->thumb = '/uploads/' . $form->thumb;
                 }
                 /*内容简介*/
@@ -148,12 +156,6 @@ class ArticleController extends AdminController
                 /*资讯属性： in_array 第二参数不能为空*/
                 $recommend = $form->recommend;
                 $recommend[] = '1';
-                /*
-                $content = json_encode($recommend, JSON_UNESCAPED_UNICODE);
-                $file = fopen('D:\www\ces.txt', 'w+');
-                fwrite($file, $content);
-                fclose($file);
-                */
 
                 if(in_array('promoted', $recommend)){
                     $form->promoted = 1;
@@ -165,8 +167,28 @@ class ArticleController extends AdminController
                 }else{
                     $form->featured = 0;
                 }
+            });
 
-
+            /*保存后回调*/
+            $form->saved(function(Form $form){
+                /*判断是否是新增*/
+                if($form->isCreating()){
+                    $newId = $form->getkey();
+                    if(!$newId){
+                        return $form->error('数据保存失败');
+                    }else{
+                        /*百度推送*/
+                        $site = Seting::where('name','site')->first();
+                        $site = json_decode($site->value);
+                        $link = $site->host . '/article/' . $newId . '.html';
+                        $data = new SeoPush;
+                        $data = $data->baidu($link);
+                        $data = json_decode($data);
+                        $data = '提交成功，推送成功' . $data->success . '条，今日还可推送' . $data->remain;
+                        return $form->response()->success($data)->redirect('article');
+                    }
+                }
+                return;
             });
             $form->tools(function(Form\Tools $tools){
                 // 去掉跳转列表按钮
