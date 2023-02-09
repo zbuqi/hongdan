@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="artcle-body">
-                        
+
                         <?php echo $article->body; ?>
                     </div>
                     <div class="up-down">

@@ -73,7 +73,9 @@
                     $(".nav-wrap").removeClass("active");
                     $(".nav-wrap-bg").removeClass("active");
                 })
+
                 $(".nav-link > li a img.unfold").click(function(){
+                    var nav_sublevel = $(this).closest("li").children('ul');
                     if($(this).closest("li").hasClass("active")){
                         $(this).closest("li").removeClass("active");
                     }else{

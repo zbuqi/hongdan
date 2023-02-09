@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Adv;
 use App\Models\Navigation;
 use App\Models\Seting;
+use App\Http\Middleware\isMobile;
 
 use \Illuminate\Support\Str;
 
@@ -16,6 +17,9 @@ class ArticleController extends Controller
 {
     public function show($id)
     {
+        $isMobile = new isMobile;
+        $isMobile = $isMobile->isMobile();
+
         $article = Article::findOrFail($id);
         $category = Category::findOrFail($article["categoryId"]);
         $category['link'] = '/category/' . $category['code'];
@@ -62,8 +66,9 @@ class ArticleController extends Controller
         $consult = Seting::where('name', 'consult')->first();
         $consult = json_decode($consult->value);
 
-
-        return view('article', [
+        /*手机端还是电脑端*/
+        $view = !$isMobile ? 'article' : 'mobile/article';
+        return view($view, [
             'article' => $article,
             'category' => $category,
             'featureArticles' => $featureArticles,
