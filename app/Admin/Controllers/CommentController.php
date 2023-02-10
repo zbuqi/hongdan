@@ -27,7 +27,7 @@ class CommentController extends AdminController
             $grid->column('content','评论内容')->display(function($content){
                 $content = strip_tags($content);
                 if(strlen($content)>80){
-                    $content = substr($content, 0,80) . '...';
+                    $content = mb_substr($content, 0,28,"utf-8") . '...';
                 }
                 return $content;
             });

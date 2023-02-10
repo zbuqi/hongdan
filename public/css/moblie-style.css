@@ -11,6 +11,7 @@
     --bg-color-1:#EA4747;
     --bg-color-2:#FF5D5D;
     --bg-color-3:#E1F2FF;
+    --bg-color-4:#FCFBFB;
 }
 .mobile .container{
     padding-right:8px;
@@ -20,6 +21,9 @@
 /*header*/
 .mobile .header{
     padding-bottom:10px;
+}
+.article-page .header,.category-page .header{
+    box-shadow: 0px 1px 8px 0px rgba(97,17,16,0.1);
 }
 .mobile .header-logo{
     float:left;
@@ -163,12 +167,17 @@
     left:0;
     z-index:99;
 }
-
+.mobile .breadcrumbs{
+    margin-top:16px;
+}
 
 
 /*文章页*/
+
 .article{
-    padding:0 16px;
+    padding-left:16px;
+    padding-right:16px;
+    padding-bottom:95px;
 }
 .article-head{
     border-bottom:1px solid var(--font-color-4);
@@ -286,4 +295,129 @@
 }
 .article-item .info .meta>span:last-child{
     float:right;
+}
+/**分类列表**/
+.category{
+    padding-left:16px;
+    padding-right:16px;
+    padding-bottom:58px;
+}
+.category-warp{
+    margin-top:10px;
+}
+/*赛事列表*/
+.mobile .match-list{
+    background:var(--bg-color-4);
+    background-image:url("/img/ces.png");
+    padding-left:16px;
+    padding-right:16px;
+}
+.mobile .match-list-module{
+    border-radius:8px;
+    box-shadow:0px 0px 12px 0px rgba(190,112,112,0.08);
+    background:var(--color-1);
+    padding:8px 16px;
+    margin-top:16px;
+}
+.match-list-module .module-title{
+    color: var(--font-color-1);
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 900;
+    text-align: left;
+    border-radius:4px;
+    padding: 6px 8px;
+    margin-bottom:8px;
+    background:rgba(255,153,153,0.1);
+}
+.match-list-module .module-title .on-off{
+    color: var(--theme-color);
+    font-size: 14px;
+    line-height: 22px;
+    display: inline-block;
+    cursor: pointer;
+}
+.match-list-module .module-title .on-off:before{
+    content: '';
+    width: 12px;
+    border: 6px solid var(--theme-color);
+    border-color: var(--theme-color) transparent transparent;
+    display: inline-block;
+    margin: 0 6px;
+    position: relative;
+    top: 4px;
+}
+.match-list-module .module-title .on-off.off:before{
+    border-color: transparent transparent transparent var(--theme-color);
+    top: 0;
+    left: 3px;
+}
+.match-list-module .module-title>span:nth-child(2){
+    margin: 0 10px;
+}
+.match-list-module.off .list-item{
+    display:none;
+}
+.match-list-module .list-item{
+    border-bottom:1px solid var(--color-eee);
+    margin-bottom:8px;
+}
+.match-list-module .list-item .table{
+    margin-bottom:0;
+}
+.match-list-module .list-item .table>tbody>tr>th,.match-list-module .list-item .table>tbody>tr>td{
+    border-top:0;
+}
+.match-list-module .list-item .table>tbody>tr>td:first-child img{
+    width:24px;
+    height:24px;
+    border-radius:32px;
+}
+.match-list-module .list-item .table>tbody>tr span{
+    color:var(--font-color-1);
+}
+.match-list-module .list-item .table>tbody>tr>th{
+    height:24px;
+    color:var(--font-color-3);
+    font-size:12px;
+    line-height:24px;
+    padding:0;
+    padding-bottom:8px;
+    text-align:center;
+}
+.match-list-module .list-item .table>tbody>tr>th:first-child{
+    font-size:16px;
+    line-height:24px;
+    font-weight:900;
+    text-align:left;
+}
+.match-list-module .list-item .table>tbody>tr>td:first-child span{
+    font-size:14px;
+    line-height:22px;
+    display:inline-block;
+    margin-left:8px;
+}
+.match-list-module .list-item .table>tbody>tr>td{
+    color:var(--font-color-1);
+    font-size:12px;
+    line-height:18px;
+    padding:0;
+    padding-bottom:8px;
+    text-align:center;
+}
+.match-list-module .list-item .table>tbody>tr>td:first-child{
+    text-align:left;
+}
+.match-list-module .list-item-meta{
+    color:var(--color-666);
+    font-size:14px;
+    line-height:22px;
+    margin-bottom:8px;
+}
+.match-list-module .list-item-meta .time{
+    display:inline-block;
+    float:right;
+}
+.match-list-module .list-item-meta .time span:first-child{
+    margin-right:8px;
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\isMobile;
 use App\Http\Repositories\Match_list as Matchs;
 use App\Models\Navigation;
 use App\Models\Seting;
@@ -11,6 +12,9 @@ class MatchListController extends Controller
 {
     public function show($name)
     {
+        $isMobile = new isMobile;
+        $isMobile = $isMobile->isMobile();
+
         $matchs = new Matchs;
         $matchs = $matchs->index(2);//两天
 
@@ -30,7 +34,10 @@ class MatchListController extends Controller
         $consult = Seting::where('name', 'consult')->first();
         $consult = json_decode($consult->value);
 
-        return view('match_list', [
+        /*手机端还是电脑端*/
+        $view = !$isMobile ? 'match_list' : 'mobile/match_list';
+
+        return view($view, [
             'matchs' => $matchs,
             "navs" => $navs,
             "firendLinks" => $firendLinks,

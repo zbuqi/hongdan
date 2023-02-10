@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\isMobile;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Navigation;
@@ -13,6 +14,9 @@ class CategoryController extends Controller
 {
     public function show($code)
     {
+        $isMobile = new isMobile;
+        $isMobile = $isMobile->isMobile();
+
         $Category = Category::where('code', $code)->firstOrFail();
         /*最新*/
         $latestArticles = Article::where('categoryId', $Category['id'])->latest('id')->get();
@@ -31,7 +35,9 @@ class CategoryController extends Controller
         $footerlink1s = Navigation::where('type','=','footerlink1')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
         $footerlink2s = Navigation::where('type','=','footerlink2')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
 
-        return view('category', [
+        /*手机端还是电脑端*/
+        $view = !$isMobile ? 'article' : 'mobile/category';
+        return view($view, [
             "latestArticles" => $latestArticles,
             'featureArticles'=>$featureArticles,
             'category'=>$Category,
@@ -43,6 +49,8 @@ class CategoryController extends Controller
     }
     public function index()
     {
+        $isMobile = new isMobile;
+        $isMobile = $isMobile->isMobile();
         $Category = false;
         /*最新*/
         $latestArticles = Article::latest('id')->get();
@@ -71,7 +79,9 @@ class CategoryController extends Controller
         $consult = Seting::where('name', 'consult')->first();
         $consult = json_decode($consult->value);
 
-        return view('category', [
+        /*手机端还是电脑端*/
+        $view = !$isMobile ? 'category' : 'mobile/category';
+        return view($view, [
             "latestArticles" => $latestArticles,
             'featureArticles'=>$featureArticles,
             'category'=>$Category,

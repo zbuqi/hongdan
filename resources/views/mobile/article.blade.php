@@ -2,7 +2,7 @@
 @extends('mobile\layouts')
 
 @section('title', '文章页')
-@section('pagename', 'home-page')
+@section('pagename', 'article-page')
 
 @section('content')
 <div class="article">
@@ -30,16 +30,7 @@
         </div>
         <div class="recomment-body">
             <?php foreach($correlationsArticles as $article):?>
-            <div class="article-item">
-                <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>" alt="<?php echo $article->title; ?>"/></a>
-                <div class="info">
-                    <div class="title"><a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a></div>
-                    <div class="meta">
-                        <span><?php echo date('Y年m月d日',strtotime($article->created_at)); ?></span>
-                        <span class="glyphicon glyphicon-eye-open"><?php echo $article->hits; ?></span>
-                    </div>
-                </div>
-            </div>
+                @includeIf('mobile.article-item')
             <?php endforeach; ?>
         </div>
     </div>
