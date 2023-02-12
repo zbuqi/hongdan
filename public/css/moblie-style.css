@@ -8,16 +8,25 @@
     --font-color-2:#383B46;
     --font-color-3:#b3b3b3;
     --font-color-4:#F5F5F5;
+    --font-color-5:#FFC11C;
+    --font-color-6:#2DB370;
+    --font-color-7:#FFDF00;
     --bg-color-1:#EA4747;
     --bg-color-2:#FF5D5D;
     --bg-color-3:#E1F2FF;
     --bg-color-4:#FCFBFB;
+    --bg-color-5:#E77676;
+    --bg-color-6:#5498D0;
+    --bg-color-7:#FFFAF1;
 }
 .mobile .container{
     padding-right:8px;
     padding-left:8px;
 }
-
+.col-2{
+    width:50%;
+    float:left;
+}
 /*header*/
 .mobile .header{
     padding-bottom:10px;
@@ -228,7 +237,7 @@
 .up-down a:last-child {
     background: var(--bg-color-3);
 }
-.recomment-head .title {
+.section-head .title {
     font-size: 18px;
     font-weight: 900;
     line-height: 25px;
@@ -236,7 +245,7 @@
     position: relative;
     display: inline-block;
 }
-.recomment-head .title:after {
+.section-head .title:after {
     content: '';
     width: 100%;
     height: 80%;
@@ -247,9 +256,18 @@
     right: -4px;
     border-radius: 4px;
 }
-.recomment-head .title span {
+.section-head .title span {
     position: relative;
     z-index: 1;
+}
+.section-head a{
+    color:var(--font-color-3);
+    font-size:14px;
+    line-height:22px;
+    float:right;
+}
+.recomment-body{
+    margin-top:8px;
 }
 .article-item {
     height: 86.7px;
@@ -420,4 +438,445 @@
 }
 .match-list-module .list-item-meta .time span:first-child{
     margin-right:8px;
+}
+
+
+
+
+/*赛事详情*/
+.match-header{
+    background:url("/img/m-match-top.png") no-repeat;
+    background-size:100%;
+    padding-top:14px;
+    padding-left:16px;
+    padding-right:16px;
+    margin-bottom:22px;
+}
+.match-header .breadcrumbs{
+    color:var(--color-1);
+    margin-top:0;
+    line-height:18px;
+}
+.match-header .breadcrumbs a{
+    color:var(--color-1);
+    display:inline-block;
+}
+.match-header .breadcrumbs span{
+    display:inline-block;
+    padding:0 8px;
+}
+.match-header-info{
+    margin:16px 11.2% 0;
+}
+.match-header-info .time{
+    text-align:center;
+}
+.match-header-info .time p{
+    color:var(--color-1);
+    font-size:12px;
+    line-height:18px;
+    margin-bottom:0;
+}
+.match-header-info .time p:first-child{
+    font-size:14px;
+    line-height:22px;
+}
+.match-header-info .time p a{
+    color:var(--color-1);
+    margin-left:16px;
+}
+.match-header-info .troop{
+    width:100%;
+    height:74px;
+    position:relative;
+}
+.match-header-info .troop .home_team{
+    float:left;
+}
+.match-header-info .troop .away_team{
+    float:right;
+}
+.match-header-info .troop .match-score{
+    width:100%;
+    color:var(--font-color-5);
+    font-size:12px;
+    line-height:18px;
+    text-align:center;
+    position:absolute;
+    bottom:8px;
+}
+.match-header-info .troop>div{
+    width:33%;
+}
+.match-header-info .troop>div .name{
+    width:56px;
+    text-align:center;
+}
+.match-header-info .troop>div .name img{
+    width:36px;
+    height:36px;
+    border-radius:32px;
+}
+.match-header-info .troop>div .name span{
+    color:var(--color-1);
+    font-size:14px;
+    line-height:22px;
+    display:block;
+    margin-top:3px;
+    white-space:nowrap;
+}
+.match-header-info .troop .home_team .name,.away_team .score{
+    float:left;
+}
+.match-header-info .troop .home_team .score,.away_team .name{
+    float:right;
+}
+.match-header-info .troop>div .score{
+    color:var(--theme-color);
+    font-size:32px;
+    line-height:48px;
+    font-weight:700;
+}
+.match-header-info .match-animation{
+    text-align:center;
+}
+.match-header-info .match-animation a{
+    background:rgba(255,255,255,0.6);
+    border-radius:36px;
+    padding:0 8px;
+    display:inline-block;
+}
+.match-header-info .match-animation a img{
+    width:15px;
+    height:15px;
+}
+.match-header-info .match-animation a span{
+    color:var(--font-color-6);
+    font-size:12px;
+    line-height:18px;
+}
+.match-header .match-nav{
+    width:100%;
+    overflow:auto;
+    margin-left:-5px;
+    margin-right:-5px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:8px;
+    margin-top:16px;
+    padding-bottom:6px;
+}
+.match-header .match-nav ul{
+    margin-bottom:0;
+}
+.match-header .match-nav li a{
+    color:var(--color-1);
+    font-size:16px;
+    line-height:24px;
+    padding-bottom:5px;
+    border-bottom:3px solid transparent;
+    display:inline-block;
+}
+.match-header .match-nav li a:hover{
+    text-decoration:none;
+}
+.match-header .match-nav li.active a{
+    color:var(--font-color-7);
+    border-bottom:3px solid var(--font-color-7);
+}
+.match-warp{
+    padding:0 16px;
+}
+/*模块*/
+
+section{
+    margin-bottom:22px;
+}
+
+
+/*首发阵容*/
+.match-shoufa{
+
+}
+.match-shoufa .section-content{
+    margin-top:16px;
+}
+.shoufa-tb{
+
+}
+.shoufa-tb>div:first-child .sftb-content .content{
+    border-right:1px solid var(--color-eee);
+}
+.sftb-content .title{
+    color: var(--color-1);
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    padding: 8px 0;
+}
+.sftb-content.zhu .title{
+    background: var(--bg-color-5);
+}
+.sftb-content.ke .title{
+    background: var(--bg-color-6);
+}
+.sftb-content .content .sftb-item{
+    border-bottom: 1px solid var(--color-eee);
+    padding-bottom:8px;
+}
+.sftb-content .content .sftb-item p{
+    color: var(--font-color-1);
+    font-size: 14px;
+    line-height: 22px;
+    padding-top:8px;
+    padding-bottom:8px;
+    margin: 0;
+}
+.sftb-content .content .sftb-item p:after{
+    content:'';
+    clear:both;
+    display:block;
+}
+.sftb-content .content .sftb-item p img{
+    width:24px;
+    height:24px;
+    float:right;
+}
+.sftb-content.zhu .content .sftb-item p img{
+    margin-right:16px;
+}
+.sftb-content .content .sftb-item p span{
+    display:inline-block;
+    float:left;
+}
+.sftb-content .content .sftb-item p span:first-child{
+    color:var(--font-color-3);
+    margin-right:16px;
+}
+.sftb-content .content .sftb-item p span:nth-child(2){
+    width:105px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.sftb-content.ke .content .sftb-item p span:first-child{
+    margin-left:16px;
+}
+.shoufa-label{
+    margin-top:16px;
+}
+.shoufa-label .sf-label-item{
+    margin-right:16px;
+    margin-bottom:8px;
+    float:left;
+}
+.shoufa-label .sf-label-item img{
+    width:24px;
+    height:24px;
+    margin-right:8px;
+}
+.shoufa-label .sf-label-item span{
+    color:var(--color-666);
+    font-size:14px;
+    line-height:22px;
+    display:inline-block;
+}
+/*盈球爆料*/
+.match-baoliao{
+
+}
+.match-baoliao .section-content{
+    background:var(font-color-1);
+    box-shadow: 0px 0px 12px 0px rgba(190,112,112,0.08);
+    padding:16px;
+    border-radius:16px;
+    margin-top:16px;
+}
+.baoliao-item .title{
+    color:var(--color-000);
+    font-size:18px;
+    line-height:27px;
+}
+.baoliao-item .meta{
+    color:var(--font-color-3);
+    font-size:12px;
+    line-height:18px;
+    position:relative;
+    padding-left:18px;
+}
+.baoliao-item .meta:before{
+    content:'';
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:1px solid var(--theme-color);
+    display:inline-block;
+    position:absolute;
+    top:2px;
+    left:0;
+}
+.baoliao-item .content{
+    color:var(--color-666);
+    font-size:14px;
+    line-height:22px;
+    margin-top:8px;
+}
+
+
+/*伤停解读*/
+.match-stjd{
+
+}
+.stjd-content .title{
+    margin-bottom:8px;
+}
+.match-stjd .section-content>div:first-child .stjd-content .content{
+    border-right: 1px solid var(--color-eee);
+}
+.match-stjd .st-item{
+    padding:8px 0 !important;
+    margin: 0 8px;
+}
+.match-stjd .st-item:first-child{
+    padding-top:0 !important;
+}
+.match-stjd .st-item .name span:first-child{
+    width:60%;
+    font-size:14px;
+    line-height:22px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:inline-block;
+}
+.match-stjd .st-item .name span:last-child{
+    color:var(--color-1);
+    font-size:12px;
+    line-height:18px;
+    padding:0 6px;
+    border-radius:21px;
+    background:var(--font-color-3);
+    transform:scale(0.83333);
+    margin-top:2px;
+    display:inline-block;
+    margin-right:-3px;
+}
+.match-stjd .st-item.active .name span:last-child{
+    background:var(--theme-color);
+}
+.match-stjd .st-item>div:after{
+    content:'';
+    clear:both;
+    display:table;
+}
+.match-stjd .st-item>div span:first-child{
+    float:left;
+}
+.match-stjd .st-item>div span:last-child{
+    float:right;
+}
+.match-stjd .st-item .meta span{
+    color:var(--font-color-3);
+    font-size:12px;
+    line-height:18px;
+    display:inline-block;
+}
+
+.stjd-info{
+    margin-top:16px;
+}
+.stjd-info .title{
+    margin-bottom:16px;
+    font-size:18px;
+    line-height:27px;
+}
+.stjd-info .title img{
+    width:24px;
+    heigth:24px;
+    margin-right:8px;
+}
+.stjd-info .title span{
+    display:inline-block;
+}
+.stjd-info .content{
+    background:var(--bg-color-7);
+    padding:16px;
+}
+.stjd-info .content p{
+    color:var(--font-color-1);
+    font-size:16px;
+    line-height:24px;
+    text-align:justify;
+}
+
+
+    /*球队特征*/
+.match-qdtz .section-content{
+    margin-top:16px;
+}
+.match-qdtz .section-content>div:first-child .qdtz-content .content{
+    border-right: 1px solid var(--color-eee);
+}
+.qdtz-content .title{
+    color:var(--color-1);
+    font-size:16px;
+    line-height:24px;
+    text-align:center;
+    padding:8px 0;
+}
+.qdtz-content.zhu .title{
+    background:var(--bg-color-5);
+}
+.qdtz-content.ke .title{
+    background:var(--bg-color-6);
+}
+.qdtz-content .content .tz-item{
+    border-bottom: 1px solid var(--color-eee);
+    padding: 16px 8px;
+}
+.qdtz-content .content .tz-item p{
+    color: var(--font-color-1);
+    font-size: 14px;
+    text-align:justify;
+    line-height: 22px;
+    margin: 0;
+}
+/*精彩点评*/
+.match-comment{
+
+}
+.match-comment .comment-item{
+    border-bottom: 1px solid var(--color-eee);
+    padding: 16px 0;
+}
+.match-comment .comment-item .img{
+    float: left;
+}
+.match-comment .comment-item .img img{
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+}
+.match-comment .comment-item .item-content{
+    margin-left: 80px;
+}
+.match-comment .comment-item .item-content .meta{
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 8px;
+}
+.match-comment .comment-item .item-content .meta .name{
+    color: var(--font-color-1);
+    margin-right: 16px;
+    display: inline-block;
+}
+.match-comment .comment-item .item-content .meta .time{
+    color: var(--font-color-3);
+    display: inline-block;
+}
+.match-comment .comment-item .item-content .info p{
+    font-size: 14px;
+    color: var(--color-666);
+    line-height: 22px;
+    margin: 0;
 }

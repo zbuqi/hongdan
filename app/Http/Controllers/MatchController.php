@@ -18,11 +18,16 @@ class MatchController extends Controller
 
         $data = new Match;
         /*比赛详情*/
-        $match = $data->show($id);
+        #$match = $data->show($id);
         /*阵容*/
-        $lineup = $data->lineup($id);
+        #$lineup = $data->lineup($id);
+
         /*最新文章*/
-        $latestArticles = Article::where('featured','=','0')->latest('id')->take(8)->get();
+        if(!$isMobile){
+            $latestArticles = Article::where('featured', '=', '0')->latest('id')->take(8)->get();
+        }else{
+            $latestArticles = Article::where('featured', '=', '0')->latest('id')->take(4)->get();
+        }
         for($i=0; $i<count($latestArticles); $i++){
             $latestArticles[$i]["link"] = '/article/' . $latestArticles[$i]["id"] . '.html';
         };
@@ -47,8 +52,8 @@ class MatchController extends Controller
         $view = !$isMobile ? 'match' : 'mobile/match';
 
         return view($view, [
-            'match' => $match,
-            'lineup' => $lineup,
+            #'match' => $match,
+            #'lineup' => $lineup,
             'latestArticles'=> $latestArticles,
             "navs" => $navs,
             "firendLinks" => $firendLinks,
