@@ -18,14 +18,21 @@
     --bg-color-5:#E77676;
     --bg-color-6:#5498D0;
     --bg-color-7:#FFFAF1;
+    --bg-color-8:#FFFCEF;
+    --bg-color-9:#EEFFFD;
 }
 .mobile .container{
     padding-right:8px;
     padding-left:8px;
 }
+.col-2,.col-5{
+    float:left;
+}
 .col-2{
     width:50%;
-    float:left;
+}
+.col-5{
+    width:20%;
 }
 /*header*/
 .mobile .header{
@@ -439,8 +446,6 @@
 .match-list-module .list-item-meta .time span:first-child{
     margin-right:8px;
 }
-
-
 
 
 /*赛事详情*/
@@ -879,4 +884,179 @@ section{
     color: var(--color-666);
     line-height: 22px;
     margin: 0;
+}
+
+
+/**  首页  **/
+.home{
+    margin-bottom:100px;
+}
+.home-banner .carousel-indicators{
+    margin-bottom:0;
+    bottom:8px;
+}
+.home-banner .carousel-indicators li{
+    width:12px;
+    height:4px;
+    border-radius:45px;
+    background: rgba(235,235,236,0.46);
+    border:none;
+    margin:0;
+}
+.home-banner .carousel-indicators li.active{
+    background:var(--color-1);
+}
+.home-nav,.home-wanghong,.home-zhuanjia,.home-article,.home-footer-nav{
+    padding-left:16px;
+    padding-right:16px;
+}
+.home-nav-wrap{
+    margin-left:-6px;
+    margin-right:-6px;
+}
+.home-nav-wrap .col-5{
+    text-align:center;
+}
+.nav-item{
+    text-align:center;
+    display:inline-block;
+}
+.nav-item img{
+    width:48px;
+}
+.nav-item p{
+    color:var(--font-color-1);
+    font-size:14px;
+    line-height:22px;
+    margin:0;
+}
+/*首页-每天赛程*/
+.home-article .section-content{
+    margin-top:23px;
+}
+.home-article .section-content ul li{
+    padding: 4px 0;
+}
+.home-article .section-content ul li a{
+    color:var(--font-color-1);
+    font-size:14px;
+    line-height:22px;
+    display:block;
+    /*
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    */
+     */
+}
+.home-article .section-content ul li a span{
+    display: inline-block;
+    padding-right: 16px;
+    border-right: 1px solid var(--color-eee);
+    margin-right: 16px;
+}
+.home-article .section-content ul li:first-child a{
+    color:var(--bg-color-1);
+}
+
+
+/*网红计划单*/
+.home-wanghong .section-content{
+    margin-top:23px;
+}
+.card-wrap{
+    overflow:auto;
+}
+.card-wrap ul{
+    margin-bottom:0;
+    margin-left:-8px;
+}
+.card-wrap li{
+    padding-left:8px;
+    padding-right:8px;
+}
+.home-wanghong .card-item{
+    background:var(--bg-color-8);
+}
+.card-item{
+    width:152px;
+    border-radius: 8px;
+    text-align: center;
+    display: block;
+    padding: 12px;
+}
+.card-item .user-img{
+    width: 62px;
+    height: 92px;
+    position: relative;
+    margin: 0 auto;
+}
+.card-item .user-img img{
+    max-width: 80%;
+}
+.card-item .user-img span{
+    width: 100%;
+    font-size: 14px;
+    color: var(--font-color-4);
+    line-height: 22px;
+    border-radius: 22px;
+    background: var(--bg-color-2);
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.card-item p:nth-child(2){
+    color: var(--font-color-1);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 900;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+.card-item p:last-child{
+    color: var(--font-color-1);
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+.card-wrap li{
+    float:left;
+}
+/*足球专家排行榜*/
+.home-zhuanjia{
+
+}
+.home-zhuanjia .section-content{
+    margin-top:23px;
+}
+.home-zhuanjia .card-item{
+    background:var(--bg-color-9);
+}
+.home-zhuanjia .section-content{
+
+}
+/*底部导航*/
+.home-footer-nav{
+    width:100%;
+    background:var(--color-1);
+    margin-bottom:0;
+    padding-bottom:34px;
+    position:fixed;
+    bottom:0;
+    z-index:99;
+}
+.footer-nav-wrap{
+    padding:5px 0 4px;
+}
+.footer-nav-item{
+    text-align:center;
+    display:block;
+}
+.footer-nav-item img{
+    width:18px;
+    height:18px;
+}
+.footer-nav-item p{
+    margin-bottom:0;
 }

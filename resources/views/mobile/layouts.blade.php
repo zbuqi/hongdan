@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/moblie-style.css">
         <script type="text/javascript" src="/js/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     </head>
     <body class="mobile @yield('pagename')">
         <header class="header container">
