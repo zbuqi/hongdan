@@ -62,6 +62,310 @@
                 </div>
             </div>
         </section>
+        <section class="home-match">
+            <div class="section-head">
+                <div class="title"><span>每天赛程</span></div>
+                <a href="">全部比赛 ></a>
+            </div>
+            <div class="section-content">
+                <div class="home-match-wrap">
+                    <div class="home-match-nav">
+                        <ul class="list-inline clearfix">
+                            <li class="active">
+                                <div class="item">
+                                    <span>今天</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>二</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>三</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>四</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>五</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>六</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <span>日</span>
+                                    <span>21</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="home-match-content">
+                        <div class="item active">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th><span>未开赛1</span></th>
+                                        <th><span>场次</span></th>
+                                        <th><span>胜/平/负</span></th>
+                                        <th><span>进/失</span></th>
+                                        <th><span>积分</span></th>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                        <td><span>0</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛2</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛3</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛4</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛5</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛6</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th><span>未开赛7</span></th>
+                                    <th><span>场次</span></th>
+                                    <th><span>胜/平/负</span></th>
+                                    <th><span>进/失</span></th>
+                                    <th><span>积分</span></th>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                <tr>
+                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                    <td><span>0</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="item-footer">
+                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                <span>暂无推荐</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="home-zhishu">
+            <div class="section-head">
+                <div class="title"><span>夺冠指数</span></div>
+                <a href="">全部 ></a>
+            </div>
+            <div class="section-content">
+                <div class="zhishu-wrap clearfix">
+                    <div class="col-2-zs-x">
+                        <a class="zhishu-item">
+                            <img src="/img/saic-head-1.png">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                        <a class="zhishu-item">
+                            <img src="/img/saic-head-1.png">
+                            <span>克罗地亚</span>
+                            <span>2.60</span>
+                        </a>
+                    </div>
+                    <div class="col-2-zs-b">
+                        <a class="zhishu-item-jm">
+                            <div class="item-title">32强深度解密</div>
+                            <p>红单密码，这里全都有</p>
+                            <img src="/img/zt-icon-3.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="home-article">
             <div class="section-head">
                 <div class="title"><span>每天赛程</span></div>
@@ -178,19 +482,9 @@
         </section>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
+
+
 @section('javascript')
     <script type="text/javascript">
         $(function(){
@@ -208,6 +502,14 @@
                     $("#myCarousel").carousel('prev');
                 }
             });
+            /*每天赛程*/
+            $(".home-match-nav li").each(function(index){
+                $(this).click(function(){
+                    $(this).addClass('active').siblings().removeClass('active');
+                    $(".home-match-content .item").eq(index).addClass('active').siblings().removeClass('active');
+                })
+            })
+
             /*卡片计划单*/
             var wh_width = 0;
             var zj_width = 0;
