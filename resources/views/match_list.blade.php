@@ -47,7 +47,7 @@
                         <?php foreach($match_list->content as $key=>$match):?>
                         <tr class="list-item">
                             <td><div class="item-text"><span><?php echo $match->week; ?><?php echo str_pad($key+1, 3, '0', STR_PAD_LEFT); ?></span></div></td>
-                            <td><div class="item-name"><a class="" href="/match/<?php echo $match->id; ?>"><?php echo $match->competition_name; ?></a></div></td>
+                            <td><div class="item-name"><a class="" href="/match/<?php echo $match->id; ?>.html"><?php echo $match->competition_name; ?></a></div></td>
                             <td><div class="item-text"><span><?php echo $match->status_name; ?></span></div></td>
                             <td><div class="item-text"><span><?php echo date('m-d H-i', $match->match_time); ?></span></div></td>
                             <td>

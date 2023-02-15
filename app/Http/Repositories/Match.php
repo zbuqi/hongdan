@@ -27,8 +27,11 @@ class Match
             throw new \Symfony\Component\HttpKernel\Exception\HttpException(404);
         }
         $match->lineup = $data->lineup($id)->results;
+
+
         return $match;
     }
+
     public function lineup($id){
         /*阵容*/
         $lineup = $this->show($id)->lineup;
@@ -46,6 +49,7 @@ class Match
         $reason_type = json_encode($reason_type);
         $reason_type = json_decode($reason_type);
         $lineup->reason_type = $reason_type;
+
         /*区分替补与主队*/
         for($i=0;$i<count($lineup->home);$i++){
             /*是否有事件*/
@@ -101,40 +105,8 @@ class Match
         $away = json_decode($away);
         $lineup->home = $home;
         $lineup->away = $away;
-        
+
         return $lineup;
 
-        /*
-        $array = array(
-            ['id'=>'1', 'name'=>'进球', 'img'=>'jq-icon.png'],
-            ['id'=>'2', 'name'=>'角球', 'img'=>'saic-head.png'],
-            ['id'=>'3', 'name'=>'黄牌', 'img'=>'hp-icon.png'],
-            ['id'=>'4', 'name'=>'红牌', 'img'=>'redp-icon.png'],
-            ['id'=>'5', 'name'=>'越位', 'img'=>'jq-icon.png'],
-            ['id'=>'6', 'name'=>'任意球', 'img'=>'jq-icon.png'],
-            ['id'=>'7', 'name'=>'球门球', 'img'=>'jq-icon.png'],
-            ['id'=>'8', 'name'=>'点球', 'img'=>'jq-icon.png'],
-            ['id'=>'9', 'name'=>'换人', 'img'=>'jq-icon.png'],
-            ['id'=>'10', 'name'=>'比赛开始', 'img'=>'jq-icon.png'],
-            ['id'=>'11', 'name'=>'中场', 'img'=>'jq-icon.png'],
-            ['id'=>'12', 'name'=>'结束', 'img'=>'jq-icon.png'],
-            ['id'=>'13', 'name'=>'半场比分', 'img'=>'jq-icon.png'],
-            ['id'=>'15', 'name'=>'两黄变红', 'img'=>'jq-icon.png'],
-            ['id'=>'16', 'name'=>'点球未进', 'img'=>'ssdq-icon.png'],
-            ['id'=>'17', 'name'=>'乌龙球', 'img'=>'jq-icon.png'],
-            ['id'=>'18', 'name'=>'助攻', 'img'=>'jq-icon.png'],
-            ['id'=>'19', 'name'=>'伤停补时', 'img'=>'jq-icon.png'],
-            ['id'=>'21', 'name'=>'射正', 'img'=>'jq-icon.png'],
-            ['id'=>'22', 'name'=>'射偏', 'img'=>'jq-icon.png'],
-            ['id'=>'23', 'name'=>'进攻', 'img'=>'jq-icon.png'],
-            ['id'=>'24', 'name'=>'危险进攻', 'img'=>'jq-icon.png'],
-            ['id'=>'25', 'name'=>'控球率', 'img'=>'jq-icon.png'],
-            ['id'=>'26', 'name'=>'加时赛结束', 'img'=>'jq-icon.png'],
-            ['id'=>'27', 'name'=>'点球大战结束', 'img'=>'jq-icon.png'],
-            ['id'=>'28', 'name'=>'VAR(视频助理裁判)', 'img'=>'jq-icon.png'],
-            ['id'=>'29', 'name'=>'点球(点球大战)', 'img'=>'jq-icon.png'],
-            ['id'=>'30', 'name'=>'点球未进(点球大战)', 'img'=>'jq-icon.png'],
-        );
-        */
     }
 }
