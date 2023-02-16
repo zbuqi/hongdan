@@ -1,4 +1,4 @@
-@extends('mobile\layouts')
+@extends('mobile.layouts')
 
 @section('title', '赛事详情')
 @section('pagename', 'match-page')

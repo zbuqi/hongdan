@@ -1,4 +1,4 @@
-@extends('mobile\layouts')
+@extends('mobile.layouts')
 
 @section('title', '分类页')
 @section('pagename', 'category-page')

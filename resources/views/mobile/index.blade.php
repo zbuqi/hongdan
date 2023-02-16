@@ -1,5 +1,5 @@
 
-@extends('mobile\layouts')
+@extends('mobile.layouts')
 
 @section('title', '这是首页')
 @section('pagename', 'home-page')
