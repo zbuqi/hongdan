@@ -16,7 +16,8 @@ class MatchListController extends Controller
         $isMobile = $isMobile->isMobile();
 
         $matchs = new Matchs;
-        $matchs = $matchs->index(2);//两天
+        $matchs = $matchs->index(1);//两天
+
 
         /*链接*/
         $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
