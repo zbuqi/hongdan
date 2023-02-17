@@ -21,12 +21,17 @@ class MatchController extends Controller
         $match = $data->show($id);
         /*阵容*/
         $lineup = $data->lineup($id);
-
+        
         echo 'id：' . json_encode($match->id, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'season_id：' . json_encode($match->season_id, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'competition_id：' . json_encode($match->competition_id, JSON_UNESCAPED_UNICODE) . '<br>';
+        echo 'competition_name：' . json_encode($match->competition_name, JSON_UNESCAPED_UNICODE) . '<br>';
+        echo 'competition_logo：' . json_encode($match->competition_logo, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'home_team_id：' . json_encode($match->home_team_id, JSON_UNESCAPED_UNICODE) . '<br>';
+        echo 'home_team_name：' . json_encode($match->home_team_name, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'away_team_id：' . json_encode($match->away_team_id, JSON_UNESCAPED_UNICODE) . '<br>';
+        echo 'away_team_name：' . json_encode($match->away_team_name, JSON_UNESCAPED_UNICODE) . '<br>';
+        echo 'away_team_logo：' . json_encode($match->away_team_logo, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'status_id:' . json_encode($match->status_id, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'match_time：' . json_encode($match->match_time, JSON_UNESCAPED_UNICODE) . '<br>';
         echo 'neutral：' . json_encode($match->neutral, JSON_UNESCAPED_UNICODE) . '<br>';
