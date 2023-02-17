@@ -18,7 +18,7 @@
                 <div class="head-info">
                     <p><span><?php echo $match->status_name; ?></span><span>半场：0-0</span></p>
                     <p><span><?php echo $match->week; ?></span><span><?php echo $match->competition_name; ?> ></span></p>
-                    <p><span>比赛时间：<?php echo date('Y-m-d H:i', $match->match_time);?></span></p>
+                    <p><span>比赛时间：<?php echo $match->match_time;?></span></p>
                     <a href="/">
                         <img src="/img/saic-bf-icon.png" alt="">
                         <span>动画直播</span>

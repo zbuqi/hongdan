@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\isMobile;
-use App\Http\Repositories\Match_list as Matchs;
+#use App\Http\Repositories\Match_list as Matchs;
+use App\Models\Match;
 use App\Models\Navigation;
 use App\Models\Seting;
 
@@ -15,8 +16,33 @@ class MatchListController extends Controller
         $isMobile = new isMobile;
         $isMobile = $isMobile->isMobile();
 
-        $matchs = new Matchs;
-        $matchs = $matchs->index(1);//两天
+        $status = Seting::where('name','match-status')->first();
+        $status = json_decode($status["value"]);
+
+        for($i=0; $i<2; $i++){
+            $time = strtotime(date('Y-m-d', '1676490300'));
+            $time_1 = $time+86400;
+            $matchs[$i]['time'] = date('Y-m-d', $time);
+            $week = array('天','一','二','三','四','五','六');
+            $matchs[$i]['week'] = '周' . $week[date('w', $time)];
+            $matchs[$i]['content'] = Match::where('match_time','>',$time)->where('match_time','<',$time_1)->get();
+            for($x=0;$x<count($matchs[$i]['content']); $x++) {
+                /*周几*/
+                $matchs[$i]['content'][$x]['week'] = '周' . $week[date('w', $matchs[$i]['content'][$x]->match_time)];
+                /*比赛状态*/
+                for ($z = 0; $z < count($status); $z++){
+                    if($status[$z]->id == $matchs[$i]['content'][$x]["status_id"]) {
+                        $matchs[$i]['content'][$x]['status_name'] = $status[$z]->name;
+                    }
+                }
+            }
+            $matchs[$i] = json_encode($matchs[$i]);
+            $matchs[$i] = json_decode($matchs[$i]);
+        }
+        sort($matchs);
+
+        echo $matchs[0]->week;
+
 
 
         /*链接*/

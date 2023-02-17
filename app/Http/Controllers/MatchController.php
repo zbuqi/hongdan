@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\isMobile;
-use App\Http\Repositories\Match as Match;
+#use App\Http\Repositories\Match as Match;
+use App\Models\Match;
 use App\Models\Article;
 use App\Models\Navigation;
 use App\Models\Seting;
@@ -16,44 +17,33 @@ class MatchController extends Controller
         $isMobile = new isMobile;
         $isMobile = $isMobile->isMobile();
 
-        $data = new Match;
         /*比赛详情*/
-        $match = $data->show($id);
+        $match = Match::findOrFail($id);
+        $week = array('天','一','二','三','四','五','六');
+        $match["week"] = '周' . $week[date('w', $match["match_time"])];
+        $match["match_time"] = date('Y-m-d H:i', $match["match_time"]);
+        /*比赛状态*/
+        $status = Seting::where('name','match-status')->first();
+        $status = json_decode($status["value"]);
+        for($i=0; $i<count($status); $i++){
+            if($status[$i]->id == $match["status_id"]){
+                $match["status_name"] = $status[$i]->name;
+            }
+        }
+        /*事件状态*/
+        $reason_type = Seting::where('name','match-reason')->first();
         /*阵容*/
-        $lineup = $data->lineup($id);
-        
-        echo 'id：' . json_encode($match->id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'season_id：' . json_encode($match->season_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'competition_id：' . json_encode($match->competition_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'competition_name：' . json_encode($match->competition_name, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'competition_logo：' . json_encode($match->competition_logo, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'home_team_id：' . json_encode($match->home_team_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'home_team_name：' . json_encode($match->home_team_name, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'away_team_id：' . json_encode($match->away_team_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'away_team_name：' . json_encode($match->away_team_name, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'away_team_logo：' . json_encode($match->away_team_logo, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'status_id:' . json_encode($match->status_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'match_time：' . json_encode($match->match_time, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'neutral：' . json_encode($match->neutral, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'note：' . json_encode($match->note, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'home_scores：' . json_encode($match->home_scores, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'away_scores：' . json_encode($match->away_scores, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'home_position：' . json_encode($match->home_position, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'away_position：' . json_encode($match->away_position, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'coverage：' . json_encode($match->coverage, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'venue_id：' . json_encode($match->venue_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'referee_id：' . json_encode($match->referee_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'related_id：' . json_encode($match->related_id, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'agg_score：' . json_encode($match->agg_score, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'round：' . json_encode($match->round, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'environment：' . json_encode($match->environment, JSON_UNESCAPED_UNICODE) . '<br>';
-        echo 'updated_at：' . json_encode($match->updated_at, JSON_UNESCAPED_UNICODE) . '<br><br><br><br><br>';
+        $lineup["confirmed"] = $match["lineup_confirmed"];
+        $lineup["home_formation"] = $match["home_formation"];
+        $lineup["away_formation"] = $match["away_formation"];
+        $lineup["home"] = json_decode($match["lineup_home"]);
+        $lineup["away"] = json_decode($match["lineup_away"]);
+        $lineup['reason_type'] = json_decode($reason_type['value']);
+        $lineup = json_encode($lineup, JSON_UNESCAPED_UNICODE);
+        $lineup = json_decode($lineup);
 
-        echo 'confirmed：' . json_encode($lineup->confirmed, JSON_UNESCAPED_UNICODE) . '<br><br>';
-        echo 'home_formation：' . json_encode($lineup->home_formation, JSON_UNESCAPED_UNICODE) . '<br><br>';
-        echo 'away_formation：' . json_encode($lineup->away_formation, JSON_UNESCAPED_UNICODE) . '<br><br>';
-        echo 'home：' . json_encode($lineup->home, JSON_UNESCAPED_UNICODE) . '<br><br>';
-        echo 'away：' . json_encode($lineup->away, JSON_UNESCAPED_UNICODE) . '<br><br>';
+
+
 
         /*最新文章*/
         $latestArticles = Article::where('featured', '=', '0')->latest('id')->take(8)->get();
@@ -80,6 +70,7 @@ class MatchController extends Controller
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'match' : 'mobile/match';
 
+
         return view($view, [
             'match' => $match,
             'lineup' => $lineup,
@@ -90,5 +81,6 @@ class MatchController extends Controller
             "site"             => $site,
             'consult'          => $consult
         ]);
+
     }
 }
