@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MatchListController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\MatchPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::get('/category/{code}', [CategoryController::class, 'show']);
 Route::get('/article/{id}.html', [ArticleController::class, 'show']);
 Route::get('/match_list/{name}', [MatchListController::class, 'show']);
 Route::get('/match/{id}.html', [MatchController::class, "show"]);
+Route::get('/match/post/publish',[MatchPostController::class, "show"]);

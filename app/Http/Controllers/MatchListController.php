@@ -41,7 +41,6 @@ class MatchListController extends Controller
         }
         sort($matchs);
 
-        echo $matchs[0]->week;
 
 
 
