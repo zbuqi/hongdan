@@ -3,6 +3,7 @@ namespace App\Http\Repositories;
 
 use App\Http\Repositories\MatchsApi;
 use App\Models\Seting;
+use App\Models\ApiMatchs;
 
 class Matchs
 {
@@ -17,7 +18,7 @@ class Matchs
         $teams = $data->results->team;
         $status = Seting::where('name','match-status')->first()->value;
         $status = json_decode($status);
-
+        
         for($i=0;$i<count($matchs);$i++){
             /*星期*/
             $week = array('天','一','二','三','四','五','六');
@@ -47,28 +48,30 @@ class Matchs
                 }
             }
         }
-        #$content = collect($matchs)->where('id','3747925')->all();
         return $matchs;
     }
-    public function index($data){
-        $content = [];
-
-        foreach($data as $key => $item){
-            $date = 20 . $key;
-            $matchs = Matchs::show($date);
-            for($i=0;$i<count($item);$i++){
-                echo $item[$i];
-                echo "<br>";
-                $content[] = collect($matchs)->where('id',$item[$i])->all();
-            }
-            echo "<br>";
+    public function update_api_matchs($date){
+        $matchs = Matchs::show($date);
+        $post_data = [];
+        for($i=0;$i<count($matchs);$i++){
+            $post_data[$i]["match_id"] = $matchs[$i]->id;
+            $post_data[$i]["match_time"] =  $matchs[$i]->match_time;
+            $post_data[$i]["value"] = json_encode($matchs[$i], JSON_UNESCAPED_UNICODE);
         }
-        #$content[] = collect($matchs)->where('id', 3755028)->all();
-
-        $match = Matchs::show(20230218);
-        print_r($match);
-
-
-        #return $content;
+        $query_date = ApiMatchs::where("match_time",">=",strtotime($date))->where("match_time","<",strtotime($date)+86400)->first();
+        /*判断数据库是否有传入date时间的赛程数据，没有，就插入date时间的赛程数据列表*/
+        if($query_date == ""){
+            if(ApiMatchs::insert($post_data)){
+                echo "数据插入成功";
+                /*删除10天前的数据*/
+                $delete_date = strtotime($date) - 15*86400;
+                if(ApiMatchs::where("match_time","<",$delete_date)->first() != ""){
+                    echo ApiMatchs::where("match_time","<",$delete_date)->delete();
+                }
+            }
+        }else{
+            echo "数据已经存在";
+        }
     }
 }
+
