@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\isMobile;
 #use App\Http\Repositories\Match_list as Matchs;
+use App\Http\Repositories\Lottery;
 use App\Models\Match;
 use App\Models\Navigation;
 use App\Models\Seting;
@@ -18,10 +19,10 @@ class MatchListController extends Controller
 
         $status = Seting::where('name','match-status')->first();
         $status = json_decode($status["value"]);
-
-        for($i=0; $i<2; $i++){
-            $time = strtotime(date('Y-m-d', '1676490300'));
-            $time_1 = $time+86400;
+        for($i=0; $i<3; $i++){
+            $time = strtotime(date('Y-m-d', time()));
+            $time = $time + $i*86400;
+            $time_1 = $time + ($i+1)*86400;
             $matchs[$i]['time'] = date('Y-m-d', $time);
             $week = array('天','一','二','三','四','五','六');
             $matchs[$i]['week'] = '周' . $week[date('w', $time)];
@@ -40,7 +41,7 @@ class MatchListController extends Controller
             $matchs[$i] = json_decode($matchs[$i]);
         }
         sort($matchs);
-
+        #print_r($matchs);
 
 
 
@@ -62,7 +63,6 @@ class MatchListController extends Controller
 
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'match_list' : 'mobile/match_list';
-
         return view($view, [
             'matchs' => $matchs,
             "navs" => $navs,

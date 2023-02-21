@@ -1,9 +1,14 @@
 <?php
 namespace App\Http\Repositories;
 
-use App\Http\Repositories\MatchsApi;
+
 use App\Models\Seting;
 use App\Models\ApiMatchs;
+use App\Models\Match;
+use App\Http\Repositories\Matchs;
+use App\Http\Repositories\MatchsApi;
+use App\Http\Repositories\Lottery;
+
 
 class Matchs
 {
@@ -80,6 +85,64 @@ class Matchs
         }else{
             echo "数据已经存在";
             //ApiMatchs::truncate();
+        }
+    }
+    public function update_matchs(){
+        $lottery = Lottery::index(101,1);
+        $post_data = [];
+        for($i=0;$i<count($lottery);$i++){
+            $match = ApiMatchs::where("match_id", $lottery[$i]->match_id)->first();
+            if($match != ""){
+                $data = json_decode($match->value,true);
+                $data["match_id"] = $lottery[$i]->match_id;
+                #体彩关联数据
+                $data["sport_id"] = $lottery[$i]->sport_id;
+                $data["lottery_type"] = $lottery[$i]->lottery_type;
+                $data["issue"] = $lottery[$i]->issue;
+                $data["issue_num"] = $lottery[$i]->issue_num;
+                $data["lottery_id"] = $lottery[$i]->id;
+                $data["is_same"] = $lottery[$i]->is_same;
+                #判断是否有阵容
+                if($data["coverage"]["lineup"] == 1){
+                    #阵容
+                    $lineup = MatchsApi::lineup($data->id);
+                    $data["lineup_confirmed"] = $lineup->confirmed;
+                    $data["home_formation"] = $lineup->home_formation;
+                    $data["away_formation"] = $lineup->away_formation;
+                    $data["lineup_home"] = json_encode($lineup->home, JSON_UNESCAPED_UNICODE);
+                    $data["lineup_away"] = json_encode($lineup->away, JSON_UNESCAPED_UNICODE);
+                }else{
+                    $data["lineup_confirmed"] = null;
+                    $data["home_formation"] = null;
+                    $data["away_formation"] = null;
+                    $data["lineup_home"] = null;
+                    $data["lineup_away"] = null;
+                }
+                $data["updated_at"] = date("Y-m-d H:i:s",$data["updated_at"]);
+                $data["home_scores"] = json_encode($data["home_scores"], JSON_UNESCAPED_UNICODE);
+                $data["away_scores"] = json_encode($data["away_scores"] , JSON_UNESCAPED_UNICODE);
+                $data["coverage"] = json_encode($data["coverage"], JSON_UNESCAPED_UNICODE);
+                $data["agg_score"] = json_encode($data["agg_score"], JSON_UNESCAPED_UNICODE);
+                $data["round"] = json_encode($data["round"], JSON_UNESCAPED_UNICODE);
+                if(in_array("environment", array_keys($data))){
+                    $data["environment"] = json_encode($data["environment"], JSON_UNESCAPED_UNICODE);
+                }else{
+					$data["environment"] = null;
+				}
+				
+                unset($data["status_name"]);
+                unset($data["week"]);
+                unset($data["id"]);
+                $post_data[$i] = $data;
+            }
+        }
+        foreach($post_data as $item){
+            if(Match::where("match_id", $item["match_id"])->first() == ""){
+                echo Match::insert($item);
+                echo $item["match_id"] . " 数据添加成功" . "<br>";
+            }else{
+                echo $item["match_id"] . " 有数据" . "<br>";
+            }
         }
     }
 
