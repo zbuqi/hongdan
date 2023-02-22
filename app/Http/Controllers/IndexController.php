@@ -26,6 +26,16 @@ class IndexController extends Controller
         for($i=0; $i<count($featureArticle); $i++){
             $featureArticle[$i]["link"] = '/article/' . $featureArticle[$i]["id"] . '.html';
         };
+        /*首页banner*/
+        $banner_key = !$isMobile ? 'pc-banner' : 'm-banner';
+        $banner = Seting::where('name',$banner_key)->first();
+        $banner = json_decode($banner->value);
+        $banners = [];
+        for($i=0; $i<count($banner); $i++){
+            if($banner[$i]->isOpen == 1){
+                $banners[] = $banner[$i];
+            }
+        }
         /*广告*/
         $advs = Adv::get();
         for($i=0; $i<count($advs); $i++){
@@ -56,7 +66,8 @@ class IndexController extends Controller
             "firendlinks"      => $firendlinks,
             "footerlinks"      => $footerlinks,
             "site"             => $site,
-            'consult'          => $consult
+            'consult'          => $consult,
+            'banners'          => $banners
         ]);
     }
 }

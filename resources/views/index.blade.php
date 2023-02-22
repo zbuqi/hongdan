@@ -52,7 +52,24 @@
         </div>
         <div class="col-1-b">
             <div class="zhuanti-banner">
-                <a href="/"><img src="/img/zt-banner.png"></a>
+                <div id="myCarousel" class="carousel slide" data-interval="5000">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <?php foreach($banners as $key=>$item):?>
+                        <li data-target="#myCarousel" data-slide-to="<?php echo $key;?>"></li>
+                        <?php endforeach; ?>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <?php foreach($banners as $key=>$item):?>
+                        <div class="item">
+                            <a href="<?php echo $item->link?>">
+                            <img decoding="async" src="<?php echo $item->image; ?>" alt="Third slide">
+                            </a>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -448,4 +465,26 @@
 
 @endsection
 
+@section('javascript')
+    <script type="text/javascript">
+        $(function(){
+            /*轮播图*/
+            var down_x = '';
+            $("#myCarousel").carousel('cycle');
+            $("#myCarousel").mousedown(function(e){
+                down_x = e.pageX;
+            });
+            $("#myCarousel").mouseup(function(e){
+                var up_x = e.pageX;
+                if(down_x - up_x > 0){
+                    $("#myCarousel").carousel('next');
+                }else{
+                    $("#myCarousel").carousel('prev');
+                }
+            });
+            $(".carousel-indicators li").eq(0).addClass("active");
+            $(".carousel-inner .item").eq(0).addClass("active");
+        });
+    </script>
+@endsection
 

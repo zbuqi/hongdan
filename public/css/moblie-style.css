@@ -12,6 +12,7 @@
     --font-color-6:#2DB370;
     --font-color-7:#FFDF00;
     --font-color-8:#B1865F;
+    --font-color-9:#76BC63;
     --bg-color-1:#EA4747;
     --bg-color-2:#FF5D5D;
     --bg-color-3:#E1F2FF;
@@ -23,16 +24,21 @@
     --bg-color-9:#EEFFFD;
     --bg-color-10:#FFCB76;
     --bg-color-11:#FFFCFD;
+    --bg-color-12:#54aa3d;
+    --bg-color-13:#f5a623;
 }
 .mobile .container{
     padding-right:8px;
     padding-left:8px;
 }
-.col-2,.col-5,.col-2-zs-b,.col-2-zs-x{
+.col-2,.col-5,.col-2-zs-b,.col-2-zs-x,.col-3{
     float:left;
 }
 .col-2{
     width:50%;
+}
+.col-3{
+    width:33.333%
 }
 .col-5{
     width:20%;
@@ -615,6 +621,124 @@ section{
 .match-shoufa .section-content{
     margin-top:16px;
 }
+.shoufa-map{
+    background:var(--bg-color-12);
+    border-radius:5px;
+    margin-bottom:16px;
+    overflow:hidden;
+}
+.shoufa-map .shoufa-map-head{
+    font-size:12px;
+    line-height:18px;
+    color:var(--color-1);
+    text-align:center;
+}
+.shoufa-map .shoufa-map-head>div{
+    padding-left:20px;
+    padding-right:20px;
+}
+.shoufa-map .shoufa-map-head>div>div:nth-child(2){
+    opacity:0.5;
+}
+.shoufa-map .shoufa-map-head .jiaolian{
+    border-bottom:1px solid var(--font-color-9);
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.shoufa-map .shoufa-map-head .shenjia{
+    padding-top:10px;
+}
+.shoufa-map .shoufa-map-content{
+    position:relative;
+}
+.shoufa-map .shoufa-map-content img.qiuchang{
+    width:100%;
+}
+.qiuchang-wrap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:1;
+}
+.qiuchang-wrap .team-item{
+
+}
+.qiuchang-wrap .zhu-team .team-user .number{
+    background-image:url('/img/lineup-home-icon.png');
+}
+.qiuchang-wrap .ke-team .team-user .number{
+    background-image:url('/img/lineup-away-icon.png');
+
+}
+.qiuchang-wrap>div{
+    height:50%;
+    position:relative;
+}
+.qiuchang-wrap > div .team-item{
+    height:106px;
+    position:absolute;
+}
+.qiuchang-wrap .zhu-team .team-item{
+    margin-left:-60px;
+    margin-top:-53px;
+}
+.qiuchang-wrap .ke-team .team-item{
+    margin-right:-60px;
+    margin-bottom:-53px;
+}
+.qiuchang-wrap .team-user{
+
+}
+.qiuchang-wrap .team-user .number{
+    width:37px;
+    height:34px;
+    color:var(--font-color-4);
+    font-size:12px;
+    line-height:34px;
+    text-align:center;
+    background:no-repeat;
+    background-size: 100%;
+    margin:0 auto;
+    position:relative;
+}
+.qiuchang-wrap .team-user .number span{
+    font-size:10px;
+    line-height:14px;
+    padding:0 5px;
+    border-radius:10px;
+    background:var(--bg-color-13);
+    display:inline-block;
+    position:absolute;
+    right:-20px;
+    transform:scale(0.9);
+}
+.qiuchang-wrap .team-user .name{
+    width:120px;
+    text-align:center;
+    color:var(--font-color-4);
+    font-size:12px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    margin-top:2px;
+}
+.qiuchang-wrap .team-user .info{
+    width:15px;
+    height:15px;
+    line-height:12px;
+    background:var(--bg-color-4);
+    border-radius:50%;
+    text-align:center;
+    margin:0 auto;
+}
+.qiuchang-wrap .team-user .info img{
+    width:100%;
+}
+
+
+
 .shoufa-tb{
 
 }

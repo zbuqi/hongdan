@@ -51,7 +51,47 @@
                     <div class="title"><span>首发阵容</span></div>
                 </div>
                 <div class="section-content">
-                    <div class="shoufa-map"></div>
+                    <div class="shoufa-map">
+                        <div class="shoufa-map-head">
+                            <div class="jiaolian clearfix">
+                                <div class="col-3">迪迪埃▪德尚</div>
+                                <div class="col-3">主教练</div>
+                                <div class="col-3">瓦利德▪雷格拉吉</div>
+                            </div>
+                            <div class="shenjia clearfix">
+                                <div class="col-3">€9.3亿</div>
+                                <div class="col-3">球队身价</div>
+                                <div class="col-3">€2.4亿</div>
+                            </div>
+                        </div>
+                        <div class="shoufa-map-content">
+                            <img class="qiuchang" src="/img/m-qiuchang.png" alt="">
+                            <div class="qiuchang-wrap">
+                                <div class="zhu-team">
+                                    <div class="team-item" style="top:15%;left:15%;">
+                                        <div class="team-user">
+                                            <div class="number">5<span>6.26</span></div>
+                                            <div class="name">儒勒▪孔德</div>
+                                            <div class="info">
+                                                <img src="/img/hr-icon.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ke-team">
+                                    <div class="team-item" style="bottom:15%;right:15%;">
+                                        <div class="team-user">
+                                            <div class="number">5<span>6.26</span></div>
+                                            <div class="name">儒勒▪孔德</div>
+                                            <div class="info">
+                                                <img src="/img/hr-icon.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="shoufa-tb clearfix">
                         <div class="col-2">
                             <div class="sftb-content zhu">

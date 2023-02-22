@@ -10,21 +10,19 @@
             <div id="myCarousel" class="carousel slide" data-interval="5000">
                 <!-- 轮播（Carousel）指标 -->
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <?php foreach($banners as $key=>$item):?>
+                    <li data-target="#myCarousel" data-slide-to="<?php echo $key; ?>"></li>
+                    <?php endforeach; ?>
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img decoding="async" src="/img/m-banner.png" alt="First slide">
-                    </div>
+                    <?php foreach($banners as $key=>$item):?>
                     <div class="item">
-                        <img decoding="async" src="/img/m-banner.png" alt="Second slide">
+                        <a href="<?php echo $item->link; ?>">
+                            <img decoding="async" src="<?php echo $item->image; ?>" alt="First slide">
+                        </a>
                     </div>
-                    <div class="item">
-                        <img decoding="async" src="/img/m-banner.png" alt="Third slide">
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </section>
@@ -502,6 +500,8 @@
                     $("#myCarousel").carousel('prev');
                 }
             });
+            $(".carousel-indicators li").eq(0).addClass("active");
+            $(".carousel-inner .item").eq(0).addClass("active");
             /*每天赛程*/
             $(".home-match-nav li").each(function(index){
                 $(this).click(function(){

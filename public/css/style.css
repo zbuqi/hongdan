@@ -141,7 +141,7 @@ header nav.navbar-nav a{
 header .top-kefu{
     float:right;
     margin-right:60px;
-} 
+}
 header .top-kefu .kefu-icon{
     height:50px;
     padding-top:10px;
@@ -160,7 +160,7 @@ header .top-kefu .kefu-icon:after{
     position:absolute;
     top:0;
     right:0;
-} 
+}
 header .top-kefu .kefu-icon img{
     max-height:100%;
 }
@@ -188,7 +188,7 @@ header .top-kefu .kefu-btn .btn{
 header .top-kefu .kefu-btn .btn:hover{
     transition:all 0.1s ease-in-out;
     bottom:1px;
-    box-shadow:0px 1px 2px -1px rgba(0,0,0,0.2); 
+    box-shadow:0px 1px 2px -1px rgba(0,0,0,0.2);
 }
 header .top-kefu .kefu-btn .btn img{
     max-height:20px;
@@ -226,7 +226,7 @@ header .visitor .btn.login{
     /**头部联系客服**/
     header .top-kefu{
         margin-right:50px;
-    } 
+    }
 
 }
 
@@ -248,8 +248,8 @@ header .visitor .btn.login{
     /**头部联系客服**/
     header .top-kefu{
         margin-right:20px;
-    } 
-    
+    }
+
     /**头部登录注册按钮**/
     header .visitor{
         padding:5px 0;
@@ -492,6 +492,21 @@ footer .copyright p span{
 .zhuanti-banner a img{
     max-height:100%;
 }
+.zhuanti-banner .carousel-indicators{
+    margin-bottom:0;
+    bottom:8px;
+}
+.zhuanti-banner .carousel-indicators li{
+    width:18px;
+    height:5px;
+    border-radius:45px;
+    background: rgba(235,235,236,0.46);
+    border:none;
+    margin:0 2px;
+}
+.zhuanti-banner .carousel-indicators li.active{
+    background:var(--bg-color-4);
+}
 @media (max-width: 1340px){
     .content-wrap{
         padding:8px;
@@ -551,7 +566,7 @@ footer .copyright p span{
     float:right;
 }
 .saic-main .content{
-    padding:4px;     
+    padding:4px;
 }
 .saic-main .content .table-bordered{
     border:1px solid var(--font-color-7);
@@ -593,7 +608,7 @@ footer .copyright p span{
 .sai-item .item-info .time p:last-child{
     color:var(--font-color-2);
     font-size:14px;
-    line-height:22px;   
+    line-height:22px;
 }
 .sai-item.not .item-info .time p{
     color:var(--font-color-5) !important;
@@ -822,7 +837,7 @@ footer .copyright p span{
     }
     .sai-item .item-info .time{
         padding:4px 8px;
-    }   
+    }
     .saic-sidebar-content{
         padding:6px 0;
     }
@@ -944,7 +959,7 @@ footer .copyright p span{
 }
 /*网红----专家*/
 .whzj{
-    padding:12px;  
+    padding:12px;
 }
 .whzj .whzj-main{
     border-radius:8px;
@@ -969,7 +984,7 @@ footer .copyright p span{
     content: '';
     width: 100%;
     height: 80%;
-    
+
     display: block;
     position: absolute;
     top: 10%;
@@ -1126,7 +1141,7 @@ footer .copyright p span{
 .match-list .list-main .table tr:last-child td{
     border-bottom:1px solid #ddd;
 }
-.match-list .list-main .table  .result span{   
+.match-list .list-main .table  .result span{
     width:64px;
     display:inline-block;
 }
@@ -1374,7 +1389,7 @@ footer .copyright p span{
     margin:0;
 }
 .match-head-wrap .head-info p{
-    margin-bottom:8px; 
+    margin-bottom:8px;
 }
 .match-head-wrap .head-info p span{
     display:inline-block;
@@ -1640,7 +1655,7 @@ footer .copyright p span{
     float:right;
 }
 .shoufa-icon{
-    padding-top:12px; 
+    padding-top:12px;
 }
 .shoufa-icon .icon-item{
     float:left;
@@ -1780,10 +1795,10 @@ footer .copyright p span{
 .qiudui-tz-content.ke .title{
     color: var(--bg-color-12);
     text-align: left;
-    border-bottom: 1px solid var(--bg-color-12); 
+    border-bottom: 1px solid var(--bg-color-12);
 }
 .qiudui-tz-content .tz-list{
-    
+
 }
 .qiudui-tz-content .tz-list .tz-item{
     border-bottom: 1px solid var(--font-color-3);
@@ -1853,7 +1868,7 @@ footer .copyright p span{
     color:var(--font-color-1);
     margin-right:16px;
     display:inline-block;
-    
+
 }
 .jingcai-content .dp-item .item-content .meta .time{
     color:var(--font-color-5);
@@ -2104,7 +2119,7 @@ footer .copyright p span{
     line-height:24px;
     text-align:center;
     border:1px solid var(--font-color-3);
-    border-radius:2px;  
+    border-radius:2px;
     display:inline-block;
     margin:0 8px;
 }
@@ -2137,7 +2152,7 @@ footer .copyright p span{
     font-size:20px;
     line-height:30px;
     font-weight:900;
-    padding:12px 0 16px; 
+    padding:12px 0 16px;
     margin:0;
 }
 .article-head .meta{
