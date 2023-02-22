@@ -38,7 +38,7 @@
             </div>
         </div>
     </section>
-    <?php if($lineup != ''): ?>
+    <?php if($lineup != ""): ?>
     <section class="module shoufa">
         <div class="module-wrap">
             <div class="module-head clearfix">

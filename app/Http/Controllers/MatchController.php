@@ -22,6 +22,8 @@ class MatchController extends Controller
         $week = array('天','一','二','三','四','五','六');
         $match["week"] = '周' . $week[date('w', $match["match_time"])];
         $match["match_time"] = date('Y-m-d H:i', $match["match_time"]);
+        #是否有情报、动画、阵容
+        $match["coverage"] = json_decode($match["coverage"]);
         /*比赛状态*/
         $status = Seting::where('name','match-status')->first();
         $status = json_decode($status["value"]);
@@ -30,18 +32,25 @@ class MatchController extends Controller
                 $match["status_name"] = $status[$i]->name;
             }
         }
+
         /*事件状态*/
         $reason_type = Seting::where('name','match-reason')->first();
         /*阵容*/
-        $lineup["confirmed"] = $match["lineup_confirmed"];
-        $lineup["home_formation"] = $match["home_formation"];
-        $lineup["away_formation"] = $match["away_formation"];
-        $lineup["home"] = json_decode($match["lineup_home"]);
-        $lineup["away"] = json_decode($match["lineup_away"]);
-        $lineup['reason_type'] = json_decode($reason_type['value']);
-        $lineup = json_encode($lineup, JSON_UNESCAPED_UNICODE);
-        $lineup = json_decode($lineup);
+        if($match["coverage"]->lineup){
+            $lineup["confirmed"] = $match["lineup_confirmed"];
+            $lineup["home_formation"] = $match["home_formation"];
+            $lineup["away_formation"] = $match["away_formation"];
+            $lineup["home"] = json_decode($match["lineup_home"]);
+            $lineup["away"] = json_decode($match["lineup_away"]);
+            $lineup['reason_type'] = json_decode($reason_type['value']);
+            $lineup = json_encode($lineup, JSON_UNESCAPED_UNICODE);
+            $lineup = json_decode($lineup);
+        }else{
+            $lineup = "";
+        }
 
+        
+        
 
 
 
@@ -69,8 +78,6 @@ class MatchController extends Controller
 
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'match' : 'mobile/match';
-
-
         return view($view, [
             'match' => $match,
             'lineup' => $lineup,
