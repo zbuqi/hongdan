@@ -23,6 +23,7 @@ class CommentController extends AdminController
         return Grid::make(new Comment(), function (Grid $grid){
             $grid->model()->where('type','=','match');
 
+            $grid->number('序号');
             $grid->column('typeId','赛程');
             $grid->column('content','评论内容')->display(function($content){
                 $content = strip_tags($content);
@@ -74,7 +75,8 @@ class CommentController extends AdminController
             $users[$user->id] = $user->name;
         }
         return Form::make(new Comment(), function (Form $form) use ($users) {
-            $form->select('typeId','选择赛程')->options(['123456'=>'世界杯&nbsp;&nbsp;克罗地亚VS巴西&nbsp;&nbsp;12-10 23:00']);
+            $form->text('typeId','赛程');
+            #$form->select('typeId','选择赛程')->options(['123456'=>'世界杯&nbsp;&nbsp;克罗地亚VS巴西&nbsp;&nbsp;12-10 23:00']);
 
             $form->select('userId','选择作者')->options($users);
             $form->editor('content','内容');

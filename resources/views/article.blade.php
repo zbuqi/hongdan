@@ -1,6 +1,6 @@
 @extends('layouts')
 
-@section('title', '这是文章页')
+@section('title', $article->title . " - " . $site->site_name)
 @section('pagename', 'article-page')
 
 @section('content')

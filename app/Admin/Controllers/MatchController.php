@@ -21,12 +21,9 @@ class MatchController extends AdminController
     {
         return Grid::make(new Match(), function (Grid $grid) {
             $grid->number('序号');
+            #$grid->column('match_id');
             $grid->column('issue');
-            $grid->column('season_id');
             $grid->column('competition_name');
-            $grid->column('match_time')->display(function ($match_time){
-                return date('Y-m-d H:i:s', $match_time);
-            });
             $grid->column('home_team_name');
             $grid->column('away_team_name');
             $grid->column('status_id')->display(function($status_id){
@@ -38,6 +35,11 @@ class MatchController extends AdminController
                     }
                 }
                 return $content;
+            });
+            #$grid->column('season_id');
+            $grid->column('competition_name');
+            $grid->column('match_time')->display(function ($match_time){
+                return date('Y-m-d  H:i', $match_time);
             });
             $grid->column('updated_at')->sortable();
         
@@ -109,59 +111,56 @@ class MatchController extends AdminController
     protected function form()
     {
         return Form::make(new Match(), function (Form $form) {
-            #比赛详情
             $form->block(12, function(Form\BlockForm $form){
                 $form->title('赛程详情');
                 $form->column(4, function(Form\BlockForm $form){
+                    $form->text('issue');
                     $form->text('season_id');
-                    $form->text('competition_id');
                     $form->text('competition_name');
-                    $form->image('competition_logo');
-                    
+                    $form->text('match_id');
                 });
                 $form->column(4, function(Form\BlockForm $form){
                     $form->text('status_id');
                     $form->text('match_time');
                     $form->text('venue_id');
                     $form->text('referee_id');
-                    $form->text('related_id');
                 });
                 $form->column(4, function(Form\BlockForm $form){
-                    $form->text('sport_id');
-                    $form->text('lottery_type');
-                    $form->text('issue');
-                    $form->text('is_same');
-                    $form->text('lineup_confirmed');
+                    $form->image('competition_logo');
                 });
-            });
-            #主队
-            $form->block(6, function(Form\BlockForm $form){
-                $form->title('主队');
-                $form->column(12, function(Form\BlockForm $form){
+            }); 
+            $form->block(12, function(Form\BlockForm $form){
+                // 显示底部提交按钮
+                $form->showFooter();
+                $form->title('比赛团队');
+                $form->column(6, function(Form\BlockForm $form){
                     $form->text('home_team_name');
                     $form->image('home_team_logo');
                     $form->text('home_position');
                     $form->text('home_formation');
-                    $form->text('lineup_home');
+                    $form->text('home_baoliao','赢球爆料');
+                    $form->text('home_tz','球队特征');
+                    $form->hidden('lineup_home');
                 });
-            });   
-            #客队  
-            $form->block(6, function(Form\BlockForm $form){
-                $form->title('客队');
-                $form->column(12, function(Form\BlockForm $form){
+                $form->column(6, function(Form\BlockForm $form){
                     $form->text('away_team_name');
                     $form->image('away_team_logo');
                     $form->text('away_position');
                     $form->text('away_formation');
-                    $form->text('lineup_away');
+                    $form->text('away_baoliao','赢球爆料');
+                    $form->text('away_tz','球队特征');
+                    $form->hidden('lineup_away');
                 });
             });  
-        
-
+            $form->block(12, function(Form\BlockForm $form){
+                $form->title('精彩点评');
+                
+            });
 
             #不需要修改的数据
             $form->hidden('id');
             $form->hidden('match_id');
+            $form->hidden('competition_id');
             $form->hidden('away_team_id');
             $form->hidden('home_team_id');
             $form->hidden('neutral');
@@ -174,9 +173,18 @@ class MatchController extends AdminController
             $form->hidden('environment');
             $form->hidden('lottery_id');
             $form->hidden('issue_num');
+            $form->hidden('related_id');
+            $form->hidden('sport_id');
+            $form->hidden('lottery_type');
+            $form->hidden('is_same');
+            $form->hidden('lineup_confirmed');
+            
 
             $form->hidden('created_at');
             $form->hidden('updated_at');
+
+            /*忽略掉不需要保存的字段*/
+            $form->ignore(['home_tz','away_tz','home_baoliao','away_baoliao']);
         });
     }
 }

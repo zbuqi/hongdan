@@ -1,6 +1,8 @@
 @extends('layouts')
 
-@section('title', '这是比赛详情页')
+@section('title', $match->home_team_name . "vs" . $match->away_team_name . "比分预测" . "_" . $match->competition_name . " - " . $site->site_name)
+@section('keywords', $match->home_team_name . "vs" . $match->away_team_name . "," . $match->home_team_name . "对" . $match->away_team_name)
+
 @section('pagename', 'match-page')
 
 @section('content')
