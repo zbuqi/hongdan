@@ -19,6 +19,8 @@ Route::group([
     $router->resource('category', 'CategoryController');
     #精彩评论
     $router->resource('match/comment', 'CommentController');
+    #赛程列表
+    $router->resource('match/list', 'MatchController');
     #广告
     $router->resource('seting/adv','AdvController');
     #首页海报

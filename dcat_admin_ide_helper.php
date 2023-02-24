@@ -38,6 +38,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection body
      * @property Grid\Column|Collection alias
+     * @property Grid\Column|Collection diary
+     * @property Grid\Column|Collection match_id
+     * @property Grid\Column|Collection match_time
      * @property Grid\Column|Collection categoryId
      * @property Grid\Column|Collection excerpt
      * @property Grid\Column|Collection tagIds
@@ -48,10 +51,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection thumb
      * @property Grid\Column|Collection hits
      * @property Grid\Column|Collection userId
-     * @property Grid\Column|Collection link
-     * @property Grid\Column|Collection image
-     * @property Grid\Column|Collection sequence
-     * @property Grid\Column|Collection isOpen
      * @property Grid\Column|Collection code
      * @property Grid\Column|Collection seo_title
      * @property Grid\Column|Collection seo_description
@@ -64,7 +63,45 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection season_id
+     * @property Grid\Column|Collection competition_id
+     * @property Grid\Column|Collection competition_name
+     * @property Grid\Column|Collection competition_logo
+     * @property Grid\Column|Collection home_team_id
+     * @property Grid\Column|Collection home_team_name
+     * @property Grid\Column|Collection home_team_logo
+     * @property Grid\Column|Collection away_team_id
+     * @property Grid\Column|Collection away_team_name
+     * @property Grid\Column|Collection away_team_logo
+     * @property Grid\Column|Collection status_id
+     * @property Grid\Column|Collection neutral
+     * @property Grid\Column|Collection note
+     * @property Grid\Column|Collection home_scores
+     * @property Grid\Column|Collection away_scores
+     * @property Grid\Column|Collection home_position
+     * @property Grid\Column|Collection away_position
+     * @property Grid\Column|Collection coverage
+     * @property Grid\Column|Collection venue_id
+     * @property Grid\Column|Collection referee_id
+     * @property Grid\Column|Collection related_id
+     * @property Grid\Column|Collection agg_score
+     * @property Grid\Column|Collection round
+     * @property Grid\Column|Collection environment
+     * @property Grid\Column|Collection sport_id
+     * @property Grid\Column|Collection lottery_type
+     * @property Grid\Column|Collection issue
+     * @property Grid\Column|Collection issue_num
+     * @property Grid\Column|Collection lottery_id
+     * @property Grid\Column|Collection is_same
+     * @property Grid\Column|Collection lineup_confirmed
+     * @property Grid\Column|Collection home_formation
+     * @property Grid\Column|Collection away_formation
+     * @property Grid\Column|Collection lineup_home
+     * @property Grid\Column|Collection lineup_away
+     * @property Grid\Column|Collection link
+     * @property Grid\Column|Collection sequence
      * @property Grid\Column|Collection parentId
+     * @property Grid\Column|Collection isOpen
      * @property Grid\Column|Collection isNewWin
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
@@ -101,6 +138,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection body(string $label = null)
      * @method Grid\Column|Collection alias(string $label = null)
+     * @method Grid\Column|Collection diary(string $label = null)
+     * @method Grid\Column|Collection match_id(string $label = null)
+     * @method Grid\Column|Collection match_time(string $label = null)
      * @method Grid\Column|Collection categoryId(string $label = null)
      * @method Grid\Column|Collection excerpt(string $label = null)
      * @method Grid\Column|Collection tagIds(string $label = null)
@@ -111,10 +151,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection thumb(string $label = null)
      * @method Grid\Column|Collection hits(string $label = null)
      * @method Grid\Column|Collection userId(string $label = null)
-     * @method Grid\Column|Collection link(string $label = null)
-     * @method Grid\Column|Collection image(string $label = null)
-     * @method Grid\Column|Collection sequence(string $label = null)
-     * @method Grid\Column|Collection isOpen(string $label = null)
      * @method Grid\Column|Collection code(string $label = null)
      * @method Grid\Column|Collection seo_title(string $label = null)
      * @method Grid\Column|Collection seo_description(string $label = null)
@@ -127,7 +163,45 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection season_id(string $label = null)
+     * @method Grid\Column|Collection competition_id(string $label = null)
+     * @method Grid\Column|Collection competition_name(string $label = null)
+     * @method Grid\Column|Collection competition_logo(string $label = null)
+     * @method Grid\Column|Collection home_team_id(string $label = null)
+     * @method Grid\Column|Collection home_team_name(string $label = null)
+     * @method Grid\Column|Collection home_team_logo(string $label = null)
+     * @method Grid\Column|Collection away_team_id(string $label = null)
+     * @method Grid\Column|Collection away_team_name(string $label = null)
+     * @method Grid\Column|Collection away_team_logo(string $label = null)
+     * @method Grid\Column|Collection status_id(string $label = null)
+     * @method Grid\Column|Collection neutral(string $label = null)
+     * @method Grid\Column|Collection note(string $label = null)
+     * @method Grid\Column|Collection home_scores(string $label = null)
+     * @method Grid\Column|Collection away_scores(string $label = null)
+     * @method Grid\Column|Collection home_position(string $label = null)
+     * @method Grid\Column|Collection away_position(string $label = null)
+     * @method Grid\Column|Collection coverage(string $label = null)
+     * @method Grid\Column|Collection venue_id(string $label = null)
+     * @method Grid\Column|Collection referee_id(string $label = null)
+     * @method Grid\Column|Collection related_id(string $label = null)
+     * @method Grid\Column|Collection agg_score(string $label = null)
+     * @method Grid\Column|Collection round(string $label = null)
+     * @method Grid\Column|Collection environment(string $label = null)
+     * @method Grid\Column|Collection sport_id(string $label = null)
+     * @method Grid\Column|Collection lottery_type(string $label = null)
+     * @method Grid\Column|Collection issue(string $label = null)
+     * @method Grid\Column|Collection issue_num(string $label = null)
+     * @method Grid\Column|Collection lottery_id(string $label = null)
+     * @method Grid\Column|Collection is_same(string $label = null)
+     * @method Grid\Column|Collection lineup_confirmed(string $label = null)
+     * @method Grid\Column|Collection home_formation(string $label = null)
+     * @method Grid\Column|Collection away_formation(string $label = null)
+     * @method Grid\Column|Collection lineup_home(string $label = null)
+     * @method Grid\Column|Collection lineup_away(string $label = null)
+     * @method Grid\Column|Collection link(string $label = null)
+     * @method Grid\Column|Collection sequence(string $label = null)
      * @method Grid\Column|Collection parentId(string $label = null)
+     * @method Grid\Column|Collection isOpen(string $label = null)
      * @method Grid\Column|Collection isNewWin(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
@@ -169,6 +243,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection body
      * @property Show\Field|Collection alias
+     * @property Show\Field|Collection diary
+     * @property Show\Field|Collection match_id
+     * @property Show\Field|Collection match_time
      * @property Show\Field|Collection categoryId
      * @property Show\Field|Collection excerpt
      * @property Show\Field|Collection tagIds
@@ -179,10 +256,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection thumb
      * @property Show\Field|Collection hits
      * @property Show\Field|Collection userId
-     * @property Show\Field|Collection link
-     * @property Show\Field|Collection image
-     * @property Show\Field|Collection sequence
-     * @property Show\Field|Collection isOpen
      * @property Show\Field|Collection code
      * @property Show\Field|Collection seo_title
      * @property Show\Field|Collection seo_description
@@ -195,7 +268,45 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection season_id
+     * @property Show\Field|Collection competition_id
+     * @property Show\Field|Collection competition_name
+     * @property Show\Field|Collection competition_logo
+     * @property Show\Field|Collection home_team_id
+     * @property Show\Field|Collection home_team_name
+     * @property Show\Field|Collection home_team_logo
+     * @property Show\Field|Collection away_team_id
+     * @property Show\Field|Collection away_team_name
+     * @property Show\Field|Collection away_team_logo
+     * @property Show\Field|Collection status_id
+     * @property Show\Field|Collection neutral
+     * @property Show\Field|Collection note
+     * @property Show\Field|Collection home_scores
+     * @property Show\Field|Collection away_scores
+     * @property Show\Field|Collection home_position
+     * @property Show\Field|Collection away_position
+     * @property Show\Field|Collection coverage
+     * @property Show\Field|Collection venue_id
+     * @property Show\Field|Collection referee_id
+     * @property Show\Field|Collection related_id
+     * @property Show\Field|Collection agg_score
+     * @property Show\Field|Collection round
+     * @property Show\Field|Collection environment
+     * @property Show\Field|Collection sport_id
+     * @property Show\Field|Collection lottery_type
+     * @property Show\Field|Collection issue
+     * @property Show\Field|Collection issue_num
+     * @property Show\Field|Collection lottery_id
+     * @property Show\Field|Collection is_same
+     * @property Show\Field|Collection lineup_confirmed
+     * @property Show\Field|Collection home_formation
+     * @property Show\Field|Collection away_formation
+     * @property Show\Field|Collection lineup_home
+     * @property Show\Field|Collection lineup_away
+     * @property Show\Field|Collection link
+     * @property Show\Field|Collection sequence
      * @property Show\Field|Collection parentId
+     * @property Show\Field|Collection isOpen
      * @property Show\Field|Collection isNewWin
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
@@ -232,6 +343,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection body(string $label = null)
      * @method Show\Field|Collection alias(string $label = null)
+     * @method Show\Field|Collection diary(string $label = null)
+     * @method Show\Field|Collection match_id(string $label = null)
+     * @method Show\Field|Collection match_time(string $label = null)
      * @method Show\Field|Collection categoryId(string $label = null)
      * @method Show\Field|Collection excerpt(string $label = null)
      * @method Show\Field|Collection tagIds(string $label = null)
@@ -242,10 +356,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection thumb(string $label = null)
      * @method Show\Field|Collection hits(string $label = null)
      * @method Show\Field|Collection userId(string $label = null)
-     * @method Show\Field|Collection link(string $label = null)
-     * @method Show\Field|Collection image(string $label = null)
-     * @method Show\Field|Collection sequence(string $label = null)
-     * @method Show\Field|Collection isOpen(string $label = null)
      * @method Show\Field|Collection code(string $label = null)
      * @method Show\Field|Collection seo_title(string $label = null)
      * @method Show\Field|Collection seo_description(string $label = null)
@@ -258,7 +368,45 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection season_id(string $label = null)
+     * @method Show\Field|Collection competition_id(string $label = null)
+     * @method Show\Field|Collection competition_name(string $label = null)
+     * @method Show\Field|Collection competition_logo(string $label = null)
+     * @method Show\Field|Collection home_team_id(string $label = null)
+     * @method Show\Field|Collection home_team_name(string $label = null)
+     * @method Show\Field|Collection home_team_logo(string $label = null)
+     * @method Show\Field|Collection away_team_id(string $label = null)
+     * @method Show\Field|Collection away_team_name(string $label = null)
+     * @method Show\Field|Collection away_team_logo(string $label = null)
+     * @method Show\Field|Collection status_id(string $label = null)
+     * @method Show\Field|Collection neutral(string $label = null)
+     * @method Show\Field|Collection note(string $label = null)
+     * @method Show\Field|Collection home_scores(string $label = null)
+     * @method Show\Field|Collection away_scores(string $label = null)
+     * @method Show\Field|Collection home_position(string $label = null)
+     * @method Show\Field|Collection away_position(string $label = null)
+     * @method Show\Field|Collection coverage(string $label = null)
+     * @method Show\Field|Collection venue_id(string $label = null)
+     * @method Show\Field|Collection referee_id(string $label = null)
+     * @method Show\Field|Collection related_id(string $label = null)
+     * @method Show\Field|Collection agg_score(string $label = null)
+     * @method Show\Field|Collection round(string $label = null)
+     * @method Show\Field|Collection environment(string $label = null)
+     * @method Show\Field|Collection sport_id(string $label = null)
+     * @method Show\Field|Collection lottery_type(string $label = null)
+     * @method Show\Field|Collection issue(string $label = null)
+     * @method Show\Field|Collection issue_num(string $label = null)
+     * @method Show\Field|Collection lottery_id(string $label = null)
+     * @method Show\Field|Collection is_same(string $label = null)
+     * @method Show\Field|Collection lineup_confirmed(string $label = null)
+     * @method Show\Field|Collection home_formation(string $label = null)
+     * @method Show\Field|Collection away_formation(string $label = null)
+     * @method Show\Field|Collection lineup_home(string $label = null)
+     * @method Show\Field|Collection lineup_away(string $label = null)
+     * @method Show\Field|Collection link(string $label = null)
+     * @method Show\Field|Collection sequence(string $label = null)
      * @method Show\Field|Collection parentId(string $label = null)
+     * @method Show\Field|Collection isOpen(string $label = null)
      * @method Show\Field|Collection isNewWin(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
