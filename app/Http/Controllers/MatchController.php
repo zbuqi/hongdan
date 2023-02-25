@@ -76,6 +76,11 @@ class MatchController extends Controller
         $consult = Seting::where('name', 'consult')->first();
         $consult = json_decode($consult->value);
 
+        #网站TDK
+        $title = $match->home_team_name . "vs" . $match->away_team_name . "比分预测" . "_" . $match->competition_name;
+        $keywords = $match->home_team_name . "vs" . $match->away_team_name . "," . $match->home_team_name . "对" . $match->away_team_name;
+        $description = "";
+
         /*手机端还是电脑端*/
         $view = !$isMobile ? 'match' : 'mobile/match';
         return view($view, [
@@ -86,7 +91,10 @@ class MatchController extends Controller
             "firendLinks" => $firendLinks,
             "footerlinks" => $footerlinks,
             "site"             => $site,
-            'consult'          => $consult
+            'consult'          => $consult,
+            'title'            => $title,
+            'keywords'         => $keywords,
+            'description'      => $description
         ]);
 
     }

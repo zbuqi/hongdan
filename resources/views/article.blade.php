@@ -1,6 +1,8 @@
 @extends('layouts')
 
 @section('title', $article->title . " - " . $site->site_name)
+@section('keywords', $article->title)
+@section('description', $article->excerpt)
 @section('pagename', 'article-page')
 
 @section('content')

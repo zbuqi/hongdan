@@ -1,8 +1,8 @@
 @extends('layouts')
 
-@section('title', $site->site_name)
-@section('keywords', '')
-@section('description', '')
+@section('title', $title . " - " . $site->site_name)
+@section('keywords', $keywords)
+@section('description', $description)
 @section('pagename', 'category-page')
 
 @section('content')
