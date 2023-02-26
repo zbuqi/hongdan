@@ -9,11 +9,10 @@
     <div class="categoty">
         <div class="breadcrumbs">
             <a class="back" href="/"><span>←</span>首页</a>
-            <span>></span>
-            <a href="/category">资讯</a>
             @if($category)
-            <span>></span>
-                {{ $category->name }}
+                <span>></span><a href="{{ $category->link }}">{{ $category->name }}</a>
+            @else
+                <span>></span><a href="/category">资讯</a>
             @endif
         </div>
         <div class="category-wrap clearfix">
@@ -42,7 +41,7 @@
                     <div class="page-number clearfix">
                         <div class="content">
                             <a class="page-up" href="?page=1"><</a>
-                                @foreach($page as $item)
+                                @foreach($page->content as $item)
                                     <a @if($item == $page->current)class="active"@endif href="?page={{$item}}">{{$item}}</a>
                                 @endforeach
                             <a class="page-down" href="?page={{$page->last}}">></a>

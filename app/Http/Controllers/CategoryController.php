@@ -50,10 +50,10 @@ class CategoryController extends Controller
     {
         if($code){
             $Category = Category::where('code', $code)->firstOrFail();
-            $latestArticles = Article::where('categoryId', $Category['id'])->latest('id')->paginate(1);
+            $latestArticles = Article::where('categoryId', $Category['id'])->latest('id')->paginate(10);
         }else{
             $Category = false;
-            $latestArticles = Article::latest('id')->paginate(1);
+            $latestArticles = Article::latest('id')->paginate(10);
         }
         /*特别推荐*/
         $featureArticles = Article::where('featured','=','1')->take(5)->get();
@@ -82,6 +82,8 @@ class CategoryController extends Controller
         $last = $latestArticles->lastPage();
         $page["current"] = $current;
         $page["last"] = $last;
+        $page["prev"] = $latestArticles->previousPageUrl();
+        $page["next"] = $latestArticles->nextPageUrl();
         $page["content"] = [];
         if($last<6){
             for($i=1; $i<$last; $i++){
@@ -100,7 +102,7 @@ class CategoryController extends Controller
                 $page["content"][] = $i;
             }
         }
-
+        $page = json_decode(json_encode($page));
 
         $content = [
             "latestArticles" => $latestArticles,

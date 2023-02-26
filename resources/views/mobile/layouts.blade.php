@@ -16,38 +16,32 @@
             <div class="nav-wrap">
                 <div class="nav-close"><img src="/img/close-icon.png"></div>
                 <ul class="nav-link list-unstyled">
-                    <li><a href="">首页</a></li>
-                    <li>
-                        <a>体育工具服务<img class="unfold" src="/img/unfold-icon.png"></a>
-                        <ul class="nav-link-sublevel list-unstyled">
-                            <li><a href="">比分直播</a></li>
-                            <li><a href="">赛事数据</a></li>
-                            <li><a href="">情报咨询</a></li>
-                            <li><a href="">专家推荐</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">服务与支持<img class="unfold" src="/img/unfold-icon.png"></a>
-                        <ul class="nav-link-sublevel list-unstyled">
-                            <li><a href="">下载网单盈球</a></li>
-                            <li><a href="">帮助中心</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/">首页</a></li>
+                    @foreach($footerlinks as $item)
+                        <li>
+                            <a>{{ $item->title }}<img class="unfold" src="/img/unfold-icon.png"></a>
+                            <ul class="nav-link-sublevel list-unstyled">
+                                @foreach($item->son as $son)
+                                    <li><a href="{{ $son->link }}">{{ $son->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
                 </ul>
                 <div class="contact-warp clearfix">
                     <div class="contact-item col-xs-6">
-                        <img src="/uploads/2023-02-04/414ce96359d5cbf938ff60cf12c8b80b.png" alt="" />
-                        <p>红单网公众号</p>
+                        <img src="{{ $consult->woa1 }}" alt="" />
+                        <p>{{ $consult->woa1_title }}</p>
                     </div>
                     <div class="contact-item col-xs-6">
-                        <img src="/uploads/2023-02-04/414ce96359d5cbf938ff60cf12c8b80b.png" alt="">
-                        <p>红单网公众号</p>
+                        <img src="{{ $consult->woa2 }}" alt="">
+                        <p>{{ $consult->woa2_title }}</p>
                     </div>
                     <div class="contact-item col-xs-12 clearfix">
                         <div class="contact-icon"><img src="/img/phone-icon.png"></div>
                         <div class="contact-main">
-                            <p class="phone">(0756)  61611588</p>
-                            <p class="time">服务时间 09:00-18:00</p>
+                            <p class="phone">{{ $consult->phone }}</p>
+                            <p class="time">服务时间 {{ $consult->time }}</p>
                         </div>
                     </div>
                 </div>

@@ -12,16 +12,16 @@
             <div class="match-head-content">
                 <div class="head-team zhu">
                     <div class="title-wrap">
-                        <div class="title"><?php echo $match->home_team_name; ?></div>
-                        <div class="info"><span>排名:<?php echo $match->home_position; ?></span><span>主队</span></div>
+                        <div class="title">{{ $match->home_team_name }}</div>
+                        <div class="info"><span>排名:{{ $match->home_position }}</span><span>主队</span></div>
                     </div>
-                    <img src="<?php echo $match->home_team_logo; ?>">
+                    <img src="{{ $match->home_team_logo }}">
                     <div class="score">0</div>
                 </div>
                 <div class="head-info">
-                    <p><span><?php echo $match->status_name; ?></span><span>半场：0-0</span></p>
-                    <p><span><?php echo $match->week; ?></span><span><?php echo $match->competition_name; ?> ></span></p>
-                    <p><span>比赛时间：<?php echo $match->match_time;?></span></p>
+                    <p><span>{{ $match->status_name }}</span><span>半场：0-0</span></p>
+                    <p><span>{{ $match->week }}</span><span>{{ $match->competition_name }} ></span></p>
+                    <p><span>比赛时间：{{ $match->match_time }}</span></p>
                     <a href="/">
                         <img src="/img/saic-bf-icon.png" alt="">
                         <span>动画直播</span>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="head-team ke">
                     <div class="score">0</div>
-                    <img src="<?php echo $match->away_team_logo; ?>">
+                    <img src="{{ $match->away_team_logo }}">
                     <div class="title-wrap">
                         <div class="title"><?php echo $match->away_team_name; ?></div>
                         <div class="info">

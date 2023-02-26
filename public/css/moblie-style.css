@@ -1285,13 +1285,16 @@ section{
     color:var(--font-color-1);
     font-size:14px;
     line-height:22px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
     display:block;
 }
 .home-article .section-content ul li a span{
     display: inline-block;
-    padding-right: 16px;
+    padding-right: 10px;
     border-right: 1px solid var(--color-eee);
-    margin-right: 16px;
+    margin-right: 10px;
 }
 .home-article .section-content ul li:first-child a{
     color:var(--bg-color-1);

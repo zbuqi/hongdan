@@ -29,8 +29,8 @@ Route::group([
 
     #导航链接
     $router->resource('seting/navigation/top', 'NavigationTopController');
+    $router->resource('seting/navigation/m-foot', 'NavigationMobileFootController');
     $router->resource('seting/navigation/foot', 'NavigationFootController');
-    $router->resource('seting/navigation/foot2', 'NavigationFooter2Controller');
     $router->resource('seting/navigation/firend', 'NavigationFirendController');
     #网站信息
     $router->resource('seting/site','SiteController');

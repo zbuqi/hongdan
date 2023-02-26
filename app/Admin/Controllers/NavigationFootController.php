@@ -93,6 +93,7 @@ class NavigationFootController extends AdminController
 
             $form->hidden('id');
             $form->hidden('type')->default('foot');
+            $form->hidden('img');
             $form->hidden('created_at')->default($time);
             $form->hidden('updated_at')->default($time);
 

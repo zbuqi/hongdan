@@ -1,6 +1,8 @@
 @extends('mobile.layouts')
 
-@section('title', '赛事详情')
+@section('title', $title . " - " . $site->site_name)
+@section('keywords', $keywords)
+@section('description', $description)
 @section('pagename', 'match-page')
 
 @section('content')
@@ -12,15 +14,15 @@
             </div>
             <div class="match-header-info">
                 <div class="time">
-                    <p><span>周二055</span><a href="">世界杯 ></a></p>
-                    <p>2022-12-06 23:00</p>
-                    <p>已完场</p>
+                    <p><span>{{ $match->week }}055</span><a href="">{{ $match->competition_name }} ></a></p>
+                    <p>{{ $match->match_time }}</p>
+                    <p>{{ $match->status_name }}</p>
                 </div>
                 <div class="troop clearfix">
                     <div class="home_team">
                         <div class="name">
-                            <img src="/img/saic-head-2.png" alt="">
-                            <span>克罗地亚</span>
+                            <img src="{{ $match->home_team_logo }}" alt="">
+                            <span>{{ $match->home_team_name }}</span>
                         </div>
                         <div class="score">0</div>
                     </div>
@@ -28,8 +30,8 @@
                     <div class="away_team">
                         <div class="score">0</div>
                         <div class="name">
-                            <img src="/img/saic-head-1.png" alt="">
-                            <span>巴西</span>
+                            <img src="{{ $match->away_team_logo }}" alt="">
+                            <span>{{ $match->away_team_name }}</span>
                         </div>
                     </div>
                 </div>

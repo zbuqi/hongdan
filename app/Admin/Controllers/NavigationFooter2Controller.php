@@ -15,7 +15,7 @@ class NavigationFooter2Controller extends AdminController
     /**
      * Make a grid builder.
      *
-     * 
+     *
      * @return Grid
      */
     protected function grid()
@@ -36,10 +36,10 @@ class NavigationFooter2Controller extends AdminController
                 return $isOpen ? '开启':'关闭';
             });
             $grid->column('updated_at')->sortable();
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
         });
     }
@@ -87,6 +87,7 @@ class NavigationFooter2Controller extends AdminController
 
             $form->hidden('id');
             $form->hidden('type')->default('footerLink2');
+            $form->hidden('img');
             $form->hidden('parentId')->default('0');
             $form->hidden('created_at')->default($time);
             $form->hidden('updated_at')->default($time);
@@ -108,7 +109,7 @@ class NavigationFooter2Controller extends AdminController
                 $footer->disableEditingCheck();
                 // 去掉`继续新增`checkbox
                 $footer->disableCreatingCheck();
-            });  
+            });
         });
     }
 }

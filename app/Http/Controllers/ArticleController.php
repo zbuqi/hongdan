@@ -36,14 +36,17 @@ class ArticleController extends Controller
         for($i=0; $i<count($featureArticles); $i++){
             $featureArticles[$i]["link"] = '/article/' . $featureArticles[$i]["id"] . '.html';
         };
+        for($i=0; $i<count($correlationsArticles); $i++){
+            $correlationsArticles[$i]["link"] = '/article/' . $correlationsArticles[$i]["id"] . '.html';
+        };
         /*上一篇，下一篇*/
         $last = Article::where('id', '<', $article->id)->latest('id')->first();
         $next = Article::where('id', '>', $article->id)->oldest('id')->first();
         if($last != ''){
-            $article->last = '/article/' . $last->id;
+            $article->last = '/article/' . $last->id . ".html";
         }
         if($next != ''){
-            $article->next = '/article/' . $next->id;
+            $article->next = '/article/' . $next->id . ".html";
         }
         /*链接*/
         $navs = Navigation::where('type','=','top')->where('isOpen','=','1')->orderBy('sequence','asc')->get();
@@ -57,6 +60,7 @@ class ArticleController extends Controller
         for($i=0; $i<count($advs); $i++){
             $adv[$advs[$i]['alias']] = $advs[$i]['body'];
         }
+        $adv = json_decode(json_encode($adv));
 
         /*网站信息*/
         $site = Seting::where('name','site')->first();

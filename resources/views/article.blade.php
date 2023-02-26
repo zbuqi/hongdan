@@ -10,7 +10,7 @@
         <div class="breadcrumbs">
             <a class="back" href="/"><span>←</span>首页</a>
             <span>></span>
-            <a href="">资讯</a>
+            <a href="{{ $category->link }}">{{ $category->name }}</a>
             <span>></span>
             文章详情
         </div>
@@ -18,20 +18,21 @@
             <div class="col-4-b">
                 <div class="article-main">
                     <div class="article-head">
-                        <h1 class="title"><?php echo $article->title; ?></h1>
+                        <h1 class="title">{{ $article->title }}</h1>
                         <div class="meta">
                             <span>用户名：李白本</span>
-                            <span><?php echo $article->created_at; ?></span>
-                            <span>栏目：<a href="<?php echo $category->link; ?>"><?php echo $category->name; ?></a></span>
+                            <span>{{ $article->created_at }}</span>
+                            <span>栏目：<a href="{{ $category->link }}">{{ $category->name }}</a></span>
                         </div>
                     </div>
-                    <div class="artcle-body">
-
-                        <?php echo $article->body; ?>
-                    </div>
+                    <div class="artcle-body">{!! $article->body !!}</div>
                     <div class="up-down">
-                        <a href="<?echo $article->last; ?>">上一篇</a>
-                        <a href="<?echo $article->next; ?>">下一篇</a>
+                        @if($article->last)
+                            <a href="{{ $article->last }}">上一篇</a>
+                        @endif
+                        @if($article->next)
+                            <a href="{{ $article->next }}">下一篇</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -41,12 +42,12 @@
                         <div class="title"><span>热门推荐</span></div>
                     </div>
                     <div class="sidebar-content">
-                        <?php foreach($latestArticles as $article):?>
+                        @foreach($latestArticles as $article)
                         <div class="article-sidebar-item">
-                            <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>"></a>
+                            <a class="thumb" href="{{ $article->link }}"><img src="{{ $article->thumb }}"></a>
                             <div class="info">
                                 <div class="title">
-                                    <a href="<?php echo $article->link; ?>"><?php echo Str::limit($article->title, 32, '...') ?></a>
+                                    <a href="{{ $article->link }}">{{ Str::limit($article->title, 32, '...') }}</a>
                                 </div>
                                 <div class="meta">
                                     <span>体育发飙季</span>
@@ -54,8 +55,8 @@
                                 </div>
                             </div>
                         </div>
-                        <?php endforeach;?>
-                        <?php echo $adv['ces'];?>
+                        @endforeach
+                        {!! $adv->ces !!}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,9 @@
 
 @extends('mobile.layouts')
 
-@section('title', '这是首页')
+@section('title', $site->site_name . ' - ' . $site->site_subtitle)
+@section('keywords', $site->seo_keywords)
+@section('description', $site->seo_description)
 @section('pagename', 'home-page')
 
 @section('content')
@@ -10,19 +12,19 @@
             <div id="myCarousel" class="carousel slide" data-interval="5000">
                 <!-- 轮播（Carousel）指标 -->
                 <ol class="carousel-indicators">
-                    <?php foreach($banners as $key=>$item):?>
-                    <li data-target="#myCarousel" data-slide-to="<?php echo $key; ?>"></li>
-                    <?php endforeach; ?>
+                    @foreach($banners as $key=>$item)
+                    <li data-target="#myCarousel" data-slide-to="{{ $key }}"></li>
+                    @endforeach
                 </ol>
                 <!-- 轮播（Carousel）项目 -->
                 <div class="carousel-inner">
-                    <?php foreach($banners as $key=>$item):?>
+                    @foreach($banners as $key=>$item)
                     <div class="item">
-                        <a href="<?php echo $item->link; ?>">
-                            <img decoding="async" src="<?php echo $item->image; ?>" alt="First slide">
+                        <a href="{{ $item->link }}">
+                            <img decoding="async" src="{{ $item->image }}" alt="First slide">
                         </a>
                     </div>
-                    <?php endforeach; ?>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -36,25 +38,25 @@
                 </div>
                 <div class="col-5">
                     <a class="nav-item">
-                        <img src="/img/nav-jd-icon.png" />
+                        <img src="/img/nav-ph-icon.png" />
                         <p>大神排行</p>
                     </a>
                 </div>
                 <div class="col-5">
                     <a class="nav-item">
-                        <img src="/img/nav-jd-icon.png" />
+                        <img src="/img/nav-zs-icon.png" />
                         <p>夺冠指数</p>
                     </a>
                 </div>
                 <div class="col-5">
                     <a class="nav-item">
-                        <img src="/img/nav-jd-icon.png" />
+                        <img src="/img/nav-jm-icon.png" />
                         <p>32强解密</p>
                     </a>
                 </div>
                 <div class="col-5">
                     <a class="nav-item">
-                        <img src="/img/nav-jd-icon.png" />
+                        <img src="/img/nav-zb-icon.png" />
                         <p>比分直播</p>
                     </a>
                 </div>
@@ -69,70 +71,45 @@
                 <div class="home-match-wrap">
                     <div class="home-match-nav">
                         <ul class="list-inline clearfix">
-                            <li class="active">
-                                <div class="item">
-                                    <span>今天</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
+                            @foreach($matchs as $item)
+                                @if($item)
+                                    @if(!property_exists($item, 'err'))
                             <li>
                                 <div class="item">
-                                    <span>二</span>
-                                    <span>21</span>
+                                    <span>{{ $item->week }}</span>
+                                    <span>{{ date('d', $item->time) }}</span>
                                 </div>
                             </li>
-                            <li>
-                                <div class="item">
-                                    <span>三</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <span>四</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <span>五</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <span>六</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <span>日</span>
-                                    <span>21</span>
-                                </div>
-                            </li>
+                                    @else
+                                        <tr>{{ $item->err }}</tr>
+                                    @endif
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                     <div class="home-match-content">
-                        <div class="item active">
+                        @foreach($matchs as $item)
+                            @if($item)
+                                @if(!property_exists($item, 'err'))
+                        <div class="item">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th><span>未开赛1</span></th>
+                                        <th><span>{{ $item->status_name }}</span></th>
                                         <th><span>场次</span></th>
                                         <th><span>胜/平/负</span></th>
                                         <th><span>进/失</span></th>
                                         <th><span>积分</span></th>
                                     </tr>
                                     <tr>
-                                        <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
+                                        <td><div class="name"><img src="{{ $item->home_team_logo }}"><span>{{ $item->home_team_name }}</span></div></td>
                                         <td><span>0</span></td>
                                         <td><span>0</span></td>
                                         <td><span>0</span></td>
                                         <td><span>0</span></td>
                                     </tr>
                                     <tr>
-                                        <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
+                                        <td><div class="name"><img src="{{ $item->away_team_logo }}"><span>{{ $item->away_team_name }}</span></div></td>
                                         <td><span>0</span></td>
                                         <td><span>0</span></td>
                                         <td><span>0</span></td>
@@ -145,192 +122,11 @@
                                 <span>暂无推荐</span>
                             </div>
                         </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛2</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛3</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛4</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛5</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛6</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th><span>未开赛7</span></th>
-                                    <th><span>场次</span></th>
-                                    <th><span>胜/平/负</span></th>
-                                    <th><span>进/失</span></th>
-                                    <th><span>积分</span></th>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-2.png"><span>巴西</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                <tr>
-                                    <td><div class="name"><img src="/img/saic-head-1.png"><span>克罗西亚</span></div></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                    <td><span>0</span></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="item-footer">
-                                <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
-                                <span>暂无推荐</span>
-                            </div>
-                        </div>
+                                @else
+                                    <tr>{{ $item->err }}</tr>
+                                @endif
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -367,15 +163,13 @@
         <section class="home-article">
             <div class="section-head">
                 <div class="title"><span>每天赛程</span></div>
-                <a href="">更多 ></a>
+                <a href="/category">更多 ></a>
             </div>
             <div class="section-content">
                 <ul class="list-unstyled">
-                    <li><a href="">7日V先生解球：公推冲3连红+收3个2串1！尤文vs乌迪内斯</a></li>
-                    <li><a href=""><span>V先生谈球</span>8日鬼手谈球：再红两个2串1+北单3场全中！A</a></li>
-                    <li><a href=""><span>V先生谈球</span>8日年叔说球：公推近6中5！私料再收两单2串</a></li>
-                    <li><a href=""><span>V先生谈球</span>世界杯揭幕战卡塔尔告负;长江口二号古船成功</a></li>
-                    <li><a href=""><span>V先生谈球</span>各有滋味在其中 回顾北京日报社32年世界杯报</a></li>
+                    <?php foreach($latestArticles as $article): ?>
+                    <li><a href="<?php echo $article->link;?>"><span><?php echo $article->source; ?></span><?php echo $article->title; ?></a></li>
+                    <?php endforeach;?>
                 </ul>
             </div>
         </section>
@@ -461,21 +255,11 @@
         </section>
         <section class="home-footer-nav">
             <div class="footer-nav-wrap clearfix">
-                <div class="col-5">
-                    <a class="footer-nav-item"><img src="/img/phone.png"><p>首页</p></a>
-                </div>
-                <div class="col-5">
-                    <a class="footer-nav-item"><img src="/img/phone.png"><p>足球</p></a>
-                </div>
-                <div class="col-5">
-                    <a class="footer-nav-item"><img src="/img/phone.png"><p>篮球</p></a>
-                </div>
-                <div class="col-5">
-                    <a class="footer-nav-item"><img src="/img/phone.png"><p>预测</p></a>
-                </div>
-                <div class="col-5">
-                    <a class="footer-nav-item"><img src="/img/phone.png"><p>资讯</p></a>
-                </div>
+                <?php foreach($mobilenavs as $item): ?>
+                    <div class="col-5">
+                        <a class="footer-nav-item" href="{{ $item->link }}"><img src="{{ $item->img }}"><p>{{ $item->title }}</p></a>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </section>
 
@@ -503,6 +287,8 @@
             $(".carousel-indicators li").eq(0).addClass("active");
             $(".carousel-inner .item").eq(0).addClass("active");
             /*每天赛程*/
+            $(".home-match-nav li").eq(0).addClass("active");
+            $(".home-match-content .item").eq(0).addClass("active");
             $(".home-match-nav li").each(function(index){
                 $(this).click(function(){
                     $(this).addClass('active').siblings().removeClass('active');

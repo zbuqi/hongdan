@@ -9,214 +9,60 @@
             <a class="back" href="/">首页</a>
             <span>></span><a href="">赛程</a>
         </div>
+        @foreach($matchs as $match_list)
         <div class="match-list-warp">
             <div class="match-list-module">
                 <div class="module-title">
                     <div class="on-off">
                         <span>收起</span>
                     </div>
-                    <span>2022-12-10</span>
-                    <span>星期六</span>
+                    <span>{{ $match_list->time }}</span>
+                    <span>{{ $match_list->week }}</span>
                 </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th>世界杯</th>
-                                <th>胜</th>
-                                <th>平</th>
-                                <th>负</th>
-                            </tr>
-                            <tr>
-                                <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
+                @if($match_list->content)
+                    @if(!property_exists($match_list->content[0], 'err'))
+                        @foreach($match_list->content as $key=>$match)
+                        <div class="list-item">
+                            <a href="/match/{{ $match->id }}.html">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>{{ $match->competition_name }}</th>
+                                        <th>胜</th>
+                                        <th>平</th>
+                                        <th>负</th>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="{{ $match->home_team_logo }}"><span>{{ $match->home_team_name }}</span></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="{{ $match->away_team_logo }}"><span>{{ $match->away_team_name }}</span></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="list-item-meta">
+                                <span>{{ $match->status_name }}</span>
+                                <div class="time">
+                                    <span>{{ $match_list->week }}{{ str_pad($key+1, 3, '0', STR_PAD_LEFT) }}</span>
+                                    <span>{{ date('m-d H-i', $match->match_time) }}</span>
+                                </div>
+                            </div>
+                            </a>
                         </div>
-                    </div>
-                </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>世界杯</th>
-                            <th>胜</th>
-                            <th>平</th>
-                            <th>负</th>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>世界杯</th>
-                            <th>胜</th>
-                            <th>平</th>
-                            <th>负</th>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
-                        </div>
-                    </div>
-                </div>
+                        @endforeach
+                    @else
+                        <tr>{{ $match_list->content[0]->err }}</tr>
+                    @endif
+                @endif
             </div>
         </div>
-        <div class="match-list-warp">
-            <div class="match-list-module">
-                <div class="module-title">
-                    <div class="on-off">
-                        <span>收起</span>
-                    </div>
-                    <span>2022-12-10</span>
-                    <span>星期六</span>
-                </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>世界杯</th>
-                            <th>胜</th>
-                            <th>平</th>
-                            <th>负</th>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>世界杯</th>
-                            <th>胜</th>
-                            <th>平</th>
-                            <th>负</th>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-item">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>世界杯</th>
-                            <th>胜</th>
-                            <th>平</th>
-                            <th>负</th>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-2.png"><span>巴西</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><img src="/img/saic-head-1.png"><span>克罗地亚</span></td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="list-item-meta">
-                        <span>未开赛</span>
-                        <div class="time">
-                            <span>周六059</span>
-                            <span>12-10 23:00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection
 @section('javascript')

@@ -16,21 +16,29 @@ class MatchListController extends Controller
     {
         $isMobile = new isMobile;
         $isMobile = $isMobile->isMobile();
-
+        #比赛状态
         $status = Seting::where('name','match-status')->first();
         $status = json_decode($status["value"]);
+        #获取最新比赛的时间
+        $time = Match::latest("match_time")->first()->match_time;
+        $time = strtotime(date('Y-m-d', $time));
+        $time = $time - 2*86400;
         for($i=0; $i<3; $i++){
-            $time = strtotime(date('Y-m-d', time()));
-            $time = $time + $i*86400;
+            $time = Match::latest("match_time")->first()->match_time;
+            $time = strtotime(date('Y-m-d', $time));
+            $time = $time - 2*86400 + $i*86400;
             $time_1 = $time + ($i+1)*86400;
             $matchs[$i]['time'] = date('Y-m-d', $time);
             $week = array('天','一','二','三','四','五','六');
             $matchs[$i]['week'] = '周' . $week[date('w', $time)];
-            $matchs[$i]['content'] = Match::where('match_time','>',$time)->where('match_time','<',$time_1)->get();
+            $match_data = Match::where('match_time','>',$time)->where('match_time','<',$time_1)->get();
+            if($match_data != ""){
+                $matchs[$i]['content'] = $match_data;
+            }
             for($x=0;$x<count($matchs[$i]['content']); $x++) {
-                /*周几*/
+                #周几
                 $matchs[$i]['content'][$x]['week'] = '周' . $week[date('w', $matchs[$i]['content'][$x]->match_time)];
-                /*比赛状态*/
+                #比赛状态
                 for ($z = 0; $z < count($status); $z++){
                     if($status[$z]->id == $matchs[$i]['content'][$x]["status_id"]) {
                         $matchs[$i]['content'][$x]['status_name'] = $status[$z]->name;
@@ -41,8 +49,6 @@ class MatchListController extends Controller
             $matchs[$i] = json_decode($matchs[$i]);
         }
         sort($matchs);
-        #print_r($matchs);
-
 
 
         /*链接*/

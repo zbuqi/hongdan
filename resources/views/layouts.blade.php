@@ -16,12 +16,12 @@
         <header>
             <div class="container">
                 <div class="nav-logo">
-                    <a href="/"><img src="<?php echo $site->logo;?>"></a>
+                    <a href="/"><img src="{{ $site->logo }}"></a>
                 </div>
                 <nav class="navbar-nav">
-                    <?php foreach($navs as $item): ?>
-                    <a href="<?php echo $item->link;?>"><?php echo $item->title?></a>
-                    <?php endforeach; ?>
+                    @foreach($navs as $item)
+                    <a href="{{ $item->link }}">{{ $item->title }}</a>
+                    @endforeach
                 </nav>
                 <div class="visitor">
                     <a class="btn btn-default login" href="/admin">登录</a>
@@ -30,7 +30,7 @@
                 <div class="top-kefu">
                     <div class="kefu-icon"><img src="/img/zx-icon.png"></div>
                     <div class="kefu-btn">
-                        <div class="phone"><?php echo $consult->phone; ?></div>
+                        <div class="phone">{{ $consult->phone }}</div>
                         <a class="btn btn-default">
                             <img src="/img/wx-icon.png">
                             <span>微信咨询</span>
@@ -49,36 +49,36 @@
         <footer>
             <div class="footer-link">
                 <div class="footer-container clearfix">
-                    <?php foreach($footerlinks as $item): ?>
+                    @foreach($footerlinks as $item)
                     <div class="link-item">
-                        <h4 class="title"><?php echo $item->title?></h4>
+                        <h4 class="title">{{ $item->title }}</h4>
                         <ul class="list-unstyled">
-                            <?php foreach($item->son as $son): ?>
-                            <li><a href="<?php echo $son->link;?>"><?php echo $son->title?></a></li>
-                            <?php endforeach; ?>
+                            @foreach($item->son as $son)
+                            <li><a href="{{ $son->link }}">{{ $son->title }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
-                    <?php endforeach; ?>
+                    @endforeach
                     <div class="footer-contact clearfix">
                         <div class="contace-item contace-content clearfix">
                             <div class="contace-icon">
                                 <img src="/img/phone.png" alt="">
                             </div>
                             <div class="contace-main">
-                                <p class="phone"><?php echo $consult->phone; ?></p>
-                                <p class="time">服务时间 <?php echo $consult->time; ?></p>
+                                <p class="phone">{{ $consult->phone }}</p>
+                                <p class="time">服务时间 {{ $consult->time }}</p>
                                 <div class="contace-btn">
                                     <a href="" target="_blank">联系微信管家</a>
                                 </div>
                             </div>
                         </div>
                         <div class="contace-item">
-                            <img src="<?php echo $consult->woa1; ?>" alt="">
-                            <p><?php echo $consult->woa1_title; ?></p>
+                            <img src="{{ $consult->woa1 }}" alt="">
+                            <p>{{ $consult->woa1_title }}</p>
                         </div>
                         <div class="contace-item">
-                            <img src="<?php echo $consult->woa2; ?>" alt="">
-                            <p><?php echo $consult->woa2_title; ?></p>
+                            <img src="{{ $consult->woa2 }}" alt="">
+                            <p>{{ $consult->woa2_title }}</p>
                         </div>
                     </div>
                 </div>
@@ -86,8 +86,8 @@
             <div class="copyright">
                 <div class="footer-container">
                     <p>
-                        Copyright © 2023 <span><?php echo $site->copyright; ?></span>
-                        ICP证： <a href="<?php echo $site->put_on_record_link; ?>" target="_blank"><?php echo$site->put_on_record; ?></a>
+                        Copyright © 2023 <span>{{ $site->copyright }}</span>
+                        ICP证： <a href="{{ $site->put_on_record_link }}" target="_blank">{{ $site->put_on_record }}</a>
                     </p>
                 </div>
             </div>

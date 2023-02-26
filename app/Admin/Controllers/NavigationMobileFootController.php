@@ -10,7 +10,7 @@ use Dcat\Admin\Http\Controllers\AdminController;
 
 use App\Models\Navigation as nav;
 
-class NavigationFirendController extends AdminController
+class NavigationMobileFootController extends AdminController
 {
     /**
      * Make a grid builder.
@@ -23,7 +23,7 @@ class NavigationFirendController extends AdminController
         #echo $type;
         return Grid::make(new Navigation(), function (Grid $grid){
 
-            $grid->model()->where('type','=','firendLink');
+            $grid->model()->where('type','=','m-foot');
 
             //设置初始排序条件
             $grid->model()->orderBy('sequence','asc');
@@ -74,23 +74,31 @@ class NavigationFirendController extends AdminController
      */
     protected function form()
     {
-        $firendLink = nav::where('type','=','firendLink')->orderBy('sequence','desc')->get();
-        return Form::make(new Navigation(), function (Form $form) use ($firendLink) {
+        //父级
+        $parents[0] = '顶级';
+        foreach(nav::where('parentId','=','0')->where('type','=','m-foot')->get() as $nav){
+            $parents[$nav->id] = $nav->title;
+        }
+        $sequences = nav::where('type','=','m-foot')->orderBy('sequence','desc')->get();
+
+        return Form::make(new Navigation(), function (Form $form) use ($parents,$sequences) {
             #获取当前时间
             $time = date('Y-m-d H:i:s', time());
 
             $form->text('title');
-            $form->text('url','链接');
-            $form->text('sequence','序号')->default($firendLink[0]['sequence']+1);
+            $form->text('link','链接');
+            #$form->select('parentId', '父级');
+            $form->select('parentId', '父级')->options($parents);
+            $form->text('sequence','序号')->default($sequences[0]['sequence']+1);
             $form->radio('isNewWin', '新开窗口')->options(['0'=>'否','1'=>'是']);
             $form->radio('isOpen', '状态')->options(['1'=>'开启','0'=>'关闭']);
-            $form->image('img','图像')->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
+            $form->image('img',)->move(date('Y-m-d', time()))->uniqueName()->autoUpload();
 
             $form->hidden('id');
-            $form->hidden('type')->default('firendLink');
-            $form->hidden('parentId')->default('0');
+            $form->hidden('type')->default('m-foot');
             $form->hidden('created_at')->default($time);
             $form->hidden('updated_at')->default($time);
+
             /*表单提交前调用*/
             $form->submitted(function (Form $form){
                 /*缩略图*/

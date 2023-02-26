@@ -94,9 +94,9 @@ class NavigationTopController extends AdminController
 
             $form->hidden('id');
             $form->hidden('type')->default('top');
+            $form->hidden('img');
             $form->hidden('created_at')->default($time);
             $form->hidden('updated_at')->default($time);
-
             $form->tools(function(Form\Tools $tools){
                 // 去掉跳转列表按钮
                 $tools->disableList();
