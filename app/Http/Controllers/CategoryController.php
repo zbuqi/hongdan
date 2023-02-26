@@ -12,7 +12,7 @@ use App\Models\Seting;
 
 class CategoryController extends Controller
 {
-    
+
     public function show($code)
     {
         $isMobile = new isMobile;
@@ -47,13 +47,13 @@ class CategoryController extends Controller
     }
 
     public function list($code='')
-    {   
+    {
         if($code){
             $Category = Category::where('code', $code)->firstOrFail();
-            $latestArticles = Article::where('categoryId', $Category['id'])->latest('id')->paginate(5);
+            $latestArticles = Article::where('categoryId', $Category['id'])->latest('id')->paginate(1);
         }else{
             $Category = false;
-            $latestArticles = Article::latest('id')->paginate(5);
+            $latestArticles = Article::latest('id')->paginate(1);
         }
         /*特别推荐*/
         $featureArticles = Article::where('featured','=','1')->take(5)->get();
@@ -77,6 +77,31 @@ class CategoryController extends Controller
         $consult = Seting::where('name', 'consult')->first();
         $consult = json_decode($consult->value);
 
+        #分页
+        $current = $latestArticles->currentPage();
+        $last = $latestArticles->lastPage();
+        $page["current"] = $current;
+        $page["last"] = $last;
+        $page["content"] = [];
+        if($last<6){
+            for($i=1; $i<$last; $i++){
+                $page["content"][] = $i;
+            }
+        }elseif($current<=3){
+            for($i=1; $i<6; $i++){
+                $page["content"][] = $i;
+            }
+        }elseif(($last-$current)<2){
+            for($i=($last-4);$i<=$last;$i++){
+                $page["content"][] = $i;
+            }
+        }else{
+            for($i=$current-2;$i<$current+3;$i++){
+                $page["content"][] = $i;
+            }
+        }
+
+
         $content = [
             "latestArticles" => $latestArticles,
             'featureArticles'=>$featureArticles,
@@ -85,7 +110,8 @@ class CategoryController extends Controller
             "firendLinks" => $firendLinks,
             "footerlinks" => $footerlinks,
             "site"             => $site,
-            'consult'          => $consult
+            'consult'          => $consult,
+            'page'             => $page
         ];
         return $content;
     }

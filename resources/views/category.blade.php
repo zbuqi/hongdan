@@ -11,21 +11,21 @@
             <a class="back" href="/"><span>←</span>首页</a>
             <span>></span>
             <a href="/category">资讯</a>
-            <?php if($category): ?>
+            @if($category)
             <span>></span>
-            <?php echo $category->name; ?>
-            <?php endif; ?>
+                {{ $category->name }}
+            @endif
         </div>
         <div class="category-wrap clearfix">
             <div class="col-4-b">
                 <div class="category-content">
-                    <?php foreach($latestArticles as $article): ?>
+                    @foreach($latestArticles as $article)
                     <div class="article-item">
                         <div class="content clearfix">
-                            <a class="thumb" href="/article/1" title=""><img src="<?php echo $article->thumb; ?>" alt=""></a>
+                            <a class="thumb" href="{{ $article->link }}" title=""><img src="{{ $article->thumb }}" alt=""></a>
                             <div class="info">
-                                <h2 class="title"><a href="<?php echo $article->link; ?>" title=""><?php echo $article->title; ?></a></h2>
-                                <div class="excerpt"><?php echo $article->excerpt; ?></div>
+                                <h2 class="title"><a href="{{ $article->link }}" title="">{{ $article->title }}</a></h2>
+                                <div class="excerpt">{{ $article->excerpt }}</div>
                             </div>
                         </div>
                         <div class="meta">
@@ -34,22 +34,18 @@
                             <a class="collect" href="/">收藏</a>
                             <div class="meta-right">
                                 <span class="author">新京报社官方账号</span>
-                                <span class="time"><?php echo $article->created_at; ?></span>
+                                <span class="time">{{ $article->created_at }}</span>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach; ?>
+                    @endforeach
                     <div class="page-number clearfix">
                         <div class="content">
-                            <a class="page-up" href=""><</a>
-                            <a class="active" href="">1</a>
-                            <a href="">2</a>
-                            <a href="">3</a>
-                            <a href="">4</a>
-                            <a href="">5</a>
-                            <a>…</a>
-                            <a href="">9</a>
-                            <a class="page-down" href="">></a>
+                            <a class="page-up" href="?page=1"><</a>
+                                @foreach($page as $item)
+                                    <a @if($item == $page->current)class="active"@endif href="?page={{$item}}">{{$item}}</a>
+                                @endforeach
+                            <a class="page-down" href="?page={{$page->last}}">></a>
                         </div>
                     </div>
                 </div>
@@ -60,12 +56,12 @@
                         <div class="title"><span>热门推荐</span></div>
                     </div>
                     <div class="sidebar-content">
-                        <?php foreach($featureArticles as $article):?>
+                        @foreach($featureArticles as $article)
                         <div class="article-sidebar-item">
-                            <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>"></a>
+                            <a class="thumb" href="{{ $article->link }}"><img src="{{ $article->thumb }}"></a>
                             <div class="info">
                                 <div class="title">
-                                    <a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a>
+                                    <a href="{{ $article->link }}">{{ $article->title }}</a>
                                 </div>
                                 <div class="meta">
                                     <span>体育发飙季</span>
@@ -73,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+                        @endforeach
                     </div>
                 </div>
             </div>
