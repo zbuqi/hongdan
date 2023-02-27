@@ -1404,3 +1404,13 @@ section{
 .footer-nav-item p{
     margin-bottom:0;
 }
+.footer-nav-item{
+    color:var(--color-666);
+    -webkit-filter:grayscale(100%);
+    filter:grayscale(100%);
+}
+
+.home-footer-nav .footer-nav-item.active{
+
+    color:var(--theme-color);
+}

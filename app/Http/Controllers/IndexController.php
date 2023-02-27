@@ -57,6 +57,7 @@ class IndexController extends Controller
                 $matchs[$i]['time'] = $time;
                 $week = array('天','一','二','三','四','五','六');
                 $matchs[$i]['week'] = '周' . $week[date('w', $time)];
+                $matchs[$i]["coverage"] = json_decode($matchs[$i]["coverage"]);
                 #比赛状态
                 for ($z = 0; $z < count($status); $z++){
                     if($status[$z]->id == $matchs[$i]["status_id"]) {
@@ -68,6 +69,7 @@ class IndexController extends Controller
             }
         }
         sort($matchs);
+        
 
         #广告
         $advs = Adv::get();

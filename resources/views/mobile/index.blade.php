@@ -4,7 +4,7 @@
 @section('title', $site->site_name . ' - ' . $site->site_subtitle)
 @section('keywords', $site->seo_keywords)
 @section('description', $site->seo_description)
-@section('pagename', 'home-page')
+@section('pagename', 'mbile-home-page')
 
 @section('content')
     <div class="home">
@@ -81,7 +81,7 @@
                                 </div>
                             </li>
                                     @else
-                                        <tr>{{ $item->err }}</tr>
+                                        <p>{{ $item->err }}</p>
                                     @endif
                                 @endif
                             @endforeach
@@ -118,7 +118,9 @@
                                 </tbody>
                             </table>
                             <div class="item-footer">
+                                @if($item->coverage->mlive)
                                 <span><img src="/img/saic-bf-icon.png"><span>动画</span></span>
+                                @endif
                                 <span>暂无推荐</span>
                             </div>
                         </div>
@@ -310,6 +312,9 @@
                 zj_width += $(this).outerWidth(true);
             });
             $(".home-zhuanjia .card-wrap ul").css('width',zj_width);
+
+            /*底部导航*/
+            $(".footer-nav-wrap>div").eq(0).children(".footer-nav-item").addClass("active");
         });
     </script>
 @endsection

@@ -83,25 +83,30 @@
                 <div class="content">
                     <table class="table table-bordered">
                         <tbody>
+                        @foreach($matchs as $item)
+                            @if($item)
+                                @if(!property_exists($item, 'err'))
                             <tr class="sai-item">
                                 <td class="item-info clearfix" rowspan="2">
                                     <div class="time">
-                                        <p>12月03日</p>
-                                        <p>周日 23: 00</p>
+                                        <p>{{ date('m月d日', $item->time) }}</p>
+                                        <p>{{ $item->week }} {{ date('H:i', $item->time) }}</p>
                                     </div>
                                     <div class="fenge"></div>
-                                    <div class="start"><span>已完场</span></div>
+                                    <div class="start"><span>{{ $item->status_name }}</span></div>
                                     <div class="sai-user user-1">
-                                        <div class="name">克罗地亚</div>
-                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
+                                        <div class="name">{{ $item->home_team_name }}</div>
+                                        <div class="img"><img src="{{ $item->home_team_logo }}" alt=""></div>
                                     </div>
                                     <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
-                                        <div class="name">巴西</div>
+                                        <div class="img"><img src="{{ $item->away_team_logo }}" alt=""></div>
+                                        <div class="name">{{ $item->away_team_name }}</div>
                                     </div>
+                                    @if($item->coverage->mlive)
                                     <div class="sai-video">
                                         <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
                                     </div>
+                                    @endif
                                 </td>
                                 <td class="score"><span>0</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
@@ -111,34 +116,11 @@
                                 <td class="score"><span>+1</span></td>
                                 <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
                             </tr>
-                            <tr class="sai-item active">
-                                <td class="item-info clearfix" rowspan="2">
-                                    <div class="time">
-                                        <p>12月03日</p>
-                                        <p>周日 23: 00</p>
-                                    </div>
-                                    <div class="fenge"></div>
-                                    <div class="start"><span>已完场</span></div>
-                                    <div class="sai-user user-1">
-                                        <div class="name">克罗地亚</div>
-                                        <div class="img"><img src="/img/saic-head-1.png" alt=""></div>
-                                    </div>
-                                    <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head-2.png" alt=""></div>
-                                        <div class="name">巴西</div>
-                                    </div>
-                                    <div class="sai-video">
-                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
-                                    </div>
-                                </td>
-                                <td class="score"><span>0</span></td>
-                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                                <td class="recom" rowspan="2"><div><a href="">72位专家推荐 ></a></div></td>
-                            </tr>
-                            <tr class="sai-item active">
-                                <td class="score"><span>+1</span></td>
-                                <td class="infos"><span>8.10</span><span>4.50</span><span>1.26</span></td>
-                            </tr>
+                                @else
+                                    <tr>{{ $item->err }}</tr>
+                                @endif
+                            @endif
+                        @endforeach
                             <tr class="sai-item not">
                                 <td class="item-info clearfix" rowspan="2">
                                     <div class="time">
@@ -170,78 +152,6 @@
                                 <td class="score"><span>-</span></td>
                                 <td class="infos"><span>-</span><span>-</span><span>-</span></td>
                                 <td class="recom" rowspan="2"><div><span>暂无推荐 </span></div></td>
-                            </tr>
-                            <tr class="sai-item not">
-                                <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
-                            </tr>
-                            <tr class="sai-item not">
-                                <td class="item-info clearfix" rowspan="2">
-                                    <div class="time">
-                                        <p>12月03日</p>
-                                        <p>周日 23: 00</p>
-                                    </div>
-                                    <div class="fenge"></div>
-                                    <div class="start"><span>已完场</span></div>
-                                    <div class="sai-user user-1">
-                                        <div class="name">
-                                            第三场<br>
-                                            1/4决赛<br>
-                                            胜者
-                                        </div>
-                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
-                                    </div>
-                                    <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
-                                        <div class="name">
-                                            第三场<br>
-                                            1/4决赛<br>
-                                            胜者
-                                        </div>
-                                    </div>
-                                    <div class="sai-video">
-                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
-                                    </div>
-                                </td>
-                                <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
-                                <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
-                            </tr>
-                            <tr class="sai-item not">
-                                <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
-                            </tr>
-                            <tr class="sai-item not">
-                                <td class="item-info clearfix" rowspan="2">
-                                    <div class="time">
-                                        <p>12月03日</p>
-                                        <p>周日 23: 00</p>
-                                    </div>
-                                    <div class="fenge"></div>
-                                    <div class="start"><span>已完场</span></div>
-                                    <div class="sai-user user-1">
-                                        <div class="name">
-                                            第三场<br>
-                                            1/4决赛<br>
-                                            胜者
-                                        </div>
-                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
-                                    </div>
-                                    <div class="sai-user user-2">
-                                        <div class="img"><img src="/img/saic-head.png" alt=""></div>
-                                        <div class="name">
-                                            第三场<br>
-                                            1/4决赛<br>
-                                            胜者
-                                        </div>
-                                    </div>
-                                    <div class="sai-video">
-                                        <a href=""><img src="/img/saic-bf-icon.png"><span>动画</span></a>
-                                    </div>
-                                </td>
-                                <td class="score"><span>-</span></td>
-                                <td class="infos"><span>-</span><span>-</span><span>-</span></td>
-                                <td class="recom" rowspan="2"><div><span>暂无推荐</span></div></td>
                             </tr>
                             <tr class="sai-item not">
                                 <td class="score"><span>-</span></td>
