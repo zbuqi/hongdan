@@ -51,7 +51,7 @@
             <div class="module-content shoufa-content">
                 <div class="shoufa-title clearfix">
                     <div class="col-2 zhu">
-                        <p><span>阵容：<?php echo $lineup->home_formation; ?></span><span class="name"><?php echo $match->home_team_name; ?></span></p>
+                        <p><span>阵容：{{ $lineup->home_formation }}</span><span class="name">{{ $match->home_team_name }}</span></p>
                         <p><span>球队身价：2.5亿</span><span>教练：瓦利德·雷格拉吉</span></p>
                     </div>
                     <div class="col-2 ke">
@@ -62,59 +62,59 @@
                 <div class="shoufa-map">
                     <div class="shoufa-map-wrap">
                         <div class="zhu-team col-2">
-                            <?php foreach($lineup->home->team as $user):?>
+                            @foreach($lineup->home->team as $user)
                             <div class="team-item" style="left:<?php echo $user->y;?>%; top:<?php echo $user->x;?>%;">
                                 <div class="team-user">
-                                    <div class="number"><?php echo $user->shirt_number; ?></div>
-                                    <div class="name"><?php echo $user->name; ?></div>
-                                    <?php if(property_exists($user, 'incidents')):?>
-                                    <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
-                                    <div class="info">
-                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
-                                    </div>
-                                    <?php endif;?>
-                                    <?php endif;?>
+                                    <div class="number">{{ $user->shirt_number }}</div>
+                                    <div class="name">{{ $user->name }}</div>
+                                    @if(property_exists($user, 'incidents'))
+                                        @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                        <div class="info">
+                                            <img src="/img/{{$user->incidents[count($user->incidents)-1]->reason_img}}">
+                                        </div>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
-                            <?php endforeach;?>
+                            @endforeach
                         </div>
                         <div class="ke-team col-2">
-                            <?php foreach($lineup->away->team as $user):?>
+                            @foreach($lineup->away->team as $user)
                             <div class="team-item" style="right:<?php echo $user->y;?>%; bottom:<?php echo $user->x;?>%;">
                                 <div class="team-user">
-                                    <div class="number"><?php echo $user->shirt_number; ?></div>
-                                    <div class="name"><?php echo $user->name; ?></div>
-                                    <?php if(property_exists($user, 'incidents')):?>
-                                    <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
+                                    <div class="number">{{ $user->shirt_number }}</div>
+                                    <div class="name">{{ $user->name }}</div>
+                                    @if(property_exists($user, 'incidents'))
+                                        @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
                                     <div class="info">
-                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
+                                        <img src="/img/{{$user->incidents[count($user->incidents)-1]->reason_img}}">
                                     </div>
-                                    <?php endif;?>
-                                    <?php endif;?>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
-                            <?php endforeach;?>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="shoufa-tb clearfix">
                     <div class="col-2">
                         <div class="shoufa-tb-content zhu">
-                            <div class="title"><?php echo $match->home_team_name; ?>替补</div>
+                            <div class="title">{{ $match->home_team_name }}替补</div>
                             <div class="tb-list clearfix">
-                                <?php foreach($lineup->home->alterbate as $user):?>
+                                @foreach($lineup->home->alterbate as $user)
                                 <div class="tb-item">
                                     <a href="/">
-                                        <span><?php echo $user->shirt_number; ?></span>
-                                        <span><?php echo $user->name; ?></span>
-                                        <?php if(property_exists($user, 'incidents')):?>
-                                        <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
-                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
-                                        <?php endif;?>
-                                        <?php endif;?>
+                                        <span>{{ $user->shirt_number }}</span>
+                                        <span>{{ $user->name }}</span>
+                                        @if(property_exists($user, 'incidents'))
+                                            @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                        <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
+                                            @endif
+                                        @endif
                                     </a>
                                 </div>
-                                <?php endforeach;?>
+                                @endforeach
                             </div>
                         </div>
                     </div>

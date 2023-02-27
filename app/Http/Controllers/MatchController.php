@@ -41,6 +41,7 @@ class MatchController extends Controller
             $lineup["home_formation"] = $match["home_formation"];
             $lineup["away_formation"] = $match["away_formation"];
             $lineup["home"] = json_decode($match["lineup_home"]);
+
             $lineup["away"] = json_decode($match["lineup_away"]);
             $lineup['reason_type'] = json_decode($reason_type['value']);
             $lineup = json_encode($lineup, JSON_UNESCAPED_UNICODE);
@@ -48,10 +49,6 @@ class MatchController extends Controller
         }else{
             $lineup = "";
         }
-
-        
-        
-
 
 
         /*最新文章*/
@@ -96,6 +93,5 @@ class MatchController extends Controller
             'keywords'         => $keywords,
             'description'      => $description
         ]);
-
     }
 }

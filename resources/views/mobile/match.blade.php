@@ -48,6 +48,7 @@
             </div>
         </div>
         <div class="match-warp">
+            <?php if($lineup != ""): ?>
             <section class="match-shoufa" id="shoufa">
                 <div class="section-head">
                     <div class="title"><span>首发阵容</span></div>
@@ -70,26 +71,38 @@
                             <img class="qiuchang" src="/img/m-qiuchang.png" alt="">
                             <div class="qiuchang-wrap">
                                 <div class="zhu-team">
+                                    @foreach($lineup->home->team as $user)
                                     <div class="team-item" style="top:15%;left:15%;">
                                         <div class="team-user">
-                                            <div class="number">5<span>6.26</span></div>
-                                            <div class="name">儒勒▪孔德</div>
+                                            <div class="number">{{ $user->shirt_number }}<span>6.26</span></div>
+                                            <div class="name">{{ $user->name }}</div>
+                                            @if(property_exists($user, 'incidents'))
+                                                @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
                                             <div class="info">
-                                                <img src="/img/hr-icon.png">
+                                                <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
                                             </div>
+                                                @endif
+                                            @endif
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                                 <div class="ke-team">
-                                    <div class="team-item" style="bottom:15%;right:15%;">
-                                        <div class="team-user">
-                                            <div class="number">5<span>6.26</span></div>
-                                            <div class="name">儒勒▪孔德</div>
-                                            <div class="info">
-                                                <img src="/img/hr-icon.png">
+                                    @foreach($lineup->away->team as $user)
+                                        <div class="team-item" style="top:15%;left:15%;">
+                                            <div class="team-user">
+                                                <div class="number">{{ $user->shirt_number }}<span>6.26</span></div>
+                                                <div class="name">{{ $user->name }}</div>
+                                                @if(property_exists($user, 'incidents'))
+                                                    @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                                        <div class="info">
+                                                            <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
+                                                        </div>
+                                                    @endif
+                                                @endif
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -97,29 +110,41 @@
                     <div class="shoufa-tb clearfix">
                         <div class="col-2">
                             <div class="sftb-content zhu">
-                                <div class="title">克罗地亚替补</div>
+                                <div class="title">{{ $match->home_team_name }}替补</div>
                                 <div class="content">
-                                    <div class="sftb-item"><p><span>1</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>2</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>3</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>4</span><span>穆尼尔▪穆罕默德</span><img src="/img/hr-icon.png"></p></div>
-                                    <div class="sftb-item"><p><span>5</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>6</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>7</span><span>穆尼尔▪穆罕默德</span></p></div>
+                                    @foreach($lineup->home->alterbate as $user)
+                                    <div class="sftb-item">
+                                        <p>
+                                            <span>{{ $user->shirt_number }}</span>
+                                            <span>{{ $user->name }}</span>
+                                            @if(property_exists($user, 'incidents'))
+                                                @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                                    <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
+                                                @endif
+                                            @endif
+                                        </p>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="sftb-content ke">
-                                <div class="title">巴西替补</div>
+                                <div class="title">{{ $match->away_team_name }}替补</div>
                                 <div class="content">
-                                    <div class="sftb-item"><p><span>1</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>2</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>3</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>4</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>5</span><span>穆尼尔▪穆罕默德</span><img src="/img/hr-icon.png"></p></div>
-                                    <div class="sftb-item"><p><span>6</span><span>穆尼尔▪穆罕默德</span></p></div>
-                                    <div class="sftb-item"><p><span>7</span><span>穆尼尔▪穆罕默德</span></p></div>
+                                    @foreach($lineup->away->alterbate as $user)
+                                        <div class="sftb-item">
+                                            <p>
+                                                <span>{{ $user->shirt_number }}</span>
+                                                <span>{{ $user->name }}</span>
+                                                @if(property_exists($user, 'incidents'))
+                                                    @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                                        <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
+                                                    @endif
+                                                @endif
+                                            </p>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -135,6 +160,7 @@
                     </div>
                 </div>
             </section>
+            <?php endif; ?>
             <section class="match-baoliao" id="baoliao">
                 <div class="section-head">
                     <div class="title"><span>赢球爆料</span></div>

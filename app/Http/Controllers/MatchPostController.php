@@ -12,35 +12,23 @@ use App\Http\Repositories\MatchsApi;
 class MatchPostController extends Controller
 {
     public function show(){
+        $matchs = new Matchs();
 
         #更新关联体育竞彩足球最新3天的赛程
-        #$post_data = Matchs::update_matchs();
+        #$matchs->update_matchs();
 
         #更新未来8天所有赛程赛果列表
-        $time = date('Ymd', time());
-        for($i=0;$i<10;$i++){
-            $time_1 = strtotime($time) + $i*86400;
-            $time_2 = strtotime($time) + ($i+1)*86400;
-            echo $time+$i . " : " . $time_1 . "---" . $time_2;
-            #print_r(ApiMatchs::where("match_time",">=", $time_1)->where("match_time","<", $time_2)->get());
-            echo "<br>";
-            /*
-            if(ApiMatchs::where("match_time",">=", $time_1)->where("match_time","<", $time_2)->get() == ""){
-                echo $time+$i . "没有数据" . "<br>";
-            }else{
-                echo $time+$i . "有数据" . "<br>";
-            }
-            */
-        }
-        #Matchs::update_api_matchs(20230228);
+        #$matchs->update_api_matchs();
 
 
 
-        #Match::insert($post_data);
 
+
+
+        #删除所有数据
         #Match::truncate();
-        #print_r(Matchs::update_api_matchs(20230228));
 
+        #删除指定数据
         #ApiMatchs::where("match_time",">=",1677513600)->delete();
     }
 

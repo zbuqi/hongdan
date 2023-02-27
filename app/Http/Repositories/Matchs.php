@@ -12,6 +12,7 @@ use App\Http\Repositories\Lottery;
 
 class Matchs
 {
+    #根据时间查询api接口的赛程赛过列表
     public function show($date){
         $data = MatchsApi::matchs($date);
         /*判断是否出错，出错返回出错信息*/
@@ -58,7 +59,9 @@ class Matchs
         }
         return $matchs;
     }
-    public function update_api_matchs($date){
+
+    #根据时间从api接口获取的数据更新到数据库标 api_matchs
+    public function update_api_matchs_show($date){
         $matchs = Matchs::show($date);
         $time = date("Y-m-d H:i:s",time());
         $post_data = [];
@@ -84,9 +87,27 @@ class Matchs
             }
         }else{
             echo "数据已经存在";
-            //ApiMatchs::truncate();
         }
     }
+
+    #更新未来8天所有赛程赛果列表
+    public function update_api_matchs(){
+        $time = date('Ymd', time());
+        for($i=0;$i<10;$i++){
+            $time_1 = strtotime($time) + $i*86400;
+            $time_2 = strtotime($time) + ($i+1)*86400;
+            $data = ApiMatchs::where("match_time",">=", $time_1)->where("match_time","<", $time_2)->first();
+            #判断某天是否有赛程，没有就更新那一天的赛程列表
+            if($data == ""){
+                echo Matchs::update_api_matchs(date('Ymd', $time_1));
+                echo date('Ymd', $time_1) . "没有数据" . "<br>";
+            }else{
+                echo date('Ymd', $time_1) . "有数据" . "<br>";
+            }
+        }
+    }
+
+    #从体彩api接口获取足球竞彩赛程数据，关联数据表 api_matchs中现有的赛程，更新至标matchs中
     public function update_matchs(){
         $lottery = Lottery::index(101,1);
         $post_data = [];
@@ -129,7 +150,7 @@ class Matchs
                 }else{
 					$data["environment"] = null;
 				}
-				
+
                 unset($data["status_name"]);
                 unset($data["week"]);
                 unset($data["id"]);
