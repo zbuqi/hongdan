@@ -9,6 +9,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
 use App\Models\Seting;
+use App\Models\Comment;
 
 class MatchController extends AdminController
 {
@@ -111,6 +112,52 @@ class MatchController extends AdminController
     protected function form()
     {
         return Form::make(new Match(), function (Form $form) {
+
+            $form->text('competition_name');
+            $form->text('competition_logo');
+            $form->text('home_team_name');
+            $form->text('home_team_logo');
+            $form->text('away_team_id');
+            $form->text('away_team_name');
+            $form->text('away_team_logo');
+            $form->text('match_time');
+            $form->text('neutral');
+            $form->text('note');
+            $form->text('home_scores');
+            $form->text('away_scores');
+            $form->text('home_position');
+            $form->text('away_position');
+            $form->text('coverage');
+            $form->text('venue_id');
+            $form->text('referee_id');
+            $form->text('related_id');
+            $form->text('agg_score');
+            $form->text('round');
+            $form->text('environment');
+            $form->text('sport_id');
+            $form->text('lottery_type');
+            $form->text('issue');
+            $form->text('issue_num');
+            $form->text('lottery_id');
+            $form->text('is_same');
+            $form->text('lineup_confirmed');
+            $form->text('home_formation');
+            $form->text('away_formation');
+            $form->text('lineup_home');
+            $form->text('lineup_away');
+            $form->text('created_at');
+            $form->text('updated_at');
+
+            $form->hidden('id');
+            $form->hidden('match_id');
+            $form->hidden('season_id');
+            $form->hidden('competition_id');
+            $form->hidden('home_team_id');
+            $form->hidden('away_team_id');
+            $form->hidden('status_id');
+
+
+            /*
             $form->block(12, function(Form\BlockForm $form){
                 $form->title('赛程详情');
                 $form->column(4, function(Form\BlockForm $form){
@@ -130,7 +177,7 @@ class MatchController extends AdminController
                 });
             }); 
             $form->block(12, function(Form\BlockForm $form){
-                // 显示底部提交按钮
+                #显示底部提交按钮
                 $form->showFooter();
                 $form->title('比赛团队');
                 $form->column(6, function(Form\BlockForm $form){
@@ -152,6 +199,7 @@ class MatchController extends AdminController
                     $form->hidden('lineup_away');
                 });
             });  
+
             $form->block(12, function(Form\BlockForm $form){
                 $form->title('精彩点评');
                 
@@ -183,8 +231,9 @@ class MatchController extends AdminController
             $form->hidden('created_at');
             $form->hidden('updated_at');
 
-            /*忽略掉不需要保存的字段*/
+            #忽略掉不需要保存的字段
             $form->ignore(['home_tz','away_tz','home_baoliao','away_baoliao']);
+            */
         });
     }
 }
