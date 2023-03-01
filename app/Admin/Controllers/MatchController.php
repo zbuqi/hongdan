@@ -210,6 +210,7 @@ class MatchController extends AdminController
             $form->hidden('related_id');
             $form->hidden('sport_id');
             $form->hidden('lottery_id');
+            $form->hidden('baidu_ts');
 
             $form->hidden('created_at');
             $form->hidden('updated_at');

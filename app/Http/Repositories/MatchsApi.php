@@ -43,5 +43,29 @@ class MatchsApi
         $content = json_decode($request->getBody()->getContents());
         return $content;
     }
+    #获取教练列表
+    public function coachs(){
+        $client = new Client();
+        $request = $client->request('GET','https://open.sportnanoapi.com/api/v5/football/coach/list', [
+            'query' => [
+                'user' => 'cqyxs',
+                'secret' => 'afd2975f506709986cb45c0b934c3966'
+            ]
+        ]);
+        $content = json_decode($request->getBody()->getContents());
+        return $content;
+    }
+    #获取球队列表
+    public function teams(){
+        $client = new Client();
+        $request = $client->request('GET','https://open.sportnanoapi.com/api/v5/football/team/list', [
+            'query' => [
+                'user' => 'cqyxs',
+                'secret' => 'afd2975f506709986cb45c0b934c3966'
+            ]
+        ]);
+        $content = json_decode($request->getBody()->getContents());
+        return $content;
+    }
 }
 

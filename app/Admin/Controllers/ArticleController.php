@@ -142,6 +142,7 @@ class ArticleController extends AdminController
             $form->hidden('featured')->default(0);
             $form->hidden('hits')->default(rand(100,300));
             $form->hidden('userId')->default(1);
+            $form->hidden('baidu_ts')->default(0);
             /*表单提交前调用*/
             $form->submitted(function (Form $form) {
                 /*缩略图*/

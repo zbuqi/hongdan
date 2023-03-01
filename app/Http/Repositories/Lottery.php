@@ -12,7 +12,7 @@ class Lottery
         $time = date('ymd', time());
         /*判断是否出错，出错就返回出错信息*/
         if(property_exists($lotterys, 'err')){
-           return  $lotterys->err;
+           return  $lotterys;
         }
         /*判断是否有数据*/
         if(property_exists($lotterys, 'data')){

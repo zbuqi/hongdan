@@ -14,7 +14,7 @@
             </div>
             <div class="match-header-info">
                 <div class="time">
-                    <p><span>{{ $match->week }}055</span><a href="">{{ $match->competition_name }} ></a></p>
+                    <p><span>{{ $match->week }}</span><a href="">{{ $match->competition_name }} ></a></p>
                     <p>{{ $match->match_time }}</p>
                     <p>{{ $match->status_name }}</p>
                 </div>
@@ -24,18 +24,20 @@
                             <img src="{{ $match->home_team_logo }}" alt="">
                             <span>{{ $match->home_team_name }}</span>
                         </div>
-                        <div class="score">0</div>
+                        <div class="score">{{ $match->home_scores[0] }}</div>
                     </div>
-                    <div class="match-score"><span>半场：0-0</span></div>
+                    <div class="match-score"><span>半场：{{ $match->home_scores[1] }} - {{ $match->away_scores[1] }}</span></div>
                     <div class="away_team">
-                        <div class="score">0</div>
+                        <div class="score">{{ $match->away_scores[0] }}</div>
                         <div class="name">
                             <img src="{{ $match->away_team_logo }}" alt="">
                             <span>{{ $match->away_team_name }}</span>
                         </div>
                     </div>
                 </div>
+                @if($match->coverage->mlive)
                 <div class="match-animation"><a href="/"><img src="/img/saic-bf-icon.png" alt=""><span>动画直播</span></a></div>
+                @endif
             </div>
             <div class="match-nav">
                 <ul class="list-inline">
@@ -342,9 +344,9 @@
                     <div class="title"><span>推荐文章</span></div>
                 </div>
                 <div class="recomment-body">
-                    <?php foreach($latestArticles as $article):?>
-                    @includeIf('mobile.article-item')
-                    <?php endforeach; ?>
+                    @foreach($latestArticles as $article)
+                        @includeIf('mobile.article-item')
+                    @endforeach
                 </div>
             </section>
         </div>

@@ -24,6 +24,9 @@ class MatchController extends Controller
         $match["match_time"] = date('Y-m-d H:i', $match["match_time"]);
         #是否有情报、动画、阵容
         $match["coverage"] = json_decode($match["coverage"]);
+        #比分
+        $match["home_scores"] = json_decode($match["home_scores"]);
+        $match["away_scores"] = json_decode($match["away_scores"]);
         /*比赛状态*/
         $status = Seting::where('name','match-status')->first();
         $status = json_decode($status["value"]);
@@ -40,6 +43,13 @@ class MatchController extends Controller
             $lineup["confirmed"] = $match["lineup_confirmed"];
             $lineup["home_formation"] = $match["home_formation"];
             $lineup["away_formation"] = $match["away_formation"];
+
+            foreach($match["lineup_home"] as $lineup_home){
+                if($lineup_home){
+
+                }
+            }
+
             $lineup["home"] = json_decode($match["lineup_home"]);
 
             $lineup["away"] = json_decode($match["lineup_away"]);

@@ -1,68 +1,25 @@
 <?php
-namespace App\Http\Repositories;
 
+namespace App\Http\Middleware;
+
+use App\Http\Repositories\Matchs;
+use App\Http\Repositories\Lottery;
+use App\Http\Repositories\MatchsApi;
 
 use App\Models\Seting;
-use App\Models\ApiMatchs;
 use App\Models\Match;
-use App\Http\Repositories\Matchs;
-use App\Http\Repositories\MatchsApi;
-use App\Http\Repositories\Lottery;
+use App\Models\ApiMatchs;
 
-
-class Matchs
+class MatchDataUpdata
 {
-    #根据时间查询api接口的赛程赛过列表
-    public function show($date){
-        $data = MatchsApi::matchs($date);
-        /*判断是否出错，出错返回出错信息*/
-        if(property_exists($data, "err")){
-            return $data;
-        }
-        if(property_exists($data, "msg")){
-            return $data;
-        }
-        $matchs = $data->results->match;
-        $competitions = $data->results->competition;
-        $teams = $data->results->team;
-        $status = Seting::where('name','match-status')->first()->value;
-        $status = json_decode($status);
-
-        for($i=0;$i<count($matchs);$i++){
-            /*星期*/
-            $week = array('天','一','二','三','四','五','六');
-            $matchs[$i]->week = '周' . $week[date('w', $matchs[$i]->match_time)];
-
-            /*球队信息*/
-            foreach($teams as $team){
-                if($matchs[$i]->home_team_id == $team->id){
-                    $matchs[$i]->home_team_name = $team->name;
-                    $matchs[$i]->home_team_logo = $team->logo;
-                }elseif($matchs[$i]->away_team_id == $team->id){
-                    $matchs[$i]->away_team_name = $team->name;
-                    $matchs[$i]->away_team_logo = $team->logo;
-                }
-            }
-            /*赛事信息*/
-            foreach($competitions as $competition){
-                if($matchs[$i]->competition_id == $competition->id){
-                    $matchs[$i]->competition_name = $competition->name;
-                    $matchs[$i]->competition_logo = $competition->logo;
-                }
-            }
-            /*比赛状态*/
-            foreach($status as $statu){
-                if($matchs[$i]->status_id == $statu->id){
-                    $matchs[$i]->status_name = $statu->name;
-                }
-            }
-        }
-        return $matchs;
-    }
-
     #根据时间从api接口获取的数据更新到数据库标 api_matchs
     public function update_api_matchs_show($date){
         $matchs = Matchs::show($date);
+        #判断数据是否获取成功，不成功返回错误信息
+        if(property_exists($matchs, 'err')){
+            $data = $matchs->err;
+            return $data;
+        }
         $time = date("Y-m-d H:i:s",time());
         $post_data = [];
         for($i=0;$i<count($matchs);$i++) {
@@ -73,9 +30,9 @@ class Matchs
             $post_data[$i]["updated_at"] = $time;
             $post_data[$i]["created_at"] = $time;
         }
-
+        
         $query_date = ApiMatchs::where("match_time",">=",strtotime($date))->where("match_time","<",strtotime($date)+86400)->first();
-        /*判断数据库是否有传入date时间的赛程数据，没有，就插入date时间的赛程数据列表*/
+        #判断数据库是否有传入date时间的赛程数据，没有，就插入date时间的赛程数据列表
         if($query_date == ""){
             if(ApiMatchs::insert($post_data)){
                 echo "数据插入成功";
@@ -88,19 +45,19 @@ class Matchs
         }else{
             echo "数据已经存在";
         }
-    }
 
+    }
     #更新未来8天所有赛程赛果列表
     public function update_api_matchs(){
+        #获取当前时间
         $time = date('Ymd', time());
-        
-        for($i=0;$i<10;$i++){
+        for($i=0;$i<8;$i++){
             $time_1 = strtotime($time) + $i*86400;
             $time_2 = strtotime($time) + ($i+1)*86400;
             $data = ApiMatchs::where("match_time",">=", $time_1)->where("match_time","<", $time_2)->first();
             #判断某天是否有赛程，没有就更新那一天的赛程列表
             if($data == ""){
-                echo Matchs::update_api_matchs(date('Ymd', $time_1));
+                echo MatchDataUpdata::update_api_matchs_show(date('Ymd', $time_1));
                 echo date('Ymd', $time_1) . "没有数据" . "<br>";
             }else{
                 echo date('Ymd', $time_1) . "有数据" . "<br>";
@@ -110,9 +67,14 @@ class Matchs
 
     #从体彩api接口获取足球竞彩赛程数据，关联数据表 api_matchs中现有的赛程，更新至标matchs中
     public function update_matchs(){
+        #从体彩api接口获取足球竞彩赛程数据
         $lottery = Lottery::index(101,1);
+        if(property_exists($lottery, 'err')){
+            return $lottery->err;
+        }
         $post_data = [];
         for($i=0;$i<count($lottery);$i++){
+            #通过体彩关联的赛程id，获取数据表api_match获取赛程数据
             $match = ApiMatchs::where("match_id", $lottery[$i]->match_id)->first();
             if($match != ""){
                 $data = json_decode($match->value,true);
@@ -126,7 +88,7 @@ class Matchs
                 $data["is_same"] = $lottery[$i]->is_same;
                 #判断是否有阵容
                 if($data["coverage"]["lineup"] == 1){
-                    #阵容
+                    #通过体彩关联的赛程id，在api接口获取阵容数据
                     $lineup = MatchsApi::lineup($data->id);
                     $data["lineup_confirmed"] = $lineup->confirmed;
                     $data["home_formation"] = $lineup->home_formation;
@@ -151,13 +113,15 @@ class Matchs
                 }else{
 					$data["environment"] = null;
 				}
-
+                
+                #删除不需要的数组数据
                 unset($data["status_name"]);
                 unset($data["week"]);
                 unset($data["id"]);
                 $post_data[$i] = $data;
             }
         }
+        #更新数据到matchs表中
         foreach($post_data as $item){
             if(Match::where("match_id", $item["match_id"])->first() == ""){
                 echo Match::insert($item);
@@ -168,5 +132,7 @@ class Matchs
         }
     }
 
-}
 
+
+
+}

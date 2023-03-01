@@ -16,19 +16,21 @@
                         <div class="info"><span>排名:{{ $match->home_position }}</span><span>主队</span></div>
                     </div>
                     <img src="{{ $match->home_team_logo }}">
-                    <div class="score">0</div>
+                    <div class="score">{{ $match->home_scores[0] }}</div>
                 </div>
                 <div class="head-info">
-                    <p><span>{{ $match->status_name }}</span><span>半场：0-0</span></p>
+                    <p><span>{{ $match->status_name }}</span><span>半场：{{ $match->home_scores[1] }} - {{ $match->away_scores[1] }}</span></p>
                     <p><span>{{ $match->week }}</span><span>{{ $match->competition_name }} ></span></p>
                     <p><span>比赛时间：{{ $match->match_time }}</span></p>
+                    @if($match->coverage->mlive)
                     <a href="/">
                         <img src="/img/saic-bf-icon.png" alt="">
                         <span>动画直播</span>
                     </a>
+                    @endif
                 </div>
                 <div class="head-team ke">
-                    <div class="score">0</div>
+                    <div class="score">{{ $match->away_scores[0] }}</div>
                     <img src="{{ $match->away_team_logo }}">
                     <div class="title-wrap">
                         <div class="title"><?php echo $match->away_team_name; ?></div>
@@ -41,7 +43,7 @@
             </div>
         </div>
     </section>
-    <?php if($lineup != ""): ?>
+    @if($lineup != "")
     <section class="module shoufa">
         <div class="module-wrap">
             <div class="module-head clearfix">
@@ -120,34 +122,34 @@
                     </div>
                     <div class="col-2">
                         <div class="shoufa-tb-content ke">
-                            <div class="title"><?php echo $match->away_team_name; ?>替补</div>
+                            <div class="title">{{ $match->away_team_name }}替补</div>
                             <div class="tb-list clearfix">
-                                <?php foreach($lineup->away->alterbate as $user):?>
+                                @foreach($lineup->away->alterbate as $user)
                                 <div class="tb-item">
                                     <a href="/">
-                                        <span><?php echo $user->shirt_number; ?></span>
-                                        <span><?php echo $user->name; ?></span>
-                                        <?php if(property_exists($user, 'incidents')):?>
-                                        <?php if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img')):?>
-                                        <img src="<?php echo '/img/' . $user->incidents[count($user->incidents)-1]->reason_img;?>">
-                                        <?php endif;?>
-                                        <?php endif;?>
+                                        <span>{{ $user->shirt_number }}</span>
+                                        <span>{{ $user->name }}</span>
+                                        @if(property_exists($user, 'incidents'))
+                                            @if(property_exists($user->incidents[count($user->incidents)-1], 'reason_img'))
+                                        <img src="/img/{{ $user->incidents[count($user->incidents)-1]->reason_img }}">
+                                            @endif
+                                        @endif
                                     </a>
                                 </div>
-                                <?php endforeach;?>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="shoufa-icon clearfix">
-                    <?php foreach($lineup->reason_type as $reason_type):?>
-                    <div class="icon-item"><img src="<?php echo '/img/' . $reason_type->img; ?>" alt=""><span><?php echo $reason_type->name; ?></span></div>
-                    <?php endforeach; ?>
+                    @foreach($lineup->reason_type as $reason_type)
+                    <div class="icon-item"><img src="/img/{{ $reason_type->img }}" alt=""><span>{{ $reason_type->name }}</span></div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
-    <?php endif; ?>
+    @endif
 <section class="module baoliao">
     <div class="module-wrap">
         <div class="module-head clearfix">
@@ -296,11 +298,11 @@
             <div class="title"><span>相关推荐</span></div>
         </div>
         <div class="recomment-body clearfix">
-            <?php foreach($latestArticles as $article): ?>
+            @foreach($latestArticles as $article)
             <div class="col-4">
                 <div class="recomment-item">
-                    <a class="thumb" href="<?php echo $article->link; ?>"><img src="<?php echo $article->thumb; ?>" alt=""></a>
-                    <div class="title"><a href="<?php echo $article->link; ?>"><?php echo $article->title; ?></a></div>
+                    <a class="thumb" href="{{ $article->link }}"><img src="{{ $article->thumb }}" alt=""></a>
+                    <div class="title"><a href="{{ $article->link }}">{{ $article->title }}</a></div>
                     <div class="meta clearfix">
                         <div class="author">
                             <img src="/img/author.png" alt="">
@@ -313,7 +315,7 @@
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+            @endforeach
         </div>
     </div>
 </section>
