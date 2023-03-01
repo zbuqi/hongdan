@@ -43,16 +43,20 @@ class MatchController extends Controller
             $lineup["confirmed"] = $match["lineup_confirmed"];
             $lineup["home_formation"] = $match["home_formation"];
             $lineup["away_formation"] = $match["away_formation"];
-
-            foreach($match["lineup_home"] as $lineup_home){
-                if($lineup_home){
-
+            foreach(json_decode($match["lineup_home"]) as $item){
+                if($item->x != 0 && $item->y != 0){
+                    $lineup["home"]["team"][] = $item;
+                }else{
+                    $lineup["home"]["alterbate"][] = $item;
                 }
             }
-
-            $lineup["home"] = json_decode($match["lineup_home"]);
-
-            $lineup["away"] = json_decode($match["lineup_away"]);
+            foreach(json_decode($match["lineup_away"]) as $item){
+                if($item->x != 0 && $item->y != 0){
+                    $lineup["away"]["team"][] = $item;
+                }else{
+                    $lineup["away"]["alterbate"][] = $item;
+                }
+            }
             $lineup['reason_type'] = json_decode($reason_type['value']);
             $lineup = json_encode($lineup, JSON_UNESCAPED_UNICODE);
             $lineup = json_decode($lineup);

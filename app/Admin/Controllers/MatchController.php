@@ -116,17 +116,18 @@ class MatchController extends AdminController
     {
 
         return Form::make(new Match(), function (Form $form) {
-            #获取当前id
-            $id = $form->builder()->getResourceId();
-            $match = match_mode::where('id',$id)->first();
-            $comment = Comment::where('typeId',$match->match_id)->get();
+            if (!$form->isCreating()) {
+                #获取当前id
+                $id = $form->builder()->getResourceId();
+                $match = match_mode::where('id', $id)->first();
+                $comment = Comment::where('typeId', $match->id)->get();
 
-            $form->tab('赛程详情',function($form) use ($match, $comment){
-                $form->fieldset('赛程详情', function(Form $form) use ($match){
+
+                $form->fieldset('赛程详情', function (Form $form) use ($match) {
                     #自定义的数据
-                    if(!$form->isCreating()){
-                        $zdy_match_time = date('Y-m-d H:i:s',$match->match_time);
-                        $zdy_coverage = ['mlive'=>'是否有动画','intelligence'=>'是否有情报','lineup'=>'是否有阵容'];
+                    if (!$form->isCreating()) {
+                        $zdy_match_time = date('Y-m-d H:i:s', $match->match_time);
+                        $zdy_coverage = ['mlive' => '是否有动画', 'intelligence' => '是否有情报', 'lineup' => '是否有阵容'];
                         $coverage_default[] = empty($match->coverage->mlive) ? 'mlive' : '';
                         $coverage_default[] = empty($match->coverage->intelligence) ? 'intelligence' : '';
                         $coverage_default[] = empty($match->coverage->lineup) ? 'lineup' : '';
@@ -134,9 +135,9 @@ class MatchController extends AdminController
                     $form->text('issue');
                     $form->text('competition_name');
                     $form->text('competition_logo');
-                    if(!$form->isCreating()){
-                        $form->text('zdy_match_time','比赛时间')->value($zdy_match_time);
-                        $form->checkbox('zdy_coverage','动画、情报、阵容')->options($zdy_coverage)->default($coverage_default, true);
+                    if (!$form->isCreating()) {
+                        $form->text('zdy_match_time', '比赛时间')->value($zdy_match_time);
+                        $form->checkbox('zdy_coverage', '动画、情报、阵容')->options($zdy_coverage)->default($coverage_default, true);
                     }
                     $form->hidden('id');
                     $form->hidden('match_time');
@@ -151,72 +152,82 @@ class MatchController extends AdminController
                     $form->hidden('lineup_confirmed');
                     $form->hidden('note');
                 });
-                $form->fieldset('主队信息', function(Form $form) use ($match){
-                    if(!$form->isCreating()){
+                $form->fieldset('主队信息', function (Form $form) use ($match) {
+                    if (!$form->isCreating()) {
                         $zdy_home_scores = json_decode($match->home_scores)[0];
                     }
 
                     $form->text('home_team_name');
                     $form->text('home_team_logo');
-                    if(!$form->isCreating()) {
-                        $form->text('zdy_home_scores','主队比分')->value($zdy_home_scores);
+                    if (!$form->isCreating()) {
+                        $form->text('zdy_home_scores', '主队比分')->value($zdy_home_scores);
                     }
                     $form->hidden('home_scores');
                     $form->text('home_position');
                     $form->text('home_formation');
-                    $form->text('lineup_home');
+                    $form->hidden('lineup_home');
+                    $lineup = json_decode($match->lineup_home);
+                    $form->html(view('admin/lineup', compact('lineup')))->width(12);
                 });
-                $form->fieldset('客队信息', function(Form $form) use ($match){
-                    $form->title('客队信息');
-                    if(!$form->isCreating()){
+                $form->fieldset('客队信息', function (Form $form) use ($match) {
+                    if (!$form->isCreating()) {
                         $zdy_away_scores = json_decode($match->away_scores)[0];
                     }
                     $form->text('away_team_name');
                     $form->text('away_team_logo');
-                    if(!$form->isCreating()) {
-                        $form->text('zdy_away_scores','客队比分')->value($zdy_away_scores);
+                    if (!$form->isCreating()) {
+                        $form->text('zdy_away_scores', '客队比分')->value($zdy_away_scores);
                     }
                     $form->hidden('away_scores');
                     $form->text('away_position');
                     $form->text('away_formation');
                     $form->hidden('lineup_away');
+                    $lineup = json_decode($match->lineup_away);
+                    $form->html(view('admin/lineup', compact('lineup')))->width(12);
                 });
-                $form->fieldset('精彩点评', function(Form $form) use ($match, $comment){
-                    $form->html(
-
-                    )->width(12);
+                $form->fieldset('精彩点评', function (Form $form) use ($match, $comment) {
+                    $form->html(view('admin/comment', compact('comment')))->width(12);
                 });
-            });
-            $form->tab('主队阵容',function($form) use ($match){
-                $form->html(
-
-                );
-            });
-            $form->tab('客队阵容',function($form) use ($match){
-
-            });
 
 
-            #不需要修改的数据
-            $form->hidden('id');
-            $form->hidden('match_id');
-            $form->hidden('season_id');
-            $form->hidden('competition_id');
-            $form->hidden('home_team_id');
-            $form->hidden('away_team_id');
-            $form->hidden('status_id');
-            $form->hidden('venue_id');
-            $form->hidden('referee_id');
-            $form->hidden('related_id');
-            $form->hidden('sport_id');
-            $form->hidden('lottery_id');
-            $form->hidden('baidu_ts');
+                #不需要修改的数据
+                $form->hidden('id');
+                $form->hidden('match_id');
+                $form->hidden('season_id');
+                $form->hidden('competition_id');
+                $form->hidden('home_team_id');
+                $form->hidden('away_team_id');
+                $form->hidden('status_id');
+                $form->hidden('venue_id');
+                $form->hidden('referee_id');
+                $form->hidden('related_id');
+                $form->hidden('sport_id');
+                $form->hidden('lottery_id');
+                $form->hidden('baidu_ts');
 
-            $form->hidden('created_at');
-            $form->hidden('updated_at');
+                $form->hidden('created_at');
+                $form->hidden('updated_at');
 
-            #忽略掉不需要保存的字段
-            $form->ignore(['zdy_match_time','zdy_coverage','zdy_home_scores','zdy_away_scores','home_tz','away_tz','home_baoliao','away_baoliao']);
+                $form->tools(function(Form\Tools $tools){
+                    // 去掉跳转列表按钮
+                    $tools->disableList();
+                    // 去掉跳转详情页按钮
+                    $tools->disableView();
+                    // 去掉删除按钮
+                    $tools->disableDelete();
+                });
+                $form->footer(function($footer){
+                    // 去掉`重置`按钮
+                    $footer->disableReset();
+                    // 去掉`查看`checkbox
+                    $footer->disableViewCheck();
+                    // 去掉`继续编辑`checkbox
+                    $footer->disableEditingCheck();
+                });
+
+                #忽略掉不需要保存的字段
+                $form->ignore(['zdy_match_time', 'zdy_coverage', 'zdy_home_scores', 'zdy_away_scores', 'home_tz', 'away_tz', 'home_baoliao', 'away_baoliao']);
+            }
         });
     }
 }

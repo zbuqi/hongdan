@@ -104,6 +104,7 @@
                         <div class="shoufa-tb-content zhu">
                             <div class="title">{{ $match->home_team_name }}替补</div>
                             <div class="tb-list clearfix">
+                                @if(property_exists($lineup->home, 'alterbate'))
                                 @foreach($lineup->home->alterbate as $user)
                                 <div class="tb-item">
                                     <a href="/">
@@ -117,6 +118,7 @@
                                     </a>
                                 </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -124,6 +126,7 @@
                         <div class="shoufa-tb-content ke">
                             <div class="title">{{ $match->away_team_name }}替补</div>
                             <div class="tb-list clearfix">
+                                @if(property_exists($lineup->away, 'alterbate'))
                                 @foreach($lineup->away->alterbate as $user)
                                 <div class="tb-item">
                                     <a href="/">
@@ -137,6 +140,7 @@
                                     </a>
                                 </div>
                                 @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
