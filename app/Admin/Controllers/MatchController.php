@@ -2,7 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Forms\SiteForm;
+use App\Admin\Forms\LineupForm;
+use Dcat\Admin\Widgets\Modal;
+
 use App\Admin\Repositories\Match;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -126,7 +128,7 @@ class MatchController extends AdminController
                 for($i=0;$i<count($comments);$i++){
                     $comments[$i]->user = User::where('id',$comments[$i]->userId)->first()->name;
                 }
-            
+
                 $form->fieldset('赛程详情', function (Form $form) use ($match) {
                     #自定义的数据
                     if (!$form->isCreating()) {
@@ -170,8 +172,13 @@ class MatchController extends AdminController
                     $form->text('home_position');
                     $form->text('home_formation');
                     $form->hidden('lineup_home');
-                    $lineup = json_decode($match->lineup_home);
-                    #$form->html(view('admin/lineup', compact('lineup')))->width(12);
+                    $lineup_home = json_decode($match->lineup_home);
+                    $reasons = Seting::where('name','match-reason')->first();
+                    $reasons = json_decode($reasons->value);
+                    $form->html(
+                        view('admin/lineup_team', ['team' => $lineup_home, 'reasons' => $reasons]),
+                        $this->lineup_build($match->id)
+                    );
                 });
                 $form->fieldset('客队信息', function (Form $form) use ($match) {
                     if (!$form->isCreating()) {
@@ -186,9 +193,13 @@ class MatchController extends AdminController
                     $form->text('away_position');
                     $form->text('away_formation');
                     $form->hidden('lineup_away');
-                    $lineup = json_decode($match->lineup_away);
-                    $form->html()->width(12);
-                    #$form->html(view('admin/lineup', compact('lineup')))->width(12);
+                    $lineup_away = json_decode($match->lineup_away);
+                    $reasons = Seting::where('name','match-reason')->first();
+                    $reasons = json_decode($reasons->value);
+                    $form->html(
+                        view('admin/lineup_team', ['team' => $lineup_away, 'reasons' => $reasons]),
+                        $this->lineup_build($match->id)
+                    );
                 });
                 $form->fieldset('精彩点评', function (Form $form) use ($match, $comments) {
                     $form->html(view('admin/comment', compact('comments')))->width(12);
@@ -239,15 +250,13 @@ class MatchController extends AdminController
         });
     }
 
-    public function comment_build($editPage){
-        Form::dialog()
-            ->click('.edit-form')
-            ->success('Dcat.reload()');
-        return "
-        <div style='padding:30px 0'>
+    public function lineup_build($id){
+        $form = LineupForm::make();
+        return Modal::make()
+            ->lg()
+            ->title('修改阵型球员列表')
+            ->body($form)
+            ->button('修改阵型球员列表');
 
-            <span class='btn btn-blue edit-form' data-url='/admin/match/comment/{$editPage}/edit'> 编辑 </span>
-        </div>
-        ";
     }
 }

@@ -43,7 +43,16 @@ class MatchController extends Controller
             $lineup["confirmed"] = $match["lineup_confirmed"];
             $lineup["home_formation"] = $match["home_formation"];
             $lineup["away_formation"] = $match["away_formation"];
-            foreach(json_decode($match["lineup_home"]) as $item){
+            foreach(json_decode($match["lineup_home"]) as $item) {
+                if(property_exists($item,'incidents')){
+                    for($i=0; $i<count($item->incidents);$i++) {
+                        foreach(json_decode($reason_type->value) as $reason){
+                            if($item->incidents[$i]->reason_type == $reason->id){
+                                $item->incidents[$i]->reason_img = $reason->img;
+                            }
+                        }
+                    }
+                }
                 if($item->x != 0 && $item->y != 0){
                     $lineup["home"]["team"][] = $item;
                 }else{
