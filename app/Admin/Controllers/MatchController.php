@@ -4,15 +4,17 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Forms\SiteForm;
 use App\Admin\Repositories\Match;
-use App\Models\AdminUser as User;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
+use Dcat\Admin\Widgets\Card;
+
 use App\Models\Seting;
 use App\Models\Comment;
 use App\Models\Match as match_mode;
+use App\Models\AdminUser as User;
 
 class MatchController extends AdminController
 {
@@ -120,9 +122,11 @@ class MatchController extends AdminController
                 #获取当前id
                 $id = $form->builder()->getResourceId();
                 $match = match_mode::where('id', $id)->first();
-                $comment = Comment::where('typeId', $match->id)->get();
-
-
+                $comments = Comment::where('typeId', $match->id)->get();
+                for($i=0;$i<count($comments);$i++){
+                    $comments[$i]->user = User::where('id',$comments[$i]->userId)->first()->name;
+                }
+            
                 $form->fieldset('赛程详情', function (Form $form) use ($match) {
                     #自定义的数据
                     if (!$form->isCreating()) {
@@ -167,7 +171,7 @@ class MatchController extends AdminController
                     $form->text('home_formation');
                     $form->hidden('lineup_home');
                     $lineup = json_decode($match->lineup_home);
-                    $form->html(view('admin/lineup', compact('lineup')))->width(12);
+                    #$form->html(view('admin/lineup', compact('lineup')))->width(12);
                 });
                 $form->fieldset('客队信息', function (Form $form) use ($match) {
                     if (!$form->isCreating()) {
@@ -183,10 +187,11 @@ class MatchController extends AdminController
                     $form->text('away_formation');
                     $form->hidden('lineup_away');
                     $lineup = json_decode($match->lineup_away);
-                    $form->html(view('admin/lineup', compact('lineup')))->width(12);
+                    $form->html()->width(12);
+                    #$form->html(view('admin/lineup', compact('lineup')))->width(12);
                 });
-                $form->fieldset('精彩点评', function (Form $form) use ($match, $comment) {
-                    $form->html(view('admin/comment', compact('comment')))->width(12);
+                $form->fieldset('精彩点评', function (Form $form) use ($match, $comments) {
+                    $form->html(view('admin/comment', compact('comments')))->width(12);
                 });
 
 
@@ -225,9 +230,24 @@ class MatchController extends AdminController
                     $footer->disableEditingCheck();
                 });
 
+
+                $no_storage = ['zdy_match_time', 'zdy_coverage', 'zdy_home_scores', 'zdy_away_scores', 'home_tz', 'away_tz', 'home_baoliao', 'away_baoliao'];
+
                 #忽略掉不需要保存的字段
-                $form->ignore(['zdy_match_time', 'zdy_coverage', 'zdy_home_scores', 'zdy_away_scores', 'home_tz', 'away_tz', 'home_baoliao', 'away_baoliao']);
+                $form->ignore($no_storage);
             }
         });
+    }
+
+    public function comment_build($editPage){
+        Form::dialog()
+            ->click('.edit-form')
+            ->success('Dcat.reload()');
+        return "
+        <div style='padding:30px 0'>
+
+            <span class='btn btn-blue edit-form' data-url='/admin/match/comment/{$editPage}/edit'> 编辑 </span>
+        </div>
+        ";
     }
 }

@@ -82,6 +82,7 @@ class CommentController extends AdminController
             $form->editor('content','内容');
 
             $form->hidden('id');
+            $form->hidden('type')->default('match');
             $form->hidden('created_at');
             $form->hidden('updated_at');
 
@@ -91,7 +92,7 @@ class CommentController extends AdminController
                 // 去掉跳转详情页按钮
                 $tools->disableView();
                 // 去掉删除按钮
-                $tools->disableDelete();
+                #$tools->disableDelete();
             });
             $form->footer(function($footer){
                 // 去掉`重置`按钮

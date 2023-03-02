@@ -1,16 +1,18 @@
 
 <div class="comment">
-    @foreach($comment as $item)
+    @foreach($comments as $item)
         <div class="comment-item clearfix">
             <div class="img"><img src="/img/author.png"></div>
             <div class="item-content">
                 <div class="meta">
-                    <span class="name">路人甲</span>
+                    <span class="name">{{ $item->user }}</span>
                     <span class="time">{{$item->created_at}}</span>
                 </div>
                 <div class="info">{!! $item->content !!}</div>
             </div>
-            <div class="btn-right"><button class="btn default-btn">编辑</button></div>
+            <div class="btn-right">
+                <a class="btn default-btn" href="/admin/match/comment/{{$item->id}}/edit">编辑</a>
+            </div>
         </div>
     @endforeach
 </div>
