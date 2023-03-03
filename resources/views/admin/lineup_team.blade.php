@@ -1,7 +1,7 @@
 <div class="team-content">
-    <div class="title"></div>
+    <div class="title">球员列表</div>
     <div class="list clearfix">
-@foreach($team as $item)
+    @foreach($team as $item)
     <div class="item">
         <div>
         <span>{{ $item->shirt_number }}</span>
@@ -15,18 +15,21 @@
                 @endforeach
             @endfor
         @endif
+        <a class="btn-xs" href="/admin/match/{{ $item->id }}/{code}/{{ $item->id }}">编辑</a>
         </div>
     </div>
-@endforeach
+    @endforeach
     </div>
 </div>
 <style>
+.team-content{
+
+}
     .team-content .title{
-        color: #666;
+        color: #414750;
         border-bottom: 1px solid #dbe3e6;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 27px;
-        font-weight: 900;
         padding-bottom: 8px;
     }
     .team-content .item{
@@ -56,7 +59,9 @@
     .team-content .item img{
         width: 24px;
         height: 24px;
-        float: right;
-
+        margin-left:10px;
+    }
+    .team-content .item a{
+        float:right;
     }
 </style>

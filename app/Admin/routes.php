@@ -21,6 +21,10 @@ Route::group([
     $router->resource('match/comment', 'CommentController');
     #赛程列表
     $router->resource('match/list', 'MatchController');
+
+    #赛程阵容球员修改
+    $router->resource('match/{match_id}/{code}/{id}', 'MatchTeamController');
+
     #广告
     $router->resource('seting/adv','AdvController');
     #首页海报

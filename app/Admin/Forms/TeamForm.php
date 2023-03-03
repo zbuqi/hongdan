@@ -5,10 +5,10 @@ namespace App\Admin\Forms;
 
 use Dcat\Admin\Widgets\Form;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Match;
+use App\Models\match;
 
 
-class LineupForm extends Form
+class TeamForm extends Form
 {
     /**
      * Handle the form request.
@@ -20,13 +20,14 @@ class LineupForm extends Form
     public function handle(array $input)
     {
 
-        #$update = Seting::where('name', '=', 'site')->update($data);
-
-        if($update = 0){
+        return $this->response()->success('提交成功')->refresh();
+        /*
+        if($update){
             return $this->response()->success('提交成功')->refresh();
         }else{
             return $this->response()->error('Your error message.');
         }
+        */
     }
 
     /**
@@ -34,7 +35,10 @@ class LineupForm extends Form
      */
     public function form()
     {
-        $this->text('cesg','dgsr');
+        $this->text('shirt_number','球衣号');
+        $this->text('logo','球员logo');
+        $this->text('name','球员名字');
+        $this->text('reason_type','事件');
     }
 
     /**
@@ -44,8 +48,16 @@ class LineupForm extends Form
      */
     public function default()
     {
+        $url = $_SERVER['PHP_SELF'];
+        preg_match("/match\/([0-9]*)\/edit\/([0-9]*)/i",$url,$preg);
+        $match_id = $preg[1];
+        $id = $preg[2];
+
         return [
-            'cews' => '25496845'
+            'shirt_number' => $match_id,
+            'logo' => $id,
+            'name' => '',
+            'reason_type' => ''
         ];
     }
 }

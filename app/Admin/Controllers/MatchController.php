@@ -176,8 +176,7 @@ class MatchController extends AdminController
                     $reasons = Seting::where('name','match-reason')->first();
                     $reasons = json_decode($reasons->value);
                     $form->html(
-                        view('admin/lineup_team', ['team' => $lineup_home, 'reasons' => $reasons]),
-                        $this->lineup_build($match->id)
+                        view('admin/lineup_team', ['team' => $lineup_home, 'reasons' => $reasons])
                     );
                 });
                 $form->fieldset('客队信息', function (Form $form) use ($match) {
@@ -196,10 +195,12 @@ class MatchController extends AdminController
                     $lineup_away = json_decode($match->lineup_away);
                     $reasons = Seting::where('name','match-reason')->first();
                     $reasons = json_decode($reasons->value);
-                    $form->html(
-                        view('admin/lineup_team', ['team' => $lineup_away, 'reasons' => $reasons]),
-                        $this->lineup_build($match->id)
-                    );
+                    $data = [
+                        'team' => $lineup_away,
+                        'reasons' => $reasons
+                    ];
+                    $form->html(view('admin/lineup_team', $data))->width(8);
+
                 });
                 $form->fieldset('精彩点评', function (Form $form) use ($match, $comments) {
                     $form->html(view('admin/comment', compact('comments')))->width(12);
@@ -250,7 +251,7 @@ class MatchController extends AdminController
         });
     }
 
-    public function lineup_build($id){
+    public function lineup_build(){
         $form = LineupForm::make();
         return Modal::make()
             ->lg()
