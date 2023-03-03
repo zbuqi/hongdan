@@ -53,8 +53,9 @@ class MatchController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-
             });
+            #设置行操作按钮
+            $grid->disableViewButton();
         });
     }
 
@@ -175,9 +176,14 @@ class MatchController extends AdminController
                     $lineup_home = json_decode($match->lineup_home);
                     $reasons = Seting::where('name','match-reason')->first();
                     $reasons = json_decode($reasons->value);
-                    $form->html(
-                        view('admin/lineup_team', ['team' => $lineup_home, 'reasons' => $reasons])
-                    );
+                    $lineup_team = [
+                        'team' => $lineup_home,
+                        'reasons' => $reasons,
+                        'match_id'   => $match->id,
+                        'team_code'  => 'lineup_home'
+                    ];
+                    $lineup_team = json_decode(json_encode($lineup_team));
+                    $form->html(view('admin/lineup_team', ['lineup_team' => $lineup_team]))->width(8);
                 });
                 $form->fieldset('客队信息', function (Form $form) use ($match) {
                     if (!$form->isCreating()) {
@@ -195,11 +201,14 @@ class MatchController extends AdminController
                     $lineup_away = json_decode($match->lineup_away);
                     $reasons = Seting::where('name','match-reason')->first();
                     $reasons = json_decode($reasons->value);
-                    $data = [
+                    $lineup_team = [
                         'team' => $lineup_away,
-                        'reasons' => $reasons
+                        'reasons' => $reasons,
+                        'match_id'   => $match->id,
+                        'team_code'  => 'lineup_away'
                     ];
-                    $form->html(view('admin/lineup_team', $data))->width(8);
+                    $lineup_team = json_decode(json_encode($lineup_team));
+                    $form->html(view('admin/lineup_team', ['lineup_team' => $lineup_team]))->width(8);
 
                 });
                 $form->fieldset('精彩点评', function (Form $form) use ($match, $comments) {

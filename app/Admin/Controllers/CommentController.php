@@ -41,6 +41,8 @@ class CommentController extends AdminController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
             });
+            #设置行操作按钮
+            $grid->disableViewButton();
         });
     }
 

@@ -1,21 +1,21 @@
 <div class="team-content">
     <div class="title">球员列表</div>
     <div class="list clearfix">
-    @foreach($team as $item)
+    @foreach($lineup_team->team as $item)
     <div class="item">
         <div>
         <span>{{ $item->shirt_number }}</span>
         <span>{{ $item->name }}</span>
         @if(property_exists($item,'incidents'))
-            @for($i=0;$i<count($item->incidents);$i++)
-                @foreach($reasons as $reason)
-                    @if($reason->id == $item->incidents[$i]->reason_type)
+
+                @foreach($lineup_team->reasons as $reason)
+                    @if($reason->id == $item->incidents[0]->reason_type)
                         <img src="/img/{{ $reason->img }}">
                      @endif
                 @endforeach
-            @endfor
+
         @endif
-        <a class="btn-xs" href="/admin/match/{{ $item->id }}/{code}/{{ $item->id }}">编辑</a>
+        <a class="btn-xs" href="/admin/match/{{ $lineup_team->match_id }}/{{ $lineup_team->team_code }}/{{ $item->id }}/edit">编辑</a>
         </div>
     </div>
     @endforeach

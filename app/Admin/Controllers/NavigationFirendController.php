@@ -41,6 +41,11 @@ class NavigationFirendController extends AdminController
                 $filter->equal('id');
 
             });
+            #设置行操作按钮
+            $grid->disableViewButton();
+            $grid->disableEditButton();
+
+            $grid->showQuickEditButton();
         });
     }
 

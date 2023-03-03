@@ -23,7 +23,7 @@ Route::group([
     $router->resource('match/list', 'MatchController');
 
     #赛程阵容球员修改
-    $router->resource('match/{match_id}/{code}/{id}', 'MatchTeamController');
+    $router->get('match/{match_id}/{code}/{id}/edit', 'MatchTeamController@index');
 
     #广告
     $router->resource('seting/adv','AdvController');

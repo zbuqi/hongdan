@@ -20,11 +20,13 @@ class AdvController extends AdminController
         return Grid::make(new Adv(), function (Grid $grid) {
             $grid->column('title');
             $grid->column('alias');
-        
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+
             });
+            #设置行操作按钮
+            $grid->disableViewButton();
         });
     }
 
@@ -75,7 +77,7 @@ class AdvController extends AdminController
                 $footer->disableEditingCheck();
                 // 去掉`继续新增`checkbox
                 $footer->disableCreatingCheck();
-            });             
+            });
 
         });
     }
