@@ -76,7 +76,7 @@ class TeamForm extends Form
      */
     public function default()
     {
-        $url = $_SERVER['PHP_SELF'];
+        $url = $_SERVER['REQUEST_URI'];
         preg_match("/match\/([0-9]*)\/([\w]*)\/([0-9]*)/i",$url,$preg);
         $match_id = $preg[1];
         $team_code = $preg[2];
