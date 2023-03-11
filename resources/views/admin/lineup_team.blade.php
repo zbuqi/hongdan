@@ -1,3 +1,4 @@
+@if($lineup_team->team != '')
 <div class="team-content">
     <div class="title">球员列表</div>
     <div class="list clearfix">
@@ -21,6 +22,8 @@
     @endforeach
     </div>
 </div>
+@endif
+
 <style>
 .team-content{
 
